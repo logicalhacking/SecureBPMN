@@ -1,4 +1,8 @@
-# SecureBPMN
+# CSVM Modelling and Validation Environment 
+The *CSVM Modeling and Validation Environment is an environment for
+modelling and validating business processes as well as service
+compositions using
+[SecureBPMN](https://www.brucker.ch/projects/securebpmn/index.en.html).
 [SecureBPMN](https://www.brucker.ch/projects/securebpmn/index.en.html)
 is a domain-specific modeling language that allows to model security
 aspects (e.g., access control, separation of duty,
