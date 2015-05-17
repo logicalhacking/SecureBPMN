@@ -1,0 +1,51 @@
+/* Copyright 2012-2015 SAP SE
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package org.activiti.designer.security.property;
+
+import org.activiti.designer.property.extension.util.ExtensionUtil;
+import org.eclipse.bpmn2.AlfrescoUserTask;
+import org.eclipse.bpmn2.ServiceTask;
+import org.eclipse.bpmn2.UserTask;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.graphiti.mm.pictograms.PictogramElement;
+import org.eclipse.graphiti.services.Graphiti;
+import org.eclipse.graphiti.ui.platform.AbstractPropertySectionFilter;
+
+/**
+ * 
+ */
+public class PropertyNtkFilter extends AbstractPropertySectionFilter {
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.graphiti.ui.platform.AbstractPropertySectionFilter#accept
+	 * (org.eclipse.graphiti.mm.pictograms.PictogramElement)
+	 */
+	@Override
+	protected boolean accept(PictogramElement pe) {
+		EObject bo = Graphiti.getLinkService()
+				.getBusinessObjectForLinkedPictogramElement(pe);
+		if ((bo instanceof UserTask && bo instanceof AlfrescoUserTask == false)
+				|| (bo instanceof ServiceTask && !ExtensionUtil
+						.isCustomServiceTask(bo))) {
+			return true;
+		}
+		return false;
+	}
+
+}

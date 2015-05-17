@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="securebpmn2"
+    nsURI="http://securebpmn" nsPrefix="securebpmn2">
+  <eClassifiers xsi:type="ecore:EClass" name="SecurityFlowNode" eSuperTypes="BPMN20.ecore#//FlowNode"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SecurityFlow" eSuperTypes="BPMN20.ecore#//FlowElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sourceRefNode" ordered="false"
+        lowerBound="1" eType="ecore:EClass BPMN20.ecore#//FlowNode" resolveProxies="false"
+        eOpposite="BPMN20.ecore#//FlowNode/outgoingSecurityFlow">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="attribute"/>
+        <details key="name" value="sourceRef"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="targetRefNode" ordered="false"
+        lowerBound="1" eType="ecore:EClass BPMN20.ecore#//FlowNode" resolveProxies="false"
+        eOpposite="BPMN20.ecore#//FlowNode/incomingSecurityFlow">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="attribute"/>
+        <details key="name" value="targetRef"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Role" eSuperTypes="#//SecurityFlowNode">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="roleName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parentRoles" upperBound="-1"
+        eType="#//Role" eOpposite="#//Role/childRoles"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="subjects" upperBound="-1"
+        eType="#//Subject" transient="true" eOpposite="#//Subject/roles"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="childRoles" upperBound="-1"
+        eType="#//Role" eOpposite="#//Role/parentRoles"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="permissions" upperBound="-1"
+        eType="#//Permission" eOpposite="#//Permission/roles"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Subject" abstract="true" eSuperTypes="BPMN20.ecore#//BaseElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="roles" upperBound="-1"
+        eType="#//Role" transient="true" eOpposite="#//Role/subjects"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="groups" upperBound="-1"
+        eType="#//Group" eOpposite="#//Group/subjects"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="User" eSuperTypes="#//Subject">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="userName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Group" eSuperTypes="#//Subject">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="groupName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="subjects" upperBound="-1"
+        eType="#//Subject" eOpposite="#//Subject/groups"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Action" abstract="true" eSuperTypes="BPMN20.ecore#//BaseElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="actionName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="permissions" upperBound="-1"
+        eType="#//Permission" eOpposite="#//Permission/actions"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ActivityAction" eSuperTypes="#//Action">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="compositeActivityActions"
+        upperBound="-1" eType="#//CompositeActivityAction" eOpposite="#//CompositeActivityAction/activityActions"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="activity" lowerBound="1"
+        eType="ecore:EClass BPMN20.ecore#//Activity" eOpposite="BPMN20.ecore#//Activity/activityActions"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AtomicActivityAction" eSuperTypes="#//ActivityAction"/>
+  <eClassifiers xsi:type="ecore:EClass" name="CompositeActivityAction" eSuperTypes="#//ActivityAction">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="activityActions" upperBound="-1"
+        eType="#//ActivityAction" eOpposite="#//ActivityAction/compositeActivityActions"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Permission" eSuperTypes="BPMN20.ecore#//BaseElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="roles" lowerBound="1" upperBound="-1"
+        eType="#//Role" eOpposite="#//Role/permissions"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="actions" lowerBound="1"
+        upperBound="-1" eType="#//Action" eOpposite="#//Action/permissions"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="authorizationConstraints"
+        upperBound="-1" eType="#//AuthorizationConstraint" eOpposite="#//AuthorizationConstraint/permissions"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="pName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NeedToKnow" eSuperTypes="#//Permission"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SeparationOfDuty" eSuperTypes="#//AuthorizationConstraint">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="minimumUsers" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxUserActionsPermitted"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BindingOfDuty" eSuperTypes="#//AuthorizationConstraint">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxUsers" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sameUserActionCount" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AuthorizationConstraint" eSuperTypes="#//SecurityFlowNode">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="constraintName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="expression" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="permissions" lowerBound="1"
+        upperBound="-1" eType="#//Permission" eOpposite="#//Permission/authorizationConstraints"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dynamicEnforcement" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ActivityAuthorizationConstraint" eSuperTypes="#//AuthorizationConstraint">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="activities" lowerBound="1"
+        upperBound="-1" eType="ecore:EClass BPMN20.ecore#//Activity" eOpposite="BPMN20.ecore#//Activity/activityAuthorizationConstraints"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ProcessAction" eSuperTypes="#//Action">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="compositeProcessActions"
+        upperBound="-1" eType="#//CompositeProcessAction" eOpposite="#//CompositeProcessAction/processActions"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="process" lowerBound="1"
+        eType="ecore:EClass BPMN20.ecore#//Process" eOpposite="BPMN20.ecore#//Process/processActions"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AtomicProcessAction" eSuperTypes="#//ProcessAction"/>
+  <eClassifiers xsi:type="ecore:EClass" name="CompositeProcessAction" eSuperTypes="#//ProcessAction">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="processActions" upperBound="-1"
+        eType="#//ProcessAction" eOpposite="#//ProcessAction/compositeProcessActions"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ItemAwareElementAction" eSuperTypes="#//Action">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="compositeItemAwareElementActions"
+        upperBound="-1" eType="#//CompositeItemAwareElementAction" eOpposite="#//CompositeItemAwareElementAction/itemAwareElementActions"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="itemAwareElement" lowerBound="1"
+        eType="ecore:EClass BPMN20.ecore#//ItemAwareElement" eOpposite="BPMN20.ecore#//ItemAwareElement/itemAwareElementActions"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AtomicItemAwareElementAction" eSuperTypes="#//ItemAwareElementAction"/>
+  <eClassifiers xsi:type="ecore:EClass" name="CompositeItemAwareElementAction" eSuperTypes="#//ItemAwareElementAction">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="itemAwareElementActions"
+        upperBound="-1" eType="#//ItemAwareElementAction" eOpposite="#//ItemAwareElementAction/compositeItemAwareElementActions"/>
+  </eClassifiers>
+</ecore:EPackage>

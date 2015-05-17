@@ -1,0 +1,727 @@
+% SATE OUTPUT
+
+% SORTS
+sort(hc_axiom).
+sort(action).
+sort(fresh_const).
+sort(fresh_nat).
+sort(message).
+sort(nat).
+sort(set).
+sort(set_typed).
+sort(humanTaskName).
+sort(humanTaskName_temp).
+sort(humanTaskName_typed).
+sort(role).
+sort(role_temp).
+sort(role_typed).
+sort(automatedTaskName).
+sort(automatedTaskName_temp).
+sort(automatedTaskName_typed).
+sort(user).
+sort(user_temp).
+sort(user_typed).
+sort(data_typed).
+sort(taskInstance_typed).
+sort(fluent).
+sort(userORrole).
+sort(taskName).
+sort(entity).
+sort(data).
+
+% CONSTANTS
+constant(initial_state(initial_state_id),fluent).
+constant(fpk(fresh_public_key_id,nat,nat),fresh_public_key_typed).
+constant(puk(fresh_public_key_typed),fresh_public_key).
+constant(fsk(fresh_symmetric_key_id,nat,nat),fresh_symmetric_key_typed).
+constant(sk(fresh_symmetric_key_typed),fresh_symmetric_key).
+constant(fn(fresh_nonce_id,nat,nat),fresh_nonce_typed).
+constant(nonce(fresh_nonce_typed),fresh_nonce).
+constant(fmr(fresh_agent_id,nat,nat),fresh_agent_typed).
+constant(mr(fresh_agent_typed),fresh_agent).
+constant(ff(fresh_function_id,nat,nat),fresh_function_typed).
+constant(fu(fresh_function_typed),fresh_function).
+constant(fnat(fresh_nat_id,nat,nat),fresh_nat).
+constant(fmsg(fresh_message_id,nat,nat),fresh_message).
+constant(f_protocol_id_typed(fresh_protocol_id_typed_id,nat,nat),fresh_protocol_id_typed).
+constant(pid(fresh_protocol_id_typed),fresh_protocol_id).
+constant(fresh(fresh_const),fluent).
+constant(s,nat).
+constant(0,nat).
+constant(mc_pair,data_typed).
+constant(task,taskInstance_typed).
+constant(parallelgateway1_to_usertask7,fluent).
+constant(parallelgateway1_to_servicetask3,fluent).
+constant(parallelgateway2_to_servicetask4,fluent).
+constant(start_event_startevent2,fluent).
+constant(usertask1,humanTaskName_typed).
+constant(usertask2,humanTaskName_typed).
+constant(usertask3,humanTaskName_typed).
+constant(usertask4,humanTaskName_typed).
+constant(usertask5,humanTaskName_typed).
+constant(usertask6,humanTaskName_typed).
+constant(usertask7,humanTaskName_typed).
+constant(usertask8,humanTaskName_typed).
+constant(usertask9,humanTaskName_typed).
+constant(in_usertask1,set_typed).
+constant(out_usertask1,set_typed).
+constant(in_servicetask1,set_typed).
+constant(out_servicetask1,set_typed).
+constant(in_usertask2,set_typed).
+constant(out_usertask2,set_typed).
+constant(in_servicetask2,set_typed).
+constant(out_servicetask2,set_typed).
+constant(in_usertask3,set_typed).
+constant(out_usertask3,set_typed).
+constant(in_usertask4,set_typed).
+constant(out_usertask4,set_typed).
+constant(in_usertask5,set_typed).
+constant(out_usertask5,set_typed).
+constant(in_usertask6,set_typed).
+constant(out_usertask6,set_typed).
+constant(in_usertask7,set_typed).
+constant(out_usertask7,set_typed).
+constant(in_servicetask3,set_typed).
+constant(out_servicetask3,set_typed).
+constant(in_servicetask4,set_typed).
+constant(out_servicetask4,set_typed).
+constant(in_usertask8,set_typed).
+constant(out_usertask8,set_typed).
+constant(in_usertask9,set_typed).
+constant(out_usertask9,set_typed).
+constant(in_servicetask5,set_typed).
+constant(out_servicetask5,set_typed).
+constant(manager,role_typed).
+constant(supervisor,role_typed).
+constant(clerk,role_typed).
+constant(servicetask1,automatedTaskName_typed).
+constant(servicetask2,automatedTaskName_typed).
+constant(servicetask3,automatedTaskName_typed).
+constant(servicetask4,automatedTaskName_typed).
+constant(servicetask5,automatedTaskName_typed).
+constant(user1_manager,user_typed).
+constant(user2_manager,user_typed).
+constant(user1_supervisor,user_typed).
+constant(user2_supervisor,user_typed).
+constant(user1_clerk,user_typed).
+constant(user2_clerk,user_typed).
+constant(mr(agent_typed),agent).
+constant(nonce(nonce_typed),nonce).
+constant(sk(sk_typed),symmetric_key).
+constant(puk(puk_typed),public_key).
+constant(private_key_lb(private_key_typed),private_key).
+constant(fu(function_typed),function).
+constant(pid(protocol_id_typed),protocol_id).
+constant(bool_lb(bool_typed),bool).
+constant(set_lb(set_typed),set).
+constant(ch(channel_typed),channel).
+constant(s(nat),nat).
+constant(contains(message,set),fluent).
+constant(user_to_role(user,role),fluent).
+constant(poto(userORrole,taskName),fluent).
+constant(task_to_data(taskName,set,set),fluent).
+constant(aknows(entity,data),fluent).
+constant(mc_pair(data,data),data_typed).
+constant(contains(set,data),fluent).
+constant(task(taskName,nat),taskInstance_typed).
+constant(canExecute(user,role,humanTaskName),fluent).
+constant(granted(user,role,taskInstance),fluent).
+constant(executed(user,taskInstance),fluent).
+constant(ready(taskInstance),fluent).
+constant(done(taskInstance),fluent).
+constant(taskName_lb(humanTaskName_temp),humanTaskName).
+constant(taskName_lb(humanTaskName_temp),humanTaskName).
+constant(taskName_lb(humanTaskName_temp),humanTaskName).
+constant(taskName_lb(humanTaskName_temp),humanTaskName).
+constant(humanTaskName_lb(humanTaskName_typed),humanTaskName_temp).
+constant(userORrole_lb(role_temp),role).
+constant(userORrole_lb(role_temp),role).
+constant(role_lb(role_typed),role_temp).
+constant(taskName_lb(automatedTaskName_temp),automatedTaskName).
+constant(taskName_lb(automatedTaskName_temp),automatedTaskName).
+constant(taskName_lb(automatedTaskName_temp),automatedTaskName).
+constant(taskName_lb(automatedTaskName_temp),automatedTaskName).
+constant(automatedTaskName_lb(automatedTaskName_typed),automatedTaskName_temp).
+constant(entity_lb(user_temp),user).
+constant(entity_lb(user_temp),user).
+constant(user_lb(user_typed),user_temp).
+constant(init_1,initial_state_id).
+constant(counter_w_usertask1(nat),fluent).
+constant(counter_w_servicetask1(nat),fluent).
+constant(counter_w_usertask2(nat),fluent).
+constant(counter_w_servicetask2(nat),fluent).
+constant(counter_w_usertask3(nat),fluent).
+constant(counter_w_usertask4(nat),fluent).
+constant(counter_w_usertask5(nat),fluent).
+constant(counter_w_usertask6(nat),fluent).
+constant(counter_w_usertask7(nat),fluent).
+constant(counter_w_servicetask3(nat),fluent).
+constant(counter_w_servicetask4(nat),fluent).
+constant(counter_w_usertask8(nat),fluent).
+constant(counter_w_usertask9(nat),fluent).
+constant(counter_w_servicetask5(nat),fluent).
+constant(n0,fresh_nat_id).
+constant(n1,fresh_nat_id).
+constant(n3,fresh_nat_id).
+constant(n5,fresh_nat_id).
+constant(n7,fresh_nat_id).
+constant(n9,fresh_nat_id).
+constant(n11,fresh_nat_id).
+constant(n13,fresh_nat_id).
+constant(n16,fresh_nat_id).
+constant(n17,fresh_nat_id).
+constant(n20,fresh_nat_id).
+constant(n21,fresh_nat_id).
+constant(n23,fresh_nat_id).
+constant(n25,fresh_nat_id).
+
+% SUPERSORTS
+super_sort(puk_typed,fresh_public_key_typed).
+super_sort(fresh_const,fresh_public_key).
+super_sort(sk_typed,fresh_symmetric_key_typed).
+super_sort(fresh_const,fresh_symmetric_key).
+super_sort(nonce_typed,fresh_nonce_typed).
+super_sort(fresh_const,fresh_nonce).
+super_sort(agent_typed,fresh_agent_typed).
+super_sort(fresh_const,fresh_agent).
+super_sort(function_typed,fresh_function_typed).
+super_sort(fresh_const,fresh_function).
+super_sort(nat,fresh_nat).
+super_sort(fresh_const,fresh_nat).
+super_sort(message,fresh_message).
+super_sort(fresh_const,fresh_message).
+super_sort(protocol_id_typed,fresh_protocol_id_typed).
+super_sort(fresh_const,fresh_protocol_id).
+super_sort(message,agent).
+super_sort(message,nonce).
+super_sort(message,symmetric_key).
+super_sort(message,public_key).
+super_sort(message,private_key).
+super_sort(message,function).
+super_sort(message,nat).
+super_sort(message,protocol_id).
+super_sort(message,bool).
+super_sort(entity,organization).
+super_sort(entity,user).
+super_sort(data,object).
+super_sort(data,set).
+super_sort(userORrole,user).
+super_sort(userORrole,role).
+super_sort(taskName,automatedTaskName).
+super_sort(taskName,humanTaskName).
+super_sort(taskName_typed,humanTaskName_temp).
+super_sort(userORrole_typed,role_temp).
+super_sort(taskName_typed,automatedTaskName_temp).
+super_sort(entity_typed,user_temp).
+
+% INITIAL STATES
+facts([initial_state(init_1),
+	 user_to_role(entity_lb(user_lb(user1_manager)),userORrole_lb(role_lb(manager))),
+	 user_to_role(entity_lb(user_lb(user2_manager)),userORrole_lb(role_lb(manager))),
+	 user_to_role(entity_lb(user_lb(user1_supervisor)),userORrole_lb(role_lb(supervisor))),
+	 user_to_role(entity_lb(user_lb(user2_supervisor)),userORrole_lb(role_lb(supervisor))),
+	 user_to_role(entity_lb(user_lb(user1_clerk)),userORrole_lb(role_lb(clerk))),
+	 user_to_role(entity_lb(user_lb(user2_clerk)),userORrole_lb(role_lb(clerk))),
+	 task_to_data(taskName_lb(humanTaskName_lb(usertask1)),set_lb(in_usertask1),set_lb(out_usertask1)),
+	 task_to_data(taskName_lb(automatedTaskName_lb(servicetask1)),set_lb(in_servicetask1),set_lb(out_servicetask1)),
+	 task_to_data(taskName_lb(humanTaskName_lb(usertask2)),set_lb(in_usertask2),set_lb(out_usertask2)),
+	 task_to_data(taskName_lb(automatedTaskName_lb(servicetask2)),set_lb(in_servicetask2),set_lb(out_servicetask2)),
+	 task_to_data(taskName_lb(humanTaskName_lb(usertask3)),set_lb(in_usertask3),set_lb(out_usertask3)),
+	 task_to_data(taskName_lb(humanTaskName_lb(usertask4)),set_lb(in_usertask4),set_lb(out_usertask4)),
+	 task_to_data(taskName_lb(humanTaskName_lb(usertask5)),set_lb(in_usertask5),set_lb(out_usertask5)),
+	 task_to_data(taskName_lb(humanTaskName_lb(usertask6)),set_lb(in_usertask6),set_lb(out_usertask6)),
+	 task_to_data(taskName_lb(humanTaskName_lb(usertask7)),set_lb(in_usertask7),set_lb(out_usertask7)),
+	 task_to_data(taskName_lb(automatedTaskName_lb(servicetask3)),set_lb(in_servicetask3),set_lb(out_servicetask3)),
+	 task_to_data(taskName_lb(automatedTaskName_lb(servicetask4)),set_lb(in_servicetask4),set_lb(out_servicetask4)),
+	 task_to_data(taskName_lb(humanTaskName_lb(usertask8)),set_lb(in_usertask8),set_lb(out_usertask8)),
+	 task_to_data(taskName_lb(humanTaskName_lb(usertask9)),set_lb(in_usertask9),set_lb(out_usertask9)),
+	 task_to_data(taskName_lb(automatedTaskName_lb(servicetask5)),set_lb(in_servicetask5),set_lb(out_servicetask5)),
+	 start_event_startevent2,
+	 counter_w_usertask1(0),
+	 counter_w_servicetask1(0),
+	 counter_w_usertask2(0),
+	 counter_w_servicetask2(0),
+	 counter_w_usertask3(0),
+	 counter_w_usertask4(0),
+	 counter_w_usertask5(0),
+	 counter_w_usertask6(0),
+	 counter_w_usertask7(0),
+	 counter_w_servicetask3(0),
+	 counter_w_servicetask4(0),
+	 counter_w_usertask8(0),
+	 counter_w_usertask9(0),
+	 counter_w_servicetask5(0)]).
+
+
+% RULES
+constant(sc_authorizeTaskExecution_1(user_typed,role_typed,humanTaskName_typed,nat),action).
+action(sc_authorizeTaskExecution_1(A,R,HT,N),
+	true,
+	[canExecute(entity_lb(user_lb(A)),userORrole_lb(role_lb(R)),taskName_lb(humanTaskName_lb(HT))),
+	 ready(taskInstance_lb(task(taskName_lb(humanTaskName_lb(HT)),N)))],
+	[granted(entity_lb(user_lb(A)),userORrole_lb(role_lb(R)),taskInstance_lb(task(taskName_lb(humanTaskName_lb(HT)),N)))],
+	[ready(taskInstance_lb(task(taskName_lb(humanTaskName_lb(HT)),N)))]).
+
+constant(sc_h_taskExecution_1(user_typed,role_typed,humanTaskName_typed,nat,set_typed,set_typed),action).
+action(sc_h_taskExecution_1(A,R,HT,N,IN,OUT),
+	true,
+	[granted(entity_lb(user_lb(A)),userORrole_lb(role_lb(R)),taskInstance_lb(task(taskName_lb(humanTaskName_lb(HT)),N))),
+	 task_to_data(taskName_lb(humanTaskName_lb(HT)),set_lb(IN),set_lb(OUT))],
+	[executed(entity_lb(user_lb(A)),taskInstance_lb(task(taskName_lb(humanTaskName_lb(HT)),N))),
+	 done(taskInstance_lb(task(taskName_lb(humanTaskName_lb(HT)),N))),
+	 task_to_data(taskName_lb(humanTaskName_lb(HT)),set_lb(IN),set_lb(OUT)),
+	 aknows(entity_lb(user_lb(A)),set_lb(IN)),
+	 aknows(entity_lb(user_lb(A)),set_lb(OUT))],
+	[granted(entity_lb(user_lb(A)),userORrole_lb(role_lb(R)),taskInstance_lb(task(taskName_lb(humanTaskName_lb(HT)),N)))]).
+
+constant(sc_atask_execution_1(automatedTaskName_typed,nat,set_typed,set_typed),action).
+action(sc_atask_execution_1(AT,N,IN,OUT),
+	true,
+	[ready(taskInstance_lb(task(taskName_lb(automatedTaskName_lb(AT)),N))),
+	 task_to_data(taskName_lb(automatedTaskName_lb(AT)),set_lb(IN),set_lb(OUT))],
+	[done(taskInstance_lb(task(taskName_lb(automatedTaskName_lb(AT)),N))),
+	 task_to_data(taskName_lb(automatedTaskName_lb(AT)),set_lb(IN),set_lb(OUT))],
+	[ready(taskInstance_lb(task(taskName_lb(automatedTaskName_lb(AT)),N)))]).
+
+constant(sc_w_usertask1_1(nat),action).
+action(sc_w_usertask1_1(Xvar),
+	true,
+	[start_event_startevent2,
+	 counter_w_usertask1(Xvar)],
+	[ready(taskInstance_lb(task(taskName_lb(humanTaskName_lb(usertask1)),fnat(n0,Xvar,0)))),
+	 counter_w_usertask1(s(Xvar))],
+	[start_event_startevent2,
+	 counter_w_usertask1(Xvar)]).
+
+constant(sc_w_servicetask1_1(nat,nat),action).
+action(sc_w_servicetask1_1(N2,Xvar),
+	true,
+	[done(taskInstance_lb(task(taskName_lb(humanTaskName_lb(usertask1)),N2))),
+	 counter_w_servicetask1(Xvar)],
+	[ready(taskInstance_lb(task(taskName_lb(automatedTaskName_lb(servicetask1)),fnat(n1,Xvar,0)))),
+	 counter_w_servicetask1(s(Xvar))],
+	[done(taskInstance_lb(task(taskName_lb(humanTaskName_lb(usertask1)),N2))),
+	 counter_w_servicetask1(Xvar)]).
+
+constant(sc_w_usertask2_1(nat,nat),action).
+action(sc_w_usertask2_1(N4,Xvar),
+	true,
+	[done(taskInstance_lb(task(taskName_lb(automatedTaskName_lb(servicetask1)),N4))),
+	 counter_w_usertask2(Xvar)],
+	[ready(taskInstance_lb(task(taskName_lb(humanTaskName_lb(usertask2)),fnat(n3,Xvar,0)))),
+	 counter_w_usertask2(s(Xvar))],
+	[done(taskInstance_lb(task(taskName_lb(automatedTaskName_lb(servicetask1)),N4))),
+	 counter_w_usertask2(Xvar)]).
+
+constant(sc_w_servicetask2_1(nat,nat),action).
+action(sc_w_servicetask2_1(N6,Xvar),
+	true,
+	[done(taskInstance_lb(task(taskName_lb(humanTaskName_lb(usertask2)),N6))),
+	 counter_w_servicetask2(Xvar)],
+	[ready(taskInstance_lb(task(taskName_lb(automatedTaskName_lb(servicetask2)),fnat(n5,Xvar,0)))),
+	 counter_w_servicetask2(s(Xvar))],
+	[done(taskInstance_lb(task(taskName_lb(humanTaskName_lb(usertask2)),N6))),
+	 counter_w_servicetask2(Xvar)]).
+
+constant(sc_w_usertask3_1(nat,nat),action).
+action(sc_w_usertask3_1(N8,Xvar),
+	true,
+	[done(taskInstance_lb(task(taskName_lb(automatedTaskName_lb(servicetask2)),N8))),
+	 counter_w_usertask3(Xvar)],
+	[ready(taskInstance_lb(task(taskName_lb(humanTaskName_lb(usertask3)),fnat(n7,Xvar,0)))),
+	 counter_w_usertask3(s(Xvar))],
+	[done(taskInstance_lb(task(taskName_lb(automatedTaskName_lb(servicetask2)),N8))),
+	 counter_w_usertask3(Xvar)]).
+
+constant(sc_w_usertask4_1(nat,nat),action).
+action(sc_w_usertask4_1(N10,Xvar),
+	true,
+	[done(taskInstance_lb(task(taskName_lb(humanTaskName_lb(usertask3)),N10))),
+	 counter_w_usertask4(Xvar)],
+	[ready(taskInstance_lb(task(taskName_lb(humanTaskName_lb(usertask4)),fnat(n9,Xvar,0)))),
+	 counter_w_usertask4(s(Xvar))],
+	[done(taskInstance_lb(task(taskName_lb(humanTaskName_lb(usertask3)),N10))),
+	 counter_w_usertask4(Xvar)]).
+
+constant(sc_w_usertask5_1(nat,nat),action).
+action(sc_w_usertask5_1(N12,Xvar),
+	true,
+	[done(taskInstance_lb(task(taskName_lb(humanTaskName_lb(usertask4)),N12))),
+	 counter_w_usertask5(Xvar)],
+	[ready(taskInstance_lb(task(taskName_lb(humanTaskName_lb(usertask5)),fnat(n11,Xvar,0)))),
+	 counter_w_usertask5(s(Xvar))],
+	[done(taskInstance_lb(task(taskName_lb(humanTaskName_lb(usertask4)),N12))),
+	 counter_w_usertask5(Xvar)]).
+
+constant(sc_w_usertask6_1(nat,nat),action).
+action(sc_w_usertask6_1(N14,Xvar),
+	true,
+	[done(taskInstance_lb(task(taskName_lb(humanTaskName_lb(usertask5)),N14))),
+	 counter_w_usertask6(Xvar)],
+	[ready(taskInstance_lb(task(taskName_lb(humanTaskName_lb(usertask6)),fnat(n13,Xvar,0)))),
+	 counter_w_usertask6(s(Xvar))],
+	[done(taskInstance_lb(task(taskName_lb(humanTaskName_lb(usertask5)),N14))),
+	 counter_w_usertask6(Xvar)]).
+
+constant(sc_w_parallelgateway1_1(nat),action).
+action(sc_w_parallelgateway1_1(N15),
+	true,
+	[done(taskInstance_lb(task(taskName_lb(humanTaskName_lb(usertask6)),N15)))],
+	[parallelgateway1_to_usertask7,
+	 parallelgateway1_to_servicetask3],
+	[done(taskInstance_lb(task(taskName_lb(humanTaskName_lb(usertask6)),N15)))]).
+
+constant(sc_w_usertask7_1(nat),action).
+action(sc_w_usertask7_1(Xvar),
+	true,
+	[parallelgateway1_to_usertask7,
+	 counter_w_usertask7(Xvar)],
+	[ready(taskInstance_lb(task(taskName_lb(humanTaskName_lb(usertask7)),fnat(n16,Xvar,0)))),
+	 counter_w_usertask7(s(Xvar))],
+	[parallelgateway1_to_usertask7,
+	 counter_w_usertask7(Xvar)]).
+
+constant(sc_w_servicetask3_1(nat),action).
+action(sc_w_servicetask3_1(Xvar),
+	true,
+	[parallelgateway1_to_servicetask3,
+	 counter_w_servicetask3(Xvar)],
+	[ready(taskInstance_lb(task(taskName_lb(automatedTaskName_lb(servicetask3)),fnat(n17,Xvar,0)))),
+	 counter_w_servicetask3(s(Xvar))],
+	[parallelgateway1_to_servicetask3,
+	 counter_w_servicetask3(Xvar)]).
+
+constant(sc_w_parallelgateway2_1(nat,nat),action).
+action(sc_w_parallelgateway2_1(N18,N19),
+	true,
+	[done(taskInstance_lb(task(taskName_lb(humanTaskName_lb(usertask7)),N18))),
+	 done(taskInstance_lb(task(taskName_lb(automatedTaskName_lb(servicetask3)),N19)))],
+	[parallelgateway2_to_servicetask4],
+	[done(taskInstance_lb(task(taskName_lb(humanTaskName_lb(usertask7)),N18))),
+	 done(taskInstance_lb(task(taskName_lb(automatedTaskName_lb(servicetask3)),N19)))]).
+
+constant(sc_w_servicetask4_1(nat),action).
+action(sc_w_servicetask4_1(Xvar),
+	true,
+	[parallelgateway2_to_servicetask4,
+	 counter_w_servicetask4(Xvar)],
+	[ready(taskInstance_lb(task(taskName_lb(automatedTaskName_lb(servicetask4)),fnat(n20,Xvar,0)))),
+	 counter_w_servicetask4(s(Xvar))],
+	[parallelgateway2_to_servicetask4,
+	 counter_w_servicetask4(Xvar)]).
+
+constant(sc_w_usertask8_1(nat,nat),action).
+action(sc_w_usertask8_1(N22,Xvar),
+	true,
+	[done(taskInstance_lb(task(taskName_lb(automatedTaskName_lb(servicetask4)),N22))),
+	 counter_w_usertask8(Xvar)],
+	[ready(taskInstance_lb(task(taskName_lb(humanTaskName_lb(usertask8)),fnat(n21,Xvar,0)))),
+	 counter_w_usertask8(s(Xvar))],
+	[done(taskInstance_lb(task(taskName_lb(automatedTaskName_lb(servicetask4)),N22))),
+	 counter_w_usertask8(Xvar)]).
+
+constant(sc_w_usertask9_1(nat,nat),action).
+action(sc_w_usertask9_1(N24,Xvar),
+	true,
+	[done(taskInstance_lb(task(taskName_lb(humanTaskName_lb(usertask8)),N24))),
+	 counter_w_usertask9(Xvar)],
+	[ready(taskInstance_lb(task(taskName_lb(humanTaskName_lb(usertask9)),fnat(n23,Xvar,0)))),
+	 counter_w_usertask9(s(Xvar))],
+	[done(taskInstance_lb(task(taskName_lb(humanTaskName_lb(usertask8)),N24))),
+	 counter_w_usertask9(Xvar)]).
+
+constant(sc_w_servicetask5_1(nat,nat),action).
+action(sc_w_servicetask5_1(N26,Xvar),
+	true,
+	[done(taskInstance_lb(task(taskName_lb(humanTaskName_lb(usertask9)),N26))),
+	 counter_w_servicetask5(Xvar)],
+	[ready(taskInstance_lb(task(taskName_lb(automatedTaskName_lb(servicetask5)),fnat(n25,Xvar,0)))),
+	 counter_w_servicetask5(s(Xvar))],
+	[done(taskInstance_lb(task(taskName_lb(humanTaskName_lb(usertask9)),N26))),
+	 counter_w_servicetask5(Xvar)]).
+
+
+% CONSTRAINTS
+
+% GOALS
+goal(sod_securitySod1_1(U0,N27,N28),true,
+	[executed(entity_lb(user_lb(U0)),taskInstance_lb(task(taskName_lb(humanTaskName_lb(usertask9)),N27))),
+	 executed(entity_lb(user_lb(U0)),taskInstance_lb(task(taskName_lb(humanTaskName_lb(usertask2)),N28)))]).
+
+goal(sod_securitySod2_1(U0,N29,N30),true,
+	[executed(entity_lb(user_lb(U0)),taskInstance_lb(task(taskName_lb(humanTaskName_lb(usertask4)),N29))),
+	 executed(entity_lb(user_lb(U0)),taskInstance_lb(task(taskName_lb(humanTaskName_lb(usertask3)),N30)))]).
+
+goal(bod_securityBod1_1(U0,U1,N31,N32),on_the_fly_conditions([\+entity_lb(user_lb(U0))=entity_lb(user_lb(U1))]),
+	[executed(entity_lb(user_lb(U0)),taskInstance_lb(task(taskName_lb(humanTaskName_lb(usertask8)),N31))),
+	 executed(entity_lb(user_lb(U1)),taskInstance_lb(task(taskName_lb(humanTaskName_lb(usertask9)),N32)))]).
+
+goal(bod_securityBod1_2(U0,U1,N33,N34),on_the_fly_conditions([\+entity_lb(user_lb(U0))=entity_lb(user_lb(U1))]),
+	[executed(entity_lb(user_lb(U0)),taskInstance_lb(task(taskName_lb(humanTaskName_lb(usertask9)),N33))),
+	 executed(entity_lb(user_lb(U1)),taskInstance_lb(task(taskName_lb(humanTaskName_lb(usertask8)),N34)))]).
+
+
+% EQUATIONS
+
+% USER_AXIOMS
+
+% HC_AXIOMS
+constant(rbac_ac(user_typed,role_typed,humanTaskName_typed),hc_axiom).
+hc_axiom(rbac_ac(A,R,HT),
+	true,
+	[user_to_role(entity_lb(user_lb(A)),userORrole_lb(role_lb(R))),
+	 poto(userORrole_lb(role_lb(R)),taskName_lb(humanTaskName_lb(HT)))],
+	[canExecute(entity_lb(user_lb(A)),userORrole_lb(role_lb(R)),taskName_lb(humanTaskName_lb(HT)))]).
+
+constant(direct_ac(user_typed,role_typed,humanTaskName_typed),hc_axiom).
+hc_axiom(direct_ac(A,R,HT),
+	true,
+	[user_to_role(entity_lb(user_lb(A)),userORrole_lb(role_lb(R))),
+	 poto(entity_lb(user_lb(A)),taskName_lb(humanTaskName_lb(HT)))],
+	[canExecute(entity_lb(user_lb(A)),userORrole_lb(role_lb(R)),taskName_lb(humanTaskName_lb(HT)))]).
+
+constant(poto_usertask1,hc_axiom).
+hc_axiom(poto_usertask1,
+	true,
+	[],
+	[poto(userORrole_lb(role_lb(clerk)),taskName_lb(humanTaskName_lb(usertask1)))]).
+
+constant(poto_usertask2,hc_axiom).
+hc_axiom(poto_usertask2,
+	true,
+	[],
+	[poto(userORrole_lb(role_lb(clerk)),taskName_lb(humanTaskName_lb(usertask2)))]).
+
+constant(poto_usertask3,hc_axiom).
+hc_axiom(poto_usertask3,
+	true,
+	[],
+	[poto(userORrole_lb(role_lb(manager)),taskName_lb(humanTaskName_lb(usertask3)))]).
+
+constant(poto_usertask4,hc_axiom).
+hc_axiom(poto_usertask4,
+	true,
+	[],
+	[poto(userORrole_lb(role_lb(manager)),taskName_lb(humanTaskName_lb(usertask4)))]).
+
+constant(poto_usertask5,hc_axiom).
+hc_axiom(poto_usertask5,
+	true,
+	[],
+	[poto(userORrole_lb(role_lb(clerk)),taskName_lb(humanTaskName_lb(usertask5)))]).
+
+constant(poto_usertask6,hc_axiom).
+hc_axiom(poto_usertask6,
+	true,
+	[],
+	[poto(userORrole_lb(role_lb(manager)),taskName_lb(humanTaskName_lb(usertask6)))]).
+
+constant(poto_usertask7,hc_axiom).
+hc_axiom(poto_usertask7,
+	true,
+	[],
+	[poto(userORrole_lb(role_lb(clerk)),taskName_lb(humanTaskName_lb(usertask7)))]).
+
+constant(poto_usertask8,hc_axiom).
+hc_axiom(poto_usertask8,
+	true,
+	[],
+	[poto(userORrole_lb(role_lb(supervisor)),taskName_lb(humanTaskName_lb(usertask8)))]).
+
+constant(poto_usertask9,hc_axiom).
+hc_axiom(poto_usertask9,
+	true,
+	[],
+	[poto(userORrole_lb(role_lb(supervisor)),taskName_lb(humanTaskName_lb(usertask9)))]).
+
+
+
+% INVOKED DURING THE LOADING (USEFUL FOR SETTING)
+init_sate :-
+	set(verification_abstraction,off),
+	set(if2sate_version,2).
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% NOTE: these prolog facts are not mandatory and are useful only for
+%       printing a user-friendly output when the triple_step optimization
+%       is enabled. The user is invited to neglect these declarations.
+triple_step_action(authorizeTaskExecution(A,R,HT,N),
+	true,
+	[canExecute(entity_lb(user_lb(A)),userORrole_lb(role_lb(R)),taskName_lb(humanTaskName_lb(HT))),
+	 ready(taskInstance_lb(task(taskName_lb(humanTaskName_lb(HT)),N)))],
+	[granted(entity_lb(user_lb(A)),userORrole_lb(role_lb(R)),taskInstance_lb(task(taskName_lb(humanTaskName_lb(HT)),N)))],
+	[ready(taskInstance_lb(task(taskName_lb(humanTaskName_lb(HT)),N)))]).
+
+triple_step_action(h_taskExecution(A,R,HT,N,IN,OUT),
+	true,
+	[granted(entity_lb(user_lb(A)),userORrole_lb(role_lb(R)),taskInstance_lb(task(taskName_lb(humanTaskName_lb(HT)),N))),
+	 task_to_data(taskName_lb(humanTaskName_lb(HT)),set_lb(IN),set_lb(OUT))],
+	[executed(entity_lb(user_lb(A)),taskInstance_lb(task(taskName_lb(humanTaskName_lb(HT)),N))),
+	 done(taskInstance_lb(task(taskName_lb(humanTaskName_lb(HT)),N))),
+	 task_to_data(taskName_lb(humanTaskName_lb(HT)),set_lb(IN),set_lb(OUT)),
+	 aknows(entity_lb(user_lb(A)),set_lb(IN)),
+	 aknows(entity_lb(user_lb(A)),set_lb(OUT))],
+	[granted(entity_lb(user_lb(A)),userORrole_lb(role_lb(R)),taskInstance_lb(task(taskName_lb(humanTaskName_lb(HT)),N)))]).
+
+triple_step_action(atask_execution(AT,N,IN,OUT),
+	true,
+	[ready(taskInstance_lb(task(taskName_lb(automatedTaskName_lb(AT)),N))),
+	 task_to_data(taskName_lb(automatedTaskName_lb(AT)),set_lb(IN),set_lb(OUT))],
+	[done(taskInstance_lb(task(taskName_lb(automatedTaskName_lb(AT)),N))),
+	 task_to_data(taskName_lb(automatedTaskName_lb(AT)),set_lb(IN),set_lb(OUT))],
+	[ready(taskInstance_lb(task(taskName_lb(automatedTaskName_lb(AT)),N)))]).
+
+triple_step_action(w_usertask1(Xvar),
+	true,
+	[start_event_startevent2,
+	 counter_w_usertask1(Xvar)],
+	[ready(taskInstance_lb(task(taskName_lb(humanTaskName_lb(usertask1)),fnat(n0,Xvar,0)))),
+	 counter_w_usertask1(s(Xvar))],
+	[start_event_startevent2,
+	 counter_w_usertask1(Xvar)]).
+
+triple_step_action(w_servicetask1(N2,Xvar),
+	true,
+	[done(taskInstance_lb(task(taskName_lb(humanTaskName_lb(usertask1)),N2))),
+	 counter_w_servicetask1(Xvar)],
+	[ready(taskInstance_lb(task(taskName_lb(automatedTaskName_lb(servicetask1)),fnat(n1,Xvar,0)))),
+	 counter_w_servicetask1(s(Xvar))],
+	[done(taskInstance_lb(task(taskName_lb(humanTaskName_lb(usertask1)),N2))),
+	 counter_w_servicetask1(Xvar)]).
+
+triple_step_action(w_usertask2(N4,Xvar),
+	true,
+	[done(taskInstance_lb(task(taskName_lb(automatedTaskName_lb(servicetask1)),N4))),
+	 counter_w_usertask2(Xvar)],
+	[ready(taskInstance_lb(task(taskName_lb(humanTaskName_lb(usertask2)),fnat(n3,Xvar,0)))),
+	 counter_w_usertask2(s(Xvar))],
+	[done(taskInstance_lb(task(taskName_lb(automatedTaskName_lb(servicetask1)),N4))),
+	 counter_w_usertask2(Xvar)]).
+
+triple_step_action(w_servicetask2(N6,Xvar),
+	true,
+	[done(taskInstance_lb(task(taskName_lb(humanTaskName_lb(usertask2)),N6))),
+	 counter_w_servicetask2(Xvar)],
+	[ready(taskInstance_lb(task(taskName_lb(automatedTaskName_lb(servicetask2)),fnat(n5,Xvar,0)))),
+	 counter_w_servicetask2(s(Xvar))],
+	[done(taskInstance_lb(task(taskName_lb(humanTaskName_lb(usertask2)),N6))),
+	 counter_w_servicetask2(Xvar)]).
+
+triple_step_action(w_usertask3(N8,Xvar),
+	true,
+	[done(taskInstance_lb(task(taskName_lb(automatedTaskName_lb(servicetask2)),N8))),
+	 counter_w_usertask3(Xvar)],
+	[ready(taskInstance_lb(task(taskName_lb(humanTaskName_lb(usertask3)),fnat(n7,Xvar,0)))),
+	 counter_w_usertask3(s(Xvar))],
+	[done(taskInstance_lb(task(taskName_lb(automatedTaskName_lb(servicetask2)),N8))),
+	 counter_w_usertask3(Xvar)]).
+
+triple_step_action(w_usertask4(N10,Xvar),
+	true,
+	[done(taskInstance_lb(task(taskName_lb(humanTaskName_lb(usertask3)),N10))),
+	 counter_w_usertask4(Xvar)],
+	[ready(taskInstance_lb(task(taskName_lb(humanTaskName_lb(usertask4)),fnat(n9,Xvar,0)))),
+	 counter_w_usertask4(s(Xvar))],
+	[done(taskInstance_lb(task(taskName_lb(humanTaskName_lb(usertask3)),N10))),
+	 counter_w_usertask4(Xvar)]).
+
+triple_step_action(w_usertask5(N12,Xvar),
+	true,
+	[done(taskInstance_lb(task(taskName_lb(humanTaskName_lb(usertask4)),N12))),
+	 counter_w_usertask5(Xvar)],
+	[ready(taskInstance_lb(task(taskName_lb(humanTaskName_lb(usertask5)),fnat(n11,Xvar,0)))),
+	 counter_w_usertask5(s(Xvar))],
+	[done(taskInstance_lb(task(taskName_lb(humanTaskName_lb(usertask4)),N12))),
+	 counter_w_usertask5(Xvar)]).
+
+triple_step_action(w_usertask6(N14,Xvar),
+	true,
+	[done(taskInstance_lb(task(taskName_lb(humanTaskName_lb(usertask5)),N14))),
+	 counter_w_usertask6(Xvar)],
+	[ready(taskInstance_lb(task(taskName_lb(humanTaskName_lb(usertask6)),fnat(n13,Xvar,0)))),
+	 counter_w_usertask6(s(Xvar))],
+	[done(taskInstance_lb(task(taskName_lb(humanTaskName_lb(usertask5)),N14))),
+	 counter_w_usertask6(Xvar)]).
+
+triple_step_action(w_parallelgateway1(N15),
+	true,
+	[done(taskInstance_lb(task(taskName_lb(humanTaskName_lb(usertask6)),N15)))],
+	[parallelgateway1_to_usertask7,
+	 parallelgateway1_to_servicetask3],
+	[done(taskInstance_lb(task(taskName_lb(humanTaskName_lb(usertask6)),N15)))]).
+
+triple_step_action(w_usertask7(Xvar),
+	true,
+	[parallelgateway1_to_usertask7,
+	 counter_w_usertask7(Xvar)],
+	[ready(taskInstance_lb(task(taskName_lb(humanTaskName_lb(usertask7)),fnat(n16,Xvar,0)))),
+	 counter_w_usertask7(s(Xvar))],
+	[parallelgateway1_to_usertask7,
+	 counter_w_usertask7(Xvar)]).
+
+triple_step_action(w_servicetask3(Xvar),
+	true,
+	[parallelgateway1_to_servicetask3,
+	 counter_w_servicetask3(Xvar)],
+	[ready(taskInstance_lb(task(taskName_lb(automatedTaskName_lb(servicetask3)),fnat(n17,Xvar,0)))),
+	 counter_w_servicetask3(s(Xvar))],
+	[parallelgateway1_to_servicetask3,
+	 counter_w_servicetask3(Xvar)]).
+
+triple_step_action(w_parallelgateway2(N18,N19),
+	true,
+	[done(taskInstance_lb(task(taskName_lb(humanTaskName_lb(usertask7)),N18))),
+	 done(taskInstance_lb(task(taskName_lb(automatedTaskName_lb(servicetask3)),N19)))],
+	[parallelgateway2_to_servicetask4],
+	[done(taskInstance_lb(task(taskName_lb(humanTaskName_lb(usertask7)),N18))),
+	 done(taskInstance_lb(task(taskName_lb(automatedTaskName_lb(servicetask3)),N19)))]).
+
+triple_step_action(w_servicetask4(Xvar),
+	true,
+	[parallelgateway2_to_servicetask4,
+	 counter_w_servicetask4(Xvar)],
+	[ready(taskInstance_lb(task(taskName_lb(automatedTaskName_lb(servicetask4)),fnat(n20,Xvar,0)))),
+	 counter_w_servicetask4(s(Xvar))],
+	[parallelgateway2_to_servicetask4,
+	 counter_w_servicetask4(Xvar)]).
+
+triple_step_action(w_usertask8(N22,Xvar),
+	true,
+	[done(taskInstance_lb(task(taskName_lb(automatedTaskName_lb(servicetask4)),N22))),
+	 counter_w_usertask8(Xvar)],
+	[ready(taskInstance_lb(task(taskName_lb(humanTaskName_lb(usertask8)),fnat(n21,Xvar,0)))),
+	 counter_w_usertask8(s(Xvar))],
+	[done(taskInstance_lb(task(taskName_lb(automatedTaskName_lb(servicetask4)),N22))),
+	 counter_w_usertask8(Xvar)]).
+
+triple_step_action(w_usertask9(N24,Xvar),
+	true,
+	[done(taskInstance_lb(task(taskName_lb(humanTaskName_lb(usertask8)),N24))),
+	 counter_w_usertask9(Xvar)],
+	[ready(taskInstance_lb(task(taskName_lb(humanTaskName_lb(usertask9)),fnat(n23,Xvar,0)))),
+	 counter_w_usertask9(s(Xvar))],
+	[done(taskInstance_lb(task(taskName_lb(humanTaskName_lb(usertask8)),N24))),
+	 counter_w_usertask9(Xvar)]).
+
+triple_step_action(w_servicetask5(N26,Xvar),
+	true,
+	[done(taskInstance_lb(task(taskName_lb(humanTaskName_lb(usertask9)),N26))),
+	 counter_w_servicetask5(Xvar)],
+	[ready(taskInstance_lb(task(taskName_lb(automatedTaskName_lb(servicetask5)),fnat(n25,Xvar,0)))),
+	 counter_w_servicetask5(s(Xvar))],
+	[done(taskInstance_lb(task(taskName_lb(humanTaskName_lb(usertask9)),N26))),
+	 counter_w_servicetask5(Xvar)]).
+
+correspondence_between_action_and_step_compressed_rule(Act,SCAct) :-
+	atom_concat('sc_',Act,TmpAct),
+	atom_concat(TmpAct,_,SCAct).
+
+% PREDICATE TO EVALUATE ON_THE_FLY_CONDITIONS
+on_the_fly_conditions([]).
+on_the_fly_conditions([C|Cs]) :-
+	call(C),
+	on_the_fly_conditions(Cs).

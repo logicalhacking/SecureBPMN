@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.6"?>
+<plugin>
+	<extension point="org.activiti.designer.eclipse.extension.export.ExportMarshaller">
+		<ExportMarshaller class="eu.aniketos.securebpmn.export.xacml.export.XacmlExportMarshaller">
+		</ExportMarshaller>
+	</extension>
+</plugin>
