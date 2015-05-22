@@ -42,3 +42,7 @@ Main developer: [Achim D. Brucker](http://www.brucker.ch/)
 * Jan Alexander
 * Matthias Klink
 * Raj Ruparel
+
+### Publications
+Related publications are listed on the [SecureBPMN 
+website](https://www.brucker.ch/projects/securebpmn/index.en.html).
