@@ -6,6 +6,12 @@ confidentiality). SecurePBPMN is defined as a meta-model that can
 easily be integrated into BPMN and, thus, can be used for modeling
 secure and business processes as well as secure service compositions.
 
+![ScreenShot of the SecureBPMN Modeling and Verification Environment] (https://www.brucker.ch/projects/securebpmn/img/activiti-bpmn-analysis.png)
+The SecureBPMN tool chain does not only support modeling of secure business 
+process and service compositions: it also supports the formal analysis both 
+on the level of SecureBPMN models as well as refinement properties between 
+the model and the actual implementation. 
+
 ## Installation
 ### Prerequisites
 * Eclipse Helios
