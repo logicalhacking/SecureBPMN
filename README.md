@@ -47,6 +47,7 @@ Main developer: [Achim D. Brucker](http://www.brucker.ch/)
 ### Contributors
 * Jan Alexander
 * Matthias Klink
+* Helmut Petritsch
 * Raj Ruparel
 
 ### Publications
