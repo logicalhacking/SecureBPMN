@@ -15,6 +15,8 @@ the model and the actual implementation.
 ## Installation
 ### Prerequisites
 * Eclipse Helios
+* SATMC (http://www.ai-lab.it/satmc/), version 3.3.x
+  (for the formal analysis of secure business processes)  
 
 ### Preparing the Eclipse environment
 To initialize the Eclipse project structure, please do 
