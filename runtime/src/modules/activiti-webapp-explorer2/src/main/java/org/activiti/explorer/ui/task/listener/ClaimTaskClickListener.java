@@ -13,6 +13,8 @@
 
 package org.activiti.explorer.ui.task.listener;
 
+import java.util.ServiceLoader;
+
 import org.activiti.engine.ActivitiException;
 import org.activiti.engine.TaskService;
 import org.activiti.explorer.ExplorerApp;
@@ -20,6 +22,7 @@ import org.activiti.explorer.I18nManager;
 import org.activiti.explorer.Messages;
 import org.activiti.explorer.NotificationManager;
 import org.activiti.explorer.ViewManager;
+import org.activiti.explorer.ui.task.data.QueuedListQuery.SecurityCallback;
 
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
@@ -50,13 +53,22 @@ public class ClaimTaskClickListener implements ClickListener {
   }
 
   public void buttonClick(ClickEvent event) {
-    try {
-      taskService.claim(taskId, ExplorerApp.get().getLoggedInUser().getId());
-      notificationManager.showInformationNotification(Messages.TASK_CLAIM_SUCCESS);
-      viewManager.showInboxPage(taskId);
-    } catch(ActivitiException ae) {
-      notificationManager.showErrorNotification(Messages.TASK_CLAIM_FAILED, ae.getMessage());
-    }
+	  //<SecureBPMN>
+	final ServiceLoader<SecurityCallback> serviceLoader = ServiceLoader.load(SecurityCallback.class);
+	String userId = ExplorerApp.get().getLoggedInUser().getId();
+		System.out.println("Trying to load Claim");
+		for (SecurityCallback callback : serviceLoader) {
+			try {
+				if(callback.securityCheck(taskId, userId)) {
+				//</SecureBPMN>
+					taskService.claim(taskId, ExplorerApp.get().getLoggedInUser().getId());
+					notificationManager.showInformationNotification(Messages.TASK_CLAIM_SUCCESS);
+					viewManager.showInboxPage(taskId);
+				}//</SecureBPMN>
+			} catch(ActivitiException ae) {
+				notificationManager.showErrorNotification(Messages.TASK_CLAIM_FAILED, ae.getMessage());
+			}
+		}
   }
 
 }
