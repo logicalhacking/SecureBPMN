@@ -22,7 +22,13 @@ public enum Preferences {
   SAVE_TO_FORMAT("org.activiti.designer.preferences.save.saveToFormat"), 
   VALIDATE_ACTIVITI_BPMN_FORMAT("org.activiti.designer.preferences.validation.validateActivitiBPMNFormat"),
   SKIP_BPMN_MARSHALLER_ON_VALIDATION_FAILURE("org.activiti.designer.preferences.validation.skipBPMNMarshallerOnValidationFailure"),
-  IMPORT_USE_BPMNDI("org.activiti.designer.preferences.import.useBPMNDI");
+  IMPORT_USE_BPMNDI("org.activiti.designer.preferences.import.useBPMNDI"),
+
+  // <SecureBPMN>
+  // Adding support for custom preferences.
+  PATH_TO_SATMC_BINARY("org.activiti.designer.preferences.pathToSATMC"),
+  ALL_TASKS_AS_HUMANTASKS("org.activiti.designer.preferences.analyzeAllTasksAsHumanTasks");
+  //  </SecureBPMN>
 
   private String preferenceId;
 

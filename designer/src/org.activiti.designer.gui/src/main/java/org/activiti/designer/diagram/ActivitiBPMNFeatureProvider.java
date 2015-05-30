@@ -113,6 +113,18 @@ import com.alfresco.designer.gui.features.CreateAlfrescoScriptTaskFeature;
 import com.alfresco.designer.gui.features.CreateAlfrescoStartEventFeature;
 import com.alfresco.designer.gui.features.CreateAlfrescoUserTaskFeature;
 
+// <SecureBPMN>
+import org.activiti.designer.security.features.AddSecurityBodFeature;
+import org.activiti.designer.security.features.AddSecurityFlowFeature;
+import org.activiti.designer.security.features.AddSecuritySodFeature;
+import org.activiti.designer.security.features.CreateSecurityBodFeature;
+import org.activiti.designer.security.features.CreateSecurityFlowFeature;
+import org.activiti.designer.security.features.CreateSecuritySodFeature;
+import org.eclipse.securebpmn2.BindingOfDuty;
+import org.eclipse.securebpmn2.SecurityFlow;
+import org.eclipse.securebpmn2.SeparationOfDuty;
+// </SecureBPMN>
+
 public class ActivitiBPMNFeatureProvider extends DefaultFeatureProvider {
 
 	public ActivitiBPMNFeatureProvider(IDiagramTypeProvider dtp) {
@@ -132,6 +144,12 @@ public class ActivitiBPMNFeatureProvider extends DefaultFeatureProvider {
 		  		return new AddStartEventFeature(this);
 		  	}
 		  }
+// <SecureBPMN>
+		} else if (context.getNewObject() instanceof BindingOfDuty) {
+				return new AddSecurityBodFeature(this);			
+		} else if (context.getNewObject() instanceof SeparationOfDuty) {
+				return new AddSecuritySodFeature(this);
+// </SecureBPMN>			
 		} else if (context.getNewObject() instanceof EndEvent) {
 		  if(((EndEvent) context.getNewObject()).getEventDefinitions().size() > 0) {
 		    return new AddErrorEndEventFeature(this);
@@ -140,6 +158,10 @@ public class ActivitiBPMNFeatureProvider extends DefaultFeatureProvider {
 		  }
 		} else if (context.getNewObject() instanceof SequenceFlow) {
 			return new AddSequenceFlowFeature(this);
+// <SecureBPMN>
+		} else if (context.getNewObject() instanceof SecurityFlow) {
+			return new AddSecurityFlowFeature(this);
+// </SecureBPMN>
 		} else if (context.getNewObject() instanceof UserTask) {
 		  if(context.getNewObject() instanceof AlfrescoUserTask) {
 		    return new AddAlfrescoUserTaskFeature(this);
@@ -213,6 +235,10 @@ public class ActivitiBPMNFeatureProvider extends DefaultFeatureProvider {
 		        new CreateEmbeddedSubProcessFeature(this), 
 		        new CreateCallActivityFeature(this),
 		        new CreateAlfrescoScriptTaskFeature(this),
+                // <SecureBPMN>
+				new CreateSecurityBodFeature(this),
+				new CreateSecuritySodFeature(this),
+                // <SecureBPMN>
 		        new CreateAlfrescoMailTaskFeature(this)};
 	}
 
@@ -234,7 +260,10 @@ public class ActivitiBPMNFeatureProvider extends DefaultFeatureProvider {
 
 	@Override
 	public ICreateConnectionFeature[] getCreateConnectionFeatures() {
-		return new ICreateConnectionFeature[] { new CreateSequenceFlowFeature(this) };
+        // <SecureBPMN>
+		return new ICreateConnectionFeature[] { new CreateSequenceFlowFeature(this),
+                                                new CreateSecurityFlowFeature(this) };
+       // </SecureBPMN>
 	}
 
 	@Override

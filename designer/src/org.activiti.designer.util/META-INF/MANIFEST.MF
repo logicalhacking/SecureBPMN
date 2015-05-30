@@ -26,4 +26,8 @@ Export-Package: org.activiti.designer.util.eclipse,
  org.activiti.designer.util.property,
  org.activiti.designer.util.style,
  org.activiti.designer.util.workspace
-Bundle-ClassPath: .
+Bundle-ClassPath: .,
+ xalan-2.7.1.jar,
+ serializer-2.7.1.jar,
+ xml-apis-1.3.04.jar,
+ com.sun.xacml-0.1.jar

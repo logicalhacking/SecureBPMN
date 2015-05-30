@@ -72,6 +72,20 @@
                id="org.activiti.designer.multiInstanceTab"
                label="Multi instance">
          </propertyTab>
+         <!-- <SecureBPMN> -->
+         <propertyTab
+               afterTab="org.activiti.designer.mainConfigTab"
+               category="Activiti"
+               id="org.activiti.designer.securityTab"
+               label="Security">
+         </propertyTab>
+         <propertyTab
+               afterTab="org.activiti.designer.securityTab"
+               category="Activiti"
+               id="org.activiti.designer.needToKnowTab"
+               label="Need-to-know">
+         </propertyTab>
+         <!-- </SecureBPMN> -->
       </propertyTabs>
    </extension>
    <extension
@@ -114,6 +128,26 @@
                id="org.activiti.designer.mainConfigTab.usertask"
                tab="org.activiti.designer.mainConfigTab">
          </propertySection>
+         <!-- <SecureBPMN> -->
+         <propertySection
+               class="org.activiti.designer.security.property.PropertyRbacSection"
+               filter="org.activiti.designer.security.property.PropertyRbacFilter"
+               id="org.activiti.designer.securityTab.usertask"
+               tab="org.activiti.designer.securityTab">
+         </propertySection>
+         <propertySection
+               class="org.activiti.designer.security.property.PropertySodBodSection"
+               filter="org.activiti.designer.security.property.PropertySodBodFilter"
+               id="org.activiti.designer.securityTab.sodbod"
+               tab="org.activiti.designer.securityTab">
+         </propertySection>
+         <propertySection
+         		class="org.activiti.designer.security.property.PropertyNtkSection"
+         		filter="org.activiti.designer.security.property.PropertyNtkFilter"
+         		id="org.activiti.designer.securityTab.ntk"
+         		tab="org.activiti.designer.needToKnowTab">
+         </propertySection>
+         <!-- </SecureBPMN> -->
          <propertySection
                class="org.activiti.designer.property.PropertyMailTaskSection"
                filter="org.activiti.designer.property.PropertyMailTaskFilter"

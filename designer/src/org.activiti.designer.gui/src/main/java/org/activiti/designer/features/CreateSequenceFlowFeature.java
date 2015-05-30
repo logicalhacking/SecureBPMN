@@ -15,6 +15,9 @@ import org.eclipse.graphiti.features.context.impl.AddConnectionContext;
 import org.eclipse.graphiti.mm.pictograms.Anchor;
 import org.eclipse.graphiti.mm.pictograms.Connection;
 import org.eclipse.graphiti.mm.pictograms.ContainerShape;
+// <SecureBPMN>
+import org.eclipse.securebpmn2.SecurityFlowNode;
+// </SecureBPMN>
 
 public class CreateSequenceFlowFeature extends AbstractCreateBPMNConnectionFeature {
 
@@ -34,6 +37,10 @@ public class CreateSequenceFlowFeature extends AbstractCreateBPMNConnectionFeatu
 			} else if (source instanceof EndEvent) {
 				// prevent adding outgoing connections from EndEvents
 				return false;
+            // <SecureBPMN>
+			}else if(source instanceof SecurityFlowNode || target instanceof SecurityFlowNode){
+				return false;
+            // </SecureBPMN>
 			}
 			return true;
 		}

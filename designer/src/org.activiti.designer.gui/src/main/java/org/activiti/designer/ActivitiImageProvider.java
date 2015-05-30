@@ -59,6 +59,12 @@ public class ActivitiImageProvider extends AbstractImageProvider {
   public static final String EDIT_ICON = PREFIX + "edit.icon"; //$NON-NLS-1$
   public static final String NEW_ICON = PREFIX + "new.icon"; //$NON-NLS-1$
 
+// <SecureBPMN>  
+//Security element icons
+  public static final String IMG_SECURITY_BOD = PREFIX + "security.bod"; //$NON-NLS-1$
+  public static final String IMG_SECURITY_SOD = PREFIX + "security.sod"; //$NON-NLS-1$
+// </SecureBPMN>
+
   @Override
   protected void addAvailableImages() {
     // register the path for each image identifier
@@ -85,6 +91,11 @@ public class ActivitiImageProvider extends AbstractImageProvider {
     addImageFilePath(IMG_ALFRESCO_LOGO, "icons/alfresco.png"); //$NON-NLS-1$
     addImageFilePath(EDIT_ICON, "icons/edit.png"); //$NON-NLS-1$
     addImageFilePath(NEW_ICON, "icons/new.png"); //$NON-NLS-1$
+// <SecureBPMN>
+  //adding file path for security elements
+    addImageFilePath(IMG_SECURITY_BOD, "icons/type.security.bod.png"); //$NON-NLS-1$
+    addImageFilePath(IMG_SECURITY_SOD, "icons/type.security.sod.png"); //$NON-NLS-1$
+// </SecureBPMN>
   }
 
 }

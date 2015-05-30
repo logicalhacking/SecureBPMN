@@ -2,6 +2,9 @@ package org.activiti.designer.diagram;
 
 import org.eclipse.graphiti.dt.AbstractDiagramTypeProvider;
 import org.eclipse.graphiti.tb.IToolBehaviorProvider;
+// <SecureBPMN>
+import org.eclipse.graphiti.features.ConfigurableFeatureProviderWrapper;
+// </SecureBPMN>
 
 public class ActivitiBPMNDiagramTypeProvider extends AbstractDiagramTypeProvider {
 
@@ -9,7 +12,14 @@ public class ActivitiBPMNDiagramTypeProvider extends AbstractDiagramTypeProvider
 
 	public ActivitiBPMNDiagramTypeProvider() {
 		super();
-		setFeatureProvider(new ActivitiBPMNFeatureProvider(this));
+		// <SecureBPMN>
+		setFeatureProvider(
+				// START SAP Research SCVM Extensions
+				// Support for making the Diagram read-only during attack trace visualization.
+				new ConfigurableFeatureProviderWrapper(
+						// END SAP Research SCVM Extensions
+						new ActivitiBPMNFeatureProvider(this)));
+       // </SecureBPMN>
 	}
 
 	@Override

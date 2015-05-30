@@ -7,7 +7,85 @@
     dynamicTemplates="true" modelName="bpmn2" modelPluginClass="" suppressEMFTypes="true"
     codeFormatting="true" importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0"
     copyrightFields="false" language="en">
-  <foreignModel>BPMN20.ecore</foreignModel>
+  <foreignModel>SecureBPMN20.ecore</foreignModel>
+  <genPackages prefix="Securebpmn2" basePackage="org.eclipse" resource="XML" disposableProviderFactory="true"
+      loadInitialization="true" multipleEditorPages="false" ecorePackage="SecureBPMN20.ecore#/">
+    <genClasses ecoreClass="SecureBPMN20.ecore#//SecurityFlowNode"/>
+    <genClasses ecoreClass="SecureBPMN20.ecore#//SecurityFlow">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SecureBPMN20.ecore#//SecurityFlow/sourceRefNode"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SecureBPMN20.ecore#//SecurityFlow/targetRefNode"/>
+    </genClasses>
+    <genClasses ecoreClass="SecureBPMN20.ecore#//Role">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SecureBPMN20.ecore#//Role/roleName"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SecureBPMN20.ecore#//Role/parentRoles"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SecureBPMN20.ecore#//Role/subjects"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SecureBPMN20.ecore#//Role/childRoles"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SecureBPMN20.ecore#//Role/permissions"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="SecureBPMN20.ecore#//Subject">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SecureBPMN20.ecore#//Subject/roles"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SecureBPMN20.ecore#//Subject/groups"/>
+    </genClasses>
+    <genClasses ecoreClass="SecureBPMN20.ecore#//User">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SecureBPMN20.ecore#//User/userName"/>
+    </genClasses>
+    <genClasses ecoreClass="SecureBPMN20.ecore#//Group">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SecureBPMN20.ecore#//Group/groupName"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SecureBPMN20.ecore#//Group/subjects"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="SecureBPMN20.ecore#//Action">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SecureBPMN20.ecore#//Action/actionName"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SecureBPMN20.ecore#//Action/permissions"/>
+    </genClasses>
+    <genClasses ecoreClass="SecureBPMN20.ecore#//ActivityAction">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SecureBPMN20.ecore#//ActivityAction/compositeActivityActions"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SecureBPMN20.ecore#//ActivityAction/activity"/>
+    </genClasses>
+    <genClasses ecoreClass="SecureBPMN20.ecore#//AtomicActivityAction"/>
+    <genClasses ecoreClass="SecureBPMN20.ecore#//CompositeActivityAction">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SecureBPMN20.ecore#//CompositeActivityAction/activityActions"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="SecureBPMN20.ecore#//Permission">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SecureBPMN20.ecore#//Permission/roles"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SecureBPMN20.ecore#//Permission/actions"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SecureBPMN20.ecore#//Permission/authorizationConstraints"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SecureBPMN20.ecore#//Permission/pName"/>
+    </genClasses>
+    <genClasses ecoreClass="SecureBPMN20.ecore#//NeedToKnow"/>
+    <genClasses ecoreClass="SecureBPMN20.ecore#//SeparationOfDuty">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SecureBPMN20.ecore#//SeparationOfDuty/minimumUsers"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SecureBPMN20.ecore#//SeparationOfDuty/maxUserActionsPermitted"/>
+    </genClasses>
+    <genClasses ecoreClass="SecureBPMN20.ecore#//BindingOfDuty">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SecureBPMN20.ecore#//BindingOfDuty/maxUsers"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SecureBPMN20.ecore#//BindingOfDuty/sameUserActionCount"/>
+    </genClasses>
+    <genClasses ecoreClass="SecureBPMN20.ecore#//AuthorizationConstraint">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SecureBPMN20.ecore#//AuthorizationConstraint/constraintName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SecureBPMN20.ecore#//AuthorizationConstraint/expression"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SecureBPMN20.ecore#//AuthorizationConstraint/permissions"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SecureBPMN20.ecore#//AuthorizationConstraint/dynamicEnforcement"/>
+    </genClasses>
+    <genClasses ecoreClass="SecureBPMN20.ecore#//ActivityAuthorizationConstraint">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SecureBPMN20.ecore#//ActivityAuthorizationConstraint/activities"/>
+    </genClasses>
+    <genClasses ecoreClass="SecureBPMN20.ecore#//ProcessAction">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SecureBPMN20.ecore#//ProcessAction/compositeProcessActions"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SecureBPMN20.ecore#//ProcessAction/process"/>
+    </genClasses>
+    <genClasses ecoreClass="SecureBPMN20.ecore#//AtomicProcessAction"/>
+    <genClasses ecoreClass="SecureBPMN20.ecore#//CompositeProcessAction">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SecureBPMN20.ecore#//CompositeProcessAction/processActions"/>
+    </genClasses>
+    <genClasses ecoreClass="SecureBPMN20.ecore#//ItemAwareElementAction">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SecureBPMN20.ecore#//ItemAwareElementAction/compositeItemAwareElementActions"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SecureBPMN20.ecore#//ItemAwareElementAction/itemAwareElement"/>
+    </genClasses>
+    <genClasses ecoreClass="SecureBPMN20.ecore#//AtomicItemAwareElementAction"/>
+    <genClasses ecoreClass="SecureBPMN20.ecore#//CompositeItemAwareElementAction">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SecureBPMN20.ecore#//CompositeItemAwareElementAction/itemAwareElementActions"/>
+    </genClasses>
+  </genPackages>
   <genPackages prefix="Bpmn2" basePackage="org.eclipse" resource="XML" disposableProviderFactory="true"
       loadInitialization="true" multipleEditorPages="false" ecorePackage="BPMN20.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="BPMN20.ecore#//AdHocOrdering">
@@ -210,6 +288,8 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BPMN20.ecore#//Activity/startQuantity"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BPMN20.ecore#//Activity/activitiListeners"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BPMN20.ecore#//Activity/asynchronous"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BPMN20.ecore#//Activity/activityActions"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BPMN20.ecore#//Activity/activityAuthorizationConstraints"/>
     </genClasses>
     <genClasses ecoreClass="BPMN20.ecore#//AdHocSubProcess">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BPMN20.ecore#//AdHocSubProcess/completionCondition"/>
@@ -477,6 +557,8 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BPMN20.ecore#//FlowNode/incoming"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BPMN20.ecore#//FlowNode/lanes"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BPMN20.ecore#//FlowNode/outgoing"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BPMN20.ecore#//FlowNode/incomingSecurityFlow"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BPMN20.ecore#//FlowNode/outgoingSecurityFlow"/>
     </genClasses>
     <genClasses ecoreClass="BPMN20.ecore#//FormalExpression">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BPMN20.ecore#//FormalExpression/evaluatesToTypeRef"/>
@@ -550,6 +632,7 @@
     <genClasses ecoreClass="BPMN20.ecore#//ItemAwareElement">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BPMN20.ecore#//ItemAwareElement/dataState"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BPMN20.ecore#//ItemAwareElement/itemSubjectRef"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BPMN20.ecore#//ItemAwareElement/itemAwareElementActions"/>
     </genClasses>
     <genClasses ecoreClass="BPMN20.ecore#//ItemDefinition">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BPMN20.ecore#//ItemDefinition/isCollection"/>
@@ -663,6 +746,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BPMN20.ecore#//Process/filename"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BPMN20.ecore#//Process/executionListeners"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BPMN20.ecore#//Process/namespace"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BPMN20.ecore#//Process/processActions"/>
     </genClasses>
     <genClasses ecoreClass="BPMN20.ecore#//Property">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BPMN20.ecore#//Property/name"/>

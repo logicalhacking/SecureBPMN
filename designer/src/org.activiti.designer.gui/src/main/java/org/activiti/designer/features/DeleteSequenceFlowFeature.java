@@ -17,6 +17,9 @@ import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.mm.pictograms.Shape;
 import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.services.ILinkService;
+// <SecureBPMN>
+import org.eclipse.emf.ecore.EObject;
+// </SecureBPMN>
 
 public class DeleteSequenceFlowFeature extends AbstractCustomFeature {
 
@@ -94,10 +97,17 @@ public class DeleteSequenceFlowFeature extends AbstractCustomFeature {
         if(anchor instanceof ChopboxAnchor) {
           Connection toDeletedConnection = null;
           for (Connection connection : anchor.getOutgoingConnections()) {
+        // <SecureBPMN>
+        EObject bo =(EObject) getBusinessObjectForPictogramElement(connection);
+        if(bo instanceof SequenceFlow){
+        // </SecureBPMN>
             SequenceFlow outFlow = (SequenceFlow) getBusinessObjectForPictogramElement(connection);
             if(outFlow.getId().equals(sequenceFlow.getId())) {
               toDeletedConnection = connection;
             }
+        // <SecureBPMN>
+        }
+        // </SecureBPMN>
           }
           if(toDeletedConnection != null) {
             anchor.getOutgoingConnections().remove(toDeletedConnection);
@@ -111,10 +121,17 @@ public class DeleteSequenceFlowFeature extends AbstractCustomFeature {
         if(anchor instanceof ChopboxAnchor) {
           Connection toDeletedConnection = null;
           for (Connection connection : anchor.getIncomingConnections()) {
+        // <SecureBPMN>
+        EObject bo =(EObject) getBusinessObjectForPictogramElement(connection);
+        if(bo instanceof SequenceFlow){ 
+        // </SecureBPMN>
             SequenceFlow outFlow = (SequenceFlow) getBusinessObjectForPictogramElement(connection);
             if(outFlow.getId().equals(sequenceFlow.getId())) {
               toDeletedConnection = connection;
             }
+        // <SecureBPMN>
+        }
+        // </SecureBPMN>
           }
           if(toDeletedConnection != null) {
             anchor.getIncomingConnections().remove(toDeletedConnection);

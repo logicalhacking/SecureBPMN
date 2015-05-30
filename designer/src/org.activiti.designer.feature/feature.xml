@@ -1,13 +1,24 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.activiti.designer.feature"
-      label="Activiti Eclipse BPMN 2.0 Designer"
+      label="Activiti Eclipse BPMN 2.0 Designer for SecureBPMN"
       version="5.8.0"
       provider-name="Activiti">
 
    <description url="http://www.activiti.org">
-      This feature contains the Activiti Eclipse BPMN 2.0 designer plug-in which enables you to design and test BPMN 2.0 processes.
+      This feature contains the Activiti Eclipse BPMN 2.0 designer
+plug-in which enables you to design and test SecureBPMN 2.0 processes. Please see 
+Achim D. Brucker. Integrating Security Aspects into Business Process Models. In it - Information 
+Technology, 55 (6), pages 239-246, 2013. Special Issue on "Security in Business Processes." 
+and Achim D. Brucker, Isabelle Hang, Gero Lückemeyer, and Raj Ruparel. SecureBPMN: Modeling 
+and Enforcing Access Control Requirements in Business Processes. In ACM symposium on access 
+control models and technologies (SACMAT). , pages 123-126, ACM Press, 2012. for details.
    </description>
+
+   <copyright>
+      (c) 2011-2015 SAP SE
+   </copyright>
+
 
    <license url="http://www.eclipse.org/legal/epl-v10.html">
       Eclipse Public License -v 1.0
@@ -55,14 +66,9 @@ All Recipient&apos;s rights under this Agreement shall terminate if it fails to 
 Everyone is permitted to copy and distribute copies of this Agreement, but in order to avoid inconsistency the Agreement is copyrighted and may only be modified in the following manner. The Agreement Steward reserves the right to publish new versions (including revisions) of this Agreement from time to time. No one other than the Agreement Steward has the right to modify this Agreement. The Eclipse Foundation is the initial Agreement Steward. The Eclipse Foundation may assign the responsibility to serve as the Agreement Steward to a suitable separate entity. Each new version of the Agreement will be given a distinguishing version number. The Program (including Contributions) may always be distributed subject to the version of the Agreement under which it was received. In addition, after a new version of the Agreement is published, Contributor may elect to distribute the Program (including its Contributions) under the new version. Except as expressly stated in Sections 2(a) and 2(b) above, Recipient receives no rights or licenses to the intellectual property of any Contributor under this Agreement, whether expressly, by implication, estoppel or otherwise. All rights in the Program not expressly granted under this Agreement are reserved.
 This Agreement is governed by the laws of the State of New York and the intellectual property laws of the United States of America. No party to this Agreement will bring a legal action under this Agreement more than one year after the cause of action arose. Each party waives its rights to a jury trial in any resulting litigation.
    </license>
-
    <url>
       <discovery label="Activiti suite website" url="http://activiti.org"/>
    </url>
-
-   <includes
-         id="org.eclipse.graphiti.feature"
-         version="0.8.0"/>
 
    <requires>
       <import plugin="org.eclipse.ui"/>
@@ -88,69 +94,98 @@ This Agreement is governed by the laws of the State of New York and the intellec
       <import plugin="org.eclipse.ui.ide" version="3.6.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.emf.ecore"/>
       <import plugin="org.eclipse.emf.ecore.xmi"/>
+      <import plugin="org.antlr.runtime" version="3.2.0" match="greaterOrEqual"/>
    </requires>
 
    <plugin
          id="org.activiti.designer.gui"
          download-size="0"
          install-size="0"
-         version="5.8.0"
+         version="0.0.0"
          unpack="false"/>
 
    <plugin
          id="org.activiti.designer.eclipse"
          download-size="0"
          install-size="0"
-         version="5.8.0"
+         version="0.0.0"
          unpack="false"/>
 
    <plugin
          id="org.activiti.designer.model"
          download-size="0"
          install-size="0"
-         version="5.8.0"
+         version="0.0.0"
          unpack="false"/>
 
    <plugin
          id="org.activiti.designer.integration"
          download-size="0"
          install-size="0"
-         version="5.8.0"
+         version="0.0.0"
          unpack="false"/>
 
    <plugin
          id="org.activiti.designer.help"
          download-size="0"
          install-size="0"
-         version="5.8.0"
+         version="0.0.0"
          unpack="false"/>
 
    <plugin
          id="org.activiti.designer.export.bpmn20"
          download-size="0"
          install-size="0"
-         version="5.8.0"
+         version="0.0.0"
          unpack="false"/>
 
    <plugin
          id="org.activiti.designer.export.image"
          download-size="0"
          install-size="0"
-         version="5.8.0"
+         version="0.0.0"
          unpack="false"/>
 
    <plugin
          id="org.activiti.designer.validation.bpmn20"
          download-size="0"
          install-size="0"
-         version="5.8.0"
+         version="0.0.0"
          unpack="false"/>
 
    <plugin
          id="org.activiti.designer.util"
          download-size="0"
          install-size="0"
-         version="5.8.0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="eu.aniketos.securebpmn.export.aslan"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="eu.aniketos.securebpmn.export.html"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="eu.aniketos.securebpmn"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="eu.aniketos.securebpmn.validation.bpmn20"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
          unpack="false"/>
 
 </feature>

@@ -112,7 +112,28 @@ import com.alfresco.designer.gui.features.CreateAlfrescoScriptTaskFeature;
 import com.alfresco.designer.gui.features.CreateAlfrescoStartEventFeature;
 import com.alfresco.designer.gui.features.CreateAlfrescoUserTaskFeature;
 
-public class ActivitiToolBehaviorProvider extends DefaultToolBehaviorProvider {
+// <SecureBPMN>
+import eu.aniketos.securebpmn.features.CheckServiceTaskFeature;
+import eu.aniketos.securebpmn.features.ListProcessVariablesFeature;
+import eu.aniketos.securebpmn.features.PerformNtkAnalysisFeature;
+import eu.aniketos.securebpmn.features.ValidateAslanLocalFeature;
+import eu.aniketos.securebpmn.features.ValidateAslanWebFeature;
+import eu.aniketos.securebpmn.visualization.rbac.RbacVisualization;
+import org.eclipse.securebpmn2.AuthorizationConstraint;
+import org.eclipse.securebpmn2.SecurityFlow;
+import org.eclipse.graphiti.features.FeatureCheckerAdapter;
+import org.eclipse.graphiti.features.IFeatureChecker;
+import org.eclipse.graphiti.features.IFeatureCheckerHolder;
+import org.activiti.designer.security.features.CreateSecurityBodFeature;
+import org.activiti.designer.security.features.CreateSecuritySodFeature;
+import org.activiti.designer.security.features.DeleteSecurityFlowFeature;
+// </SecureBPMN>
+
+public class ActivitiToolBehaviorProvider extends DefaultToolBehaviorProvider 
+// <SecureBPMN>
+  implements IFeatureCheckerHolder 
+// </SecureBPMN>
+{
 
   private static final Map<Class< ? extends ICreateFeature>, PaletteEntry> toolMapping = new HashMap<Class< ? extends ICreateFeature>, PaletteEntry>();
 
@@ -143,6 +164,10 @@ public class ActivitiToolBehaviorProvider extends DefaultToolBehaviorProvider {
     toolMapping.put(CreateBusinessRuleTaskFeature.class, PaletteEntry.BUSINESSRULE_TASK);
     toolMapping.put(CreateAlfrescoScriptTaskFeature.class, PaletteEntry.ALFRESCO_SCRIPT_TASK);
     toolMapping.put(CreateAlfrescoMailTaskFeature.class, PaletteEntry.ALFRESCO_MAIL_TASK);
+    // <SecureBPMN>
+    toolMapping.put(CreateSecurityBodFeature.class, PaletteEntry.SECURITY_BOD);
+    toolMapping.put(CreateSecuritySodFeature.class, PaletteEntry.SECURITY_SOD);
+    // </SecureBPMN>
   }
 
   @Override
@@ -179,7 +204,11 @@ public class ActivitiToolBehaviorProvider extends DefaultToolBehaviorProvider {
   	taskContext.setTargetContainer((ContainerShape) pe.eContainer());
   	taskContext.putProperty("org.activiti.designer.connectionContext", connectionContext);
     
-    if (bo instanceof StartEvent || bo instanceof Task || bo instanceof CallActivity || bo instanceof Gateway) {
+    if (bo instanceof StartEvent || bo instanceof Task || bo instanceof CallActivity || bo instanceof Gateway 
+  // <SecureBPMN>
+      || bo instanceof AuthorizationConstraint)
+  // </SecurePBMN>
+ {
     	
     	CreateUserTaskFeature userTaskfeature = new CreateUserTaskFeature(getFeatureProvider());
       ContextButtonEntry newUserTaskButton = new ContextButtonEntry(userTaskfeature, taskContext);
@@ -226,7 +255,11 @@ public class ActivitiToolBehaviorProvider extends DefaultToolBehaviorProvider {
       data.getDomainSpecificContextButtons().add(button);
     }
     
-    if (bo instanceof StartEvent || bo instanceof Task || bo instanceof CallActivity || bo instanceof Gateway) {
+    if (bo instanceof StartEvent || bo instanceof Task || bo instanceof CallActivity || bo instanceof Gateway 
+  // <SecureBPMN>
+     || bo instanceof AuthorizationConstraint) 
+  // </SecureBPMN>
+{
       
       ContextButtonEntry otherElementButton = new ContextButtonEntry(null, null);
       otherElementButton.setText("new element"); //$NON-NLS-1$
@@ -266,7 +299,13 @@ public class ActivitiToolBehaviorProvider extends DefaultToolBehaviorProvider {
       		"Create alfresco user task", "Create a new alfresco user task", ActivitiImageProvider.IMG_USERTASK);
       addContextButton(otherElementButton, new CreateAlfrescoMailTaskFeature(getFeatureProvider()), taskContext, 
       		"Create alfresco mail task", "Create a new alfresco mail task", ActivitiImageProvider.IMG_MAILTASK);
-      
+// <SecureBPMN>
+      addContextButton(otherElementButton, new CreateSecurityBodFeature(getFeatureProvider()), taskContext, 
+      		"Create binding of duty", "Create a new binding of duty", ActivitiImageProvider.IMG_SECURITY_BOD);
+      addContextButton(otherElementButton, new CreateSecuritySodFeature(getFeatureProvider()), taskContext, 
+    		"Create separation of duty", "Create a new separation of duty", ActivitiImageProvider.IMG_SECURITY_SOD);
+// </SecureBPMN>      
+
       ContextButtonEntry editElementButton = new ContextButtonEntry(null, null);
       editElementButton.setText("change element type"); //$NON-NLS-1$
       editElementButton.setDescription("Change the element type to another type"); //$NON-NLS-1$
@@ -369,11 +408,71 @@ public class ActivitiToolBehaviorProvider extends DefaultToolBehaviorProvider {
               subMenuDelete.setText("Delete sequence flow"); //$NON-NLS-1$
               subMenuDelete.setSubmenu(false);
               menuList.add(subMenuDelete);
+            // <SecureBPMN>
+            } else if(bObject instanceof SecurityFlow){
+            	 ContextMenuEntry subMenuDelete = new ContextMenuEntry(new DeleteSecurityFlowFeature(getFeatureProvider()), context);
+                 subMenuDelete.setText("Delete security flow"); //$NON-NLS-1$
+                 subMenuDelete.setSubmenu(false);
+                 menuList.add(subMenuDelete);
+            } else if (bObject instanceof ServiceTask) {
+                // Adding custom context menu entries.
+            	ContextMenuEntry checkServiceTask = new ContextMenuEntry(new CheckServiceTaskFeature(getFeatureProvider()), context);
+                checkServiceTask.setText("Check ServiceTask"); //$NON-NLS-1$
+                checkServiceTask.setSubmenu(false);
+                menuList.add(checkServiceTask);
+            // </SecureBPMN>
             }
           }
         }
       }
     }
+// <SecureBPMN>    
+    ContextMenuEntry subMenuSecureBPMN = new ContextMenuEntry(null, context);
+    subMenuSecureBPMN.setText("SecureBPMN Analyses"); //$NON-NLS-1$
+    subMenuSecureBPMN.setSubmenu(true);
+    
+    /* adb: for the time being, provide only local analysis. First, the 
+     * Web service options needs to be fixed (new formant) and, second, this 
+     * selection should be made in the configuration pane ...  
+     *
+    ContextMenuEntry subMenuSSoD = new ContextMenuEntry(null, context);
+    subMenuSSoD.setText("Static SoD Analysis"); //$NON-NLS-1$
+    subMenuSSoD.setSubmenu(true);
+
+    ContextMenuEntry validateSecurityViaBin = new ContextMenuEntry(new ValidateAslanLocalFeature(getFeatureProvider()), context);
+    validateSecurityViaBin.setText("local analysis"); //$NON-NLS-1$
+    validateSecurityViaBin.setSubmenu(false);
+    subMenuSSoD.add(validateSecurityViaBin);
+    
+    ContextMenuEntry validateSecurityViaWS = new ContextMenuEntry(new ValidateAslanWebFeature(getFeatureProvider()), context);
+    validateSecurityViaWS.setText("via web service"); //$NON-NLS-1$
+    validateSecurityViaWS.setSubmenu(false);
+    subMenuSSoD.add(validateSecurityViaWS);
+   */
+    ContextMenuEntry subMenuSSoD = new ContextMenuEntry(new ValidateAslanLocalFeature(getFeatureProvider()), context);
+    subMenuSSoD.setText("Anlyse static SoD"); //$NON-NLS-1$
+    subMenuSSoD.setSubmenu(false);
+    
+    subMenuSecureBPMN.add(subMenuSSoD);
+    
+    ContextMenuEntry subMenuNtK = new ContextMenuEntry(null, context);
+    subMenuNtK.setText("Need to Know Analysis"); //$NON-NLS-1$
+    subMenuNtK.setSubmenu(true);
+       
+    ContextMenuEntry listProcessVars = new ContextMenuEntry(new ListProcessVariablesFeature(getFeatureProvider()), context);
+    listProcessVars.setText("List used process variables"); //$NON-NLS-1$
+    listProcessVars.setSubmenu(false);
+    subMenuNtK.add(listProcessVars);
+    
+    ContextMenuEntry performNtkAnalysis = new ContextMenuEntry(new PerformNtkAnalysisFeature(getFeatureProvider()), context);
+    performNtkAnalysis.setText("Perform need-to-know analysis"); //$NON-NLS-1$
+    performNtkAnalysis.setSubmenu(false);
+    subMenuNtK.add(performNtkAnalysis);
+    
+    subMenuSecureBPMN.add(subMenuNtK);
+    
+    menuList.add(subMenuSecureBPMN);
+// </SecureBPMN>
 
     ContextMenuEntry subMenuExport = new ContextMenuEntry(new SaveBpmnModelFeature(getFeatureProvider()), context);
     subMenuExport.setText("Export to BPMN 2.0 XML"); //$NON-NLS-1$
@@ -405,7 +504,9 @@ public class ActivitiToolBehaviorProvider extends DefaultToolBehaviorProvider {
     IPaletteCompartmentEntry boundaryEventCompartmentEntry = new PaletteCompartmentEntry("Boundary event", null);
     IPaletteCompartmentEntry intermediateEventCompartmentEntry = new PaletteCompartmentEntry("Intermediate event", null);
     IPaletteCompartmentEntry alfrescoCompartmentEntry = new PaletteCompartmentEntry("Alfresco", ActivitiImageProvider.IMG_ALFRESCO_LOGO);
-
+// <SecureBPMN>
+    IPaletteCompartmentEntry securityCompartmentEntry = new PaletteCompartmentEntry("Security", null);
+// </SecureBPMN>    
     for (int i = 0; i < superCompartments.length; i++) {
 
       final IPaletteCompartmentEntry entry = superCompartments[i];
@@ -420,6 +521,10 @@ public class ActivitiToolBehaviorProvider extends DefaultToolBehaviorProvider {
       for (IToolEntry toolEntry : iPaletteCompartmentEntry.getToolEntries()) {
         if ("sequenceflow".equalsIgnoreCase(toolEntry.getLabel())) {
           connectionCompartmentEntry.getToolEntries().add(toolEntry);
+        // <SecureBPMN>
+        } else if ("securityflow".equalsIgnoreCase(toolEntry.getLabel())) {
+            connectionCompartmentEntry.getToolEntries().add(toolEntry);
+        // </SecureBPMN>
         } else if ("startevent".equalsIgnoreCase(toolEntry.getLabel())) {
           eventCompartmentEntry.getToolEntries().add(toolEntry);
         } else if ("timerstartevent".equalsIgnoreCase(toolEntry.getLabel())) {
@@ -466,6 +571,12 @@ public class ActivitiToolBehaviorProvider extends DefaultToolBehaviorProvider {
           alfrescoCompartmentEntry.getToolEntries().add(toolEntry);
         } else if ("alfrescomailtask".equalsIgnoreCase(toolEntry.getLabel())) {
           alfrescoCompartmentEntry.getToolEntries().add(toolEntry);
+        // <SecureBPMN>
+        }else if ("separationofduty".equalsIgnoreCase(toolEntry.getLabel())) {
+        	securityCompartmentEntry.getToolEntries().add(toolEntry);
+        } else if ("bindingofduty".equalsIgnoreCase(toolEntry.getLabel())) {
+          securityCompartmentEntry.getToolEntries().add(toolEntry);
+        // </SecureBPMN>
         }
       }
     }
@@ -492,6 +603,11 @@ public class ActivitiToolBehaviorProvider extends DefaultToolBehaviorProvider {
       
       ret.add(alfrescoCompartmentEntry);
     }
+    // <SecureBPMN>
+    if (securityCompartmentEntry.getToolEntries().size() > 0) {
+        ret.add(securityCompartmentEntry);
+    }
+    // </SecureBPMN>
 
     final Map<String, List<CustomServiceTaskContext>> tasksInDrawers = new HashMap<String, List<CustomServiceTaskContext>>();
 
@@ -691,4 +807,16 @@ public class ActivitiToolBehaviorProvider extends DefaultToolBehaviorProvider {
     // Safe default assumption
     return true;
   }
+
+  	// <SecureBPMN>
+	@Override
+	public IFeatureChecker getFeatureChecker() {
+		// TODO we can still create elements!
+		if (RbacVisualization.getInstance().isVisualizationRunning()) {
+			return new FeatureCheckerAdapter(false);
+		} else {
+			return new FeatureCheckerAdapter(true);
+		}
+	}
+	// </SecureBPMN>
 }

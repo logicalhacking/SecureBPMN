@@ -7,4 +7,8 @@ Bundle-Activator: org.activiti.designer.help.Activator
 Require-Bundle: org.eclipse.core.runtime
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Bundle-ClassPath: .
+Bundle-ClassPath: .,
+ xalan-2.7.1.jar,
+ serializer-2.7.1.jar,
+ xml-apis-1.3.04.jar,
+ com.sun.xacml-0.1.jar

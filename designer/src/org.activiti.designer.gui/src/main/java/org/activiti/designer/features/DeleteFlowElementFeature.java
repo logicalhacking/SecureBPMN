@@ -20,6 +20,10 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.ui.features.DefaultDeleteFeature;
+// <SecureBPMN>
+import org.eclipse.securebpmn2.AuthorizationConstraint;
+import org.eclipse.securebpmn2.SecurityFlow;
+// </SecureBPMN>
 
 public class DeleteFlowElementFeature extends DefaultDeleteFeature {
 
@@ -31,6 +35,11 @@ public class DeleteFlowElementFeature extends DefaultDeleteFeature {
 		if (bo instanceof Task || bo instanceof Gateway || bo instanceof Event || bo instanceof SubProcess || bo instanceof CallActivity) {
 		  deleteSequenceFlows((FlowNode) bo);
 		}
+        // <SecureBPMN>
+		if(bo instanceof Activity || bo instanceof AuthorizationConstraint){
+			deleteSecurityFlows((FlowNode) bo);
+		}
+		// </SecureBPMN>
 
 		if (bo instanceof EObject) {
 
@@ -71,6 +80,11 @@ public class DeleteFlowElementFeature extends DefaultDeleteFeature {
 			    if(subFlowElement instanceof FlowNode) {
             deleteSequenceFlows((FlowNode) subFlowElement);
           }
+          // <SecureBPMN>
+			    if(subFlowElement instanceof Activity || bo instanceof AuthorizationConstraint){
+					deleteSecurityFlows((FlowNode) bo);
+	      }
+          // </SecureBPMN>
           EcoreUtil.delete(subFlowElement, true);
         }
 			  subProcess.getFlowElements().clear();
@@ -99,6 +113,28 @@ public class DeleteFlowElementFeature extends DefaultDeleteFeature {
       EcoreUtil.delete(deleteObject, true);
     }
 	}
+
+    // <SecureBPMN>
+	private void deleteSecurityFlows(FlowNode flowNode) {
+		  List<SecurityFlow> toDeleteSecurityFlows = new ArrayList<SecurityFlow>();
+	    for (SecurityFlow incomingSecurityFlow : flowNode.getIncomingSecurityFlow()) {
+	    	SecurityFlow toDeleteObject = (SecurityFlow) getFlowElement(incomingSecurityFlow);
+	      if (toDeleteObject != null) {
+	    	  toDeleteSecurityFlows.add(toDeleteObject);
+	      }
+	    }
+	    for (SecurityFlow outgoingSecurityFlow : flowNode.getOutgoingSecurityFlow()) {
+	    	SecurityFlow toDeleteObject = (SecurityFlow) getFlowElement(outgoingSecurityFlow);
+	      if (toDeleteObject != null) {
+	    	  toDeleteSecurityFlows.add(toDeleteObject);
+	      }
+	    }
+	    for (SecurityFlow deleteObject : toDeleteSecurityFlows) {
+	      deletedConnectingFlows(deleteObject);
+	      EcoreUtil.delete(deleteObject, true);
+	    }
+		}
+     // </SecureBPMN>
 	
 	private void deletedConnectingFlows(SequenceFlow sequenceFlow) {
 	  for (EObject diagramObject : getDiagram().eResource().getContents()) {
@@ -124,12 +160,40 @@ public class DeleteFlowElementFeature extends DefaultDeleteFeature {
       }
 	  }
 	}
+	// <SecureBPMN>
+	private void deletedConnectingFlows(SecurityFlow securityFlow) {
+		  for (EObject diagramObject : getDiagram().eResource().getContents()) {
+	  	  if(diagramObject instanceof Activity || diagramObject instanceof AuthorizationConstraint) {
+	  		SecurityFlow foundIncoming = null;
+	  		SecurityFlow foundOutgoing = null;
+	        for(SecurityFlow flow : ((FlowNode) diagramObject).getIncomingSecurityFlow()) {
+	          if(flow.getId().equals(securityFlow.getId())) {
+	            foundIncoming = flow;
+	          }
+	        }
+	        for(SecurityFlow flow : ((FlowNode) diagramObject).getOutgoingSecurityFlow()) {
+	          if(flow.getId().equals(securityFlow.getId())) {
+	            foundOutgoing = flow;
+	          }
+	        }
+	        if(foundIncoming != null) {
+	          ((FlowNode) diagramObject).getIncomingSecurityFlow().remove(foundIncoming);
+	        }
+	        if(foundOutgoing != null) {
+	          ((FlowNode) diagramObject).getOutgoingSecurityFlow().remove(foundOutgoing);
+	        }
+	      }
+		  }
+		}
+    // </SecureBPMN>
 
 	private EObject getFlowElement(FlowElement flowElement) {
 		for (EObject diagramObject : getDiagram().eResource().getContents()) {
 		  
 		  if(diagramObject instanceof FlowElement == false) continue;
-		  
+          // <SecureBPMN>
+		  System.out.println(((FlowElement) diagramObject).getName());
+          // </SecureBPMN>
 			if (((FlowElement) diagramObject).getId().equals(flowElement.getId())) {
 
 				return diagramObject;

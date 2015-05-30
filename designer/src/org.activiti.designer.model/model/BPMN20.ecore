@@ -1413,6 +1413,11 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="activitiListeners" upperBound="-1"
         eType="#//ActivitiListener" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="asynchronous" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="activityActions" upperBound="-1"
+        eType="ecore:EClass SecureBPMN20.ecore#//ActivityAction" eOpposite="SecureBPMN20.ecore#//ActivityAction/activity"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="activityAuthorizationConstraints"
+        upperBound="-1" eType="ecore:EClass SecureBPMN20.ecore#//ActivityAuthorizationConstraint"
+        eOpposite="SecureBPMN20.ecore#//ActivityAuthorizationConstraint/activities"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="AdHocOrdering">
     <eLiterals name="Parallel"/>
@@ -2807,6 +2812,10 @@
         <details key="namespace" value="http://www.omg.org/spec/BPMN/20100524/MODEL"/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="incomingSecurityFlow" upperBound="-1"
+        eType="ecore:EClass SecureBPMN20.ecore#//SecurityFlow" eOpposite="SecureBPMN20.ecore#//SecurityFlow/targetRefNode"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="outgoingSecurityFlow" upperBound="-1"
+        eType="ecore:EClass SecureBPMN20.ecore#//SecurityFlow" eOpposite="SecureBPMN20.ecore#//SecurityFlow/sourceRefNode"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FormalExpression" eSuperTypes="#//Expression">
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
@@ -3183,6 +3192,9 @@
         <details key="name" value="itemSubjectRef"/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="itemAwareElementActions"
+        upperBound="-1" eType="ecore:EClass SecureBPMN20.ecore#//ItemAwareElementAction"
+        containment="true" eOpposite="SecureBPMN20.ecore#//ItemAwareElementAction/itemAwareElement"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ItemDefinition" eSuperTypes="#//RootElement">
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
@@ -3835,6 +3847,9 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="executionListeners" upperBound="-1"
         eType="#//ActivitiListener" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="namespace" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="processActions" upperBound="-1"
+        eType="ecore:EClass SecureBPMN20.ecore#//ProcessAction" containment="true"
+        eOpposite="SecureBPMN20.ecore#//ProcessAction/process"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="ProcessType">
     <eLiterals name="None"/>

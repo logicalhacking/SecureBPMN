@@ -51,6 +51,21 @@ public class StyleUtil {
     }
     return style;
   }
+	// <SecureBPMN>
+	public static Style getStyleForSecurityNode(Diagram diagram) {
+	    final String styleId = "SECURITYNODE"; //$NON-NLS-1$
+
+	    Style style = findStyle(diagram, styleId);
+	    if (style == null) { // style not found - create new style
+	      IGaService gaService = Graphiti.getGaService();
+	      style = gaService.createStyle(diagram, styleId);
+	      style.setForeground(gaService.manageColor(diagram,IColorConstant.LIGHT_BLUE));
+	      gaService.setRenderingStyle(style, getDefaultSecurityNodeColor());
+	      style.setLineWidth(20);
+	    }
+	    return style;
+	  }
+     // </SecureBPMN>
 	
 	public static Style getStyleForEvent(Diagram diagram) {
     final String styleId = "EVENT"; //$NON-NLS-1$
@@ -125,6 +140,39 @@ public class StyleUtil {
             secondarySelectedGradientColoredAreas);
     return agca;
 	}
+
+    // <SecureBPMN>
+	private static AdaptedGradientColoredAreas getDefaultSecurityNodeColor() {
+		  final AdaptedGradientColoredAreas agca = StylesFactory.eINSTANCE.createAdaptedGradientColoredAreas();
+	    agca.setDefinedStyleId("defaultSecurityNodeTaskStyle");
+	    agca.setGradientType(IGradientType.VERTICAL);
+	    final GradientColoredAreas defaultGradientColoredAreas = StylesFactory.eINSTANCE.createGradientColoredAreas();
+	    defaultGradientColoredAreas.setStyleAdaption(IPredefinedRenderingStyle.STYLE_ADAPTATION_DEFAULT);
+	    final EList<GradientColoredArea> gcas = defaultGradientColoredAreas.getGradientColor();
+	    addGradientColoredArea(gcas, "FAFBFC", 0, LocationType.LOCATION_TYPE_ABSOLUTE_START, "8CC6FF", 0, //$NON-NLS-1$ //$NON-NLS-2$
+	        LocationType.LOCATION_TYPE_ABSOLUTE_END);
+	    agca.getAdaptedGradientColoredAreas().add(IPredefinedRenderingStyle.STYLE_ADAPTATION_DEFAULT, defaultGradientColoredAreas);
+	    
+	    final GradientColoredAreas primarySelectedGradientColoredAreas = StylesFactory.eINSTANCE.createGradientColoredAreas();
+	    primarySelectedGradientColoredAreas.setStyleAdaption(IPredefinedRenderingStyle.STYLE_ADAPTATION_DEFAULT);
+	    final EList<GradientColoredArea> selectedGcas = primarySelectedGradientColoredAreas.getGradientColor();
+	    addGradientColoredArea(selectedGcas, "E5E5C2", 0, LocationType.LOCATION_TYPE_ABSOLUTE_START, "E5E5C2", 0, //$NON-NLS-1$ //$NON-NLS-2$
+	        LocationType.LOCATION_TYPE_ABSOLUTE_END);
+	    
+	    agca.getAdaptedGradientColoredAreas().add(IPredefinedRenderingStyle.STYLE_ADAPTATION_PRIMARY_SELECTED,
+	            primarySelectedGradientColoredAreas);
+	    
+	    final GradientColoredAreas secondarySelectedGradientColoredAreas = StylesFactory.eINSTANCE.createGradientColoredAreas();
+	    secondarySelectedGradientColoredAreas.setStyleAdaption(IPredefinedRenderingStyle.STYLE_ADAPTATION_DEFAULT);
+	    final EList<GradientColoredArea> secondarySelectedGcas = secondarySelectedGradientColoredAreas.getGradientColor();
+	    addGradientColoredArea(secondarySelectedGcas, "E5E5C2", 0, LocationType.LOCATION_TYPE_ABSOLUTE_START, "E5E5C2", 0, //$NON-NLS-1$ //$NON-NLS-2$
+	        LocationType.LOCATION_TYPE_ABSOLUTE_END);
+	    
+	    agca.getAdaptedGradientColoredAreas().add(IPredefinedRenderingStyle.STYLE_ADAPTATION_SECONDARY_SELECTED,
+	            secondarySelectedGradientColoredAreas);
+	    return agca;
+		}
+   // </SecureBPMN>
 	
 	private static AdaptedGradientColoredAreas getDefaultEventColor() {
     final AdaptedGradientColoredAreas agca = StylesFactory.eINSTANCE.createAdaptedGradientColoredAreas();

@@ -10,6 +10,10 @@ import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.graphiti.mm.pictograms.Connection;
 import org.eclipse.graphiti.ui.editor.DiagramEditor;
+// <SecureBPMN>
+import org.hamcrest.core.IsInstanceOf;
+import org.eclipse.securebpmn2.SecurityFlow;
+// <SecureBPMN>
 
 /**
  * Utility class to synchronize differences between the graphical representation and business model objects of a
@@ -71,6 +75,9 @@ public class SequenceFlowSynchronizer {
 		}
 
 		private void setup() {
+// <SecureBPMN>			
+			if(this.graphicalRepresentation.getLink().getBusinessObjects().get(0) instanceof SecurityFlow)return;
+// <SecureBPMN>
 		  
 		  if(this.graphicalRepresentation == null) return;
 		  

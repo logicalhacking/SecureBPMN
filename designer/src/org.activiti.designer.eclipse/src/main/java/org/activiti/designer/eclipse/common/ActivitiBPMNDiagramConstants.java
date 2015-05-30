@@ -23,6 +23,18 @@ public final class ActivitiBPMNDiagramConstants {
   public static final String BPMN_VALIDATOR_ID = "ActivitiDesignerBPMNValidator";
   public static final String BPMN_VALIDATOR_NAME = "Activiti Designer BPMN Validator";
   public static final String IMAGE_MARSHALLER_NAME = "Activiti Designer Image";
+  
+  // <SecureBPMN>
+  // Adding Marshaller and Validator constants.
+  public static final String HTML_MARSHALLER_NAME = "SAP Research SCVM HTML";
+  public static final String ASLAN_MARSHALLER_NAME = "SAP Research SCVM ASLan";
+  
+  public static final String XACML_MARSHALLER_NAME = "SAP Research SCVM Xacml";
+  public static final String XACML_VALIDATOR_ID = "SAPResearchSCVMXacmlValidator";
+  
+  public static final String ASLAN_VALIDATOR_ID = "SAPResearchSCVMASLanValidator";
+  public static final String ASLAN_VALIDATOR_NAME = "SAP Research ASLan SCVM Validator";
+  // </SecureBPMN>
 
   public static final String BPMN_MARSHALLER_VALIDATION_SKIP = "skip";
   public static final String BPMN_MARSHALLER_VALIDATION_ATTEMPT = "attempt";

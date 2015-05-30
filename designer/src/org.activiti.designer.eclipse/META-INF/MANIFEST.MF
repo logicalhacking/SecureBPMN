@@ -46,6 +46,10 @@ Export-Package:
 Bundle-Activator: org.activiti.designer.eclipse.common.ActivitiPlugin
 Import-Package: org.activiti.designer.eclipse.bpmn
 Bundle-ClassPath: .,
+ xalan-2.7.1.jar,
+ serializer-2.7.1.jar,
+ xml-apis-1.3.04.jar,
+ com.sun.xacml-0.1.jar,
  jdi.jar,
  jdimodel.jar,
  junit.jar

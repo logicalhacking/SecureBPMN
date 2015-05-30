@@ -34,7 +34,10 @@ public class UserTaskValidationWorker implements ProcessValidationWorker {
     if (userTasks != null && !userTasks.isEmpty()) {
       for (final EObject object : userTasks) {
 
-        final UserTask userTask = (UserTask) object;
+    	// <SecureBPMN>
+    	// Removed Activiti RBAC validation since we're using the SecureBPMN model for that.
+    	  
+        /*final UserTask userTask = (UserTask) object;
 
         boolean potentialOwnerIsSet = false;
         if (userTask.getAssignee() != null && userTask.getAssignee().length() > 0) {
@@ -50,7 +53,8 @@ public class UserTaskValidationWorker implements ProcessValidationWorker {
         if (!potentialOwnerIsSet) {
           result.add(new ProcessValidationWorkerMarker(IMarker.SEVERITY_ERROR, String.format(POTENTIAL_OWNER_EXCEPTION_MESSAGE_PATTERN, userTask.getName()),
                   userTask.getId(), ValidationCode.VAL_001));
-        }
+        }*/    	  
+    	// </SecureBPMN>
       }
     }
 

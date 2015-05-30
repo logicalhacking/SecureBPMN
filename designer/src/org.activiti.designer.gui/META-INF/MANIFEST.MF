@@ -25,6 +25,7 @@ Require-Bundle: org.eclipse.ui,
  org.activiti.designer.integration,
  org.eclipse.ui.ide,
  org.activiti.designer.util
+ ,eu.aniketos.securebpmn
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: org.activiti.designer,
@@ -33,6 +34,10 @@ Export-Package: org.activiti.designer,
 Bundle-Vendor: Eclipse Modeling Project
 Bundle-Activator: org.activiti.designer.Activator
 Bundle-ClassPath: .,
+ xalan-2.7.1.jar,
+ serializer-2.7.1.jar,
+ xml-apis-1.3.04.jar,
+ com.sun.xacml-0.1.jar,
  jdi.jar,
  jdimodel.jar,
  junit.jar

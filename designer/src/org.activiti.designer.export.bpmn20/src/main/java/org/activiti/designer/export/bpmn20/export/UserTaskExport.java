@@ -32,9 +32,12 @@ public class UserTaskExport implements ActivitiNamespaceConstants {
 
   public static void createUserTask(EObject object, XMLStreamWriter xtw) throws Exception {
     UserTask userTask = (UserTask) object;
+    
     if ((userTask.getAssignee() != null && userTask.getAssignee().length() > 0)
             || (userTask.getCandidateUsers() != null && userTask.getCandidateUsers().size() > 0)
-            || (userTask.getCandidateGroups() != null && userTask.getCandidateGroups().size() > 0)) {
+            || (userTask.getCandidateGroups() != null && userTask.getCandidateGroups().size() > 0)
+            || true // (SecureBPMN.getRoles() > 0)
+            ) {
 
       // start UserTask element
       xtw.writeStartElement("userTask");
@@ -61,14 +64,15 @@ public class UserTaskExport implements ActivitiNamespaceConstants {
           candidateUsers += ", " + candidateUserIterator.next().getUser();
         }
         xtw.writeAttribute(ACTIVITI_EXTENSIONS_PREFIX, ACTIVITI_EXTENSIONS_NAMESPACE, "candidateUsers", candidateUsers);
-      } else {
+      } else if (userTask.getCandidateGroups() != null && userTask.getCandidateGroups().size() > 0){
         Iterator<CandidateGroup> candidateGroupIterator = userTask.getCandidateGroups().iterator();
         String candidateGroups = candidateGroupIterator.next().getGroup();
         while (candidateGroupIterator.hasNext()) {
           candidateGroups += ", " + candidateGroupIterator.next().getGroup();
         }
         xtw.writeAttribute(ACTIVITI_EXTENSIONS_PREFIX, ACTIVITI_EXTENSIONS_NAMESPACE, "candidateGroups", candidateGroups);
-      }
+      } else if (true) // SecureBPMN.roles
+      {}
 
       if (userTask.getFormKey() != null && userTask.getFormKey().length() > 0) {
         xtw.writeAttribute(ACTIVITI_EXTENSIONS_PREFIX, ACTIVITI_EXTENSIONS_NAMESPACE, "formKey", userTask.getFormKey());

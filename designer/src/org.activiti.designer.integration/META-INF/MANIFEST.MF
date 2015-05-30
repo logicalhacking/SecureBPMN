@@ -14,4 +14,8 @@ Export-Package: org.activiti.designer.integration;uses:="org.osgi.framework",
  org.activiti.designer.integration.servicetask,
  org.activiti.designer.integration.servicetask.annotation,
  org.activiti.designer.integration.servicetask.validator
-Bundle-ClassPath: .
+Bundle-ClassPath: .,
+ xalan-2.7.1.jar,
+ serializer-2.7.1.jar,
+ xml-apis-1.3.04.jar,
+ com.sun.xacml-0.1.jar
