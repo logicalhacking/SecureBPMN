@@ -13,6 +13,8 @@
 
 package org.activiti.explorer.ui.task;
 
+import org.activiti.engine.ProcessEngines;
+import org.activiti.engine.TaskService;
 import org.activiti.engine.identity.User;
 import org.activiti.engine.task.Event;
 import org.activiti.explorer.ExplorerApp;
@@ -35,12 +37,18 @@ public class TaskEventTextResolver {
   
   protected I18nManager i18nManager;
   protected UserCache userCache;
+//<SecureBPMN>
+  protected TaskService taskService;
+//</SecureBPMN>
   
   public TaskEventTextResolver() {
     this.i18nManager = ExplorerApp.get().getI18nManager();
     this.userCache = ExplorerApp.get().getUserCache();
+  //<SecureBPMN>
+    this.taskService = ProcessEngines.getDefaultProcessEngine().getTaskService();
+  //</SecureBPMN>
   }
-  
+
   public Label resolveText(Event event) {
     User user = userCache.findUser(event.getUserId());
     String eventAuthor = "<span class='" + ExplorerLayout.STYLE_TASK_EVENT_AUTHOR + "'>" 
@@ -49,10 +57,14 @@ public class TaskEventTextResolver {
     String text = null;
     if (Event.ACTION_ADD_USER_LINK.equals(event.getAction())) {
       User involvedUser = userCache.findUser(event.getMessageParts().get(0));
-      text = i18nManager.getMessage(Messages.EVENT_ADD_USER_LINK, 
+      //<SecureBPMN>
+      text = getEventMessage(event);
+      /*
+              i18nManager.getMessage(Messages.EVENT_ADD_USER_LINK, 
               eventAuthor, 
               involvedUser.getFirstName() + " " + involvedUser.getLastName(),
-              event.getMessageParts().get(1)); // second msg part = role
+              event.getMessageParts().get(1)); // second msg part = role*/
+      //</SecureBPMN>
     } else if (Event.ACTION_DELETE_USER_LINK.equals(event.getAction())) {
       User involvedUser = userCache.findUser(event.getMessageParts().get(0));
       text = i18nManager.getMessage(Messages.EVENT_DELETE_USER_LINK, 
@@ -80,5 +92,21 @@ public class TaskEventTextResolver {
     }
     return new Label(text, Label.CONTENT_XHTML);
   }
+
+ //<SecureBPMN>
+ // custom event text for delegations TODO: older event text gets changed with new events due to static string...
+ private String getEventMessage(Event event) {
+	 String result = "";
+	 User user = userCache.findUser(event.getUserId());
+	 User involvedUser = userCache.findUser(event.getMessageParts().get(0));
+	 if (TaskInvolvedPeopleComponent.returnDelegationType == "") {
+		 result = user.getFirstName() + " " + user.getLastName() + " executed a " + TaskInvolvedPeopleComponent.lastDelegationType + " on the task " + taskService.createTaskQuery().taskId(event.getTaskId()).singleResult().getName() + ". Assignee is now: " + involvedUser.getFirstName() + " " + involvedUser.getLastName();
+		 return result;
+	 } else {
+		 result = user.getFirstName() + " " + user.getLastName() + " returned a " + TaskInvolvedPeopleComponent.lastDelegationType + " for the task " + taskService.createTaskQuery().taskId(event.getTaskId()).singleResult().getName() + ". Assignee is now: " + involvedUser.getFirstName() + " " + involvedUser.getLastName();
+		 return result;
+	 }
+  }
+ //</SecureBPMN>
 
 }
