@@ -32,7 +32,16 @@ public class QueuedListQuery extends AbstractTaskListQuery {
   
   @Override
   protected TaskQuery getQuery() {
-    return taskService.createTaskQuery().taskCandidateGroup(groupId).taskUnnassigned().orderByTaskId().asc();
+	  return taskService.createTaskQuery().taskCandidateGroup(groupId).taskUnnassigned().orderByTaskId().asc();
   }
+  
+	//<SecureBPMN>
+	public static interface SecurityCallback {
+		boolean securityCheck(String taskId, String userId);
+		boolean delegationCheck(String taskId, String userId);
+		String delegationTypeCheck(String taskId, String userId);
+		boolean negotiableCheck(String taskId, String userId);
+	}
+	//</SecureBPMN>
 
 }
