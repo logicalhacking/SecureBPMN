@@ -55,6 +55,6 @@ Main developer: [Achim D. Brucker](http://www.brucker.ch/)
 * Helmut Petritsch
 * Raj Ruparel
 
-### Publications
+## Publications
 Related publications are listed on the [SecureBPMN 
 website](https://www.brucker.ch/projects/securebpmn/index.en.html).
