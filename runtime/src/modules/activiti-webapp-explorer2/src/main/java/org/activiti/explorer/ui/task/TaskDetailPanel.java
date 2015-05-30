@@ -13,6 +13,7 @@
 package org.activiti.explorer.ui.task;
 
 import java.util.Map;
+import java.util.ServiceLoader;
 
 import org.activiti.engine.FormService;
 import org.activiti.engine.ProcessEngines;
@@ -33,6 +34,7 @@ import org.activiti.explorer.ui.form.FormPropertiesEventListener;
 import org.activiti.explorer.ui.form.FormPropertiesForm;
 import org.activiti.explorer.ui.form.FormPropertiesForm.FormPropertiesEvent;
 import org.activiti.explorer.ui.mainlayout.ExplorerLayout;
+import org.activiti.explorer.ui.task.data.QueuedListQuery.SecurityCallback;
 import org.activiti.explorer.ui.task.listener.ClaimTaskClickListener;
 
 import com.vaadin.event.LayoutEvents.LayoutClickEvent;
@@ -137,7 +139,6 @@ public class TaskDetailPanel extends DetailPanel {
     nameLabel.addStyleName(Reindeer.LABEL_H2);
     taskDetails.addComponent(nameLabel, 1, 0);
     taskDetails.setComponentAlignment(nameLabel, Alignment.MIDDLE_LEFT);
-
     // Properties
     HorizontalLayout propertiesLayout = new HorizontalLayout();
     propertiesLayout.setSpacing(true);
@@ -168,12 +169,12 @@ public class TaskDetailPanel extends DetailPanel {
   }
 
   protected void initClaimButton(HorizontalLayout layout) {
-    if(!isCurrentUserAssignee() && canUserClaimTask()) {
-      claimButton = new Button(i18nManager.getMessage(Messages.TASK_CLAIM));
-      claimButton.addListener(new ClaimTaskClickListener(task.getId(), taskService));
-      layout.addComponent(claimButton);
-      layout.setComponentAlignment(claimButton, Alignment.MIDDLE_LEFT);
-    }
+	  if(/*!isCurrentUserAssignee() && */canUserClaimTask()) {//<SecureBPMN>
+		  claimButton = new Button(i18nManager.getMessage(Messages.TASK_CLAIM));
+		  claimButton.addListener(new ClaimTaskClickListener(task.getId(), taskService));
+		  layout.addComponent(claimButton);
+		  layout.setComponentAlignment(claimButton, Alignment.MIDDLE_LEFT);
+	  }
   }
 
   protected void initDescription(HorizontalLayout layout) {
@@ -345,14 +346,23 @@ public class TaskDetailPanel extends DetailPanel {
 
         public void buttonClick(ClickEvent event) {
           // If no owner, make assignee owner (will go into archived then)
-          if (task.getOwner() == null) {
-            task.setOwner(task.getAssignee());
-            taskService.setOwner(task.getId(), task.getAssignee());
-          }
+        	
+        	//<SecureBPMN> fix a "bug" that former assignee can still complete the task after reassigning
+        	String userId = ExplorerApp.get().getLoggedInUser().getId();
+        	if(task.getAssignee().equals(userId)) {
+        	//</SecureBPMN>
+        		if (task.getOwner() == null) {
+        			task.setOwner(task.getAssignee());
+        			taskService.setOwner(task.getId(), task.getAssignee());
+        		}
           
-          taskService.complete(task.getId());     
-          notificationManager.showInformationNotification(Messages.TASK_COMPLETED, task.getName());
-          taskPage.refreshSelectNext();
+        		taskService.complete(task.getId());     
+        		notificationManager.showInformationNotification(Messages.TASK_COMPLETED, task.getName());
+        		taskPage.refreshSelectNext();
+        	//<SecureBPMN>
+        	} else {
+        		 notificationManager.showCustomNotification("Delegation falied!", "You are not the current Assignee for this Task!");
+        	}
         }
       });
       
@@ -372,10 +382,35 @@ public class TaskDetailPanel extends DetailPanel {
   }
   
   protected boolean canUserClaimTask() {
+	  //<SecureBPMN>
+	  String taskId = task.getId();
+	  String userId = ExplorerApp.get().getLoggedInUser().getId();
+	  final ServiceLoader<SecurityCallback> serviceLoader = ServiceLoader
+				.load(SecurityCallback.class);
+		System.out.println("Trying to load Claim-Button");
+		for (SecurityCallback callback : serviceLoader) {
+			try {
+				if (!callback.securityCheck(taskId, userId)) {
+					return false;
+				} else {
+					return true;
+				}
+
+
+			} catch (final RuntimeException e) {
+				e.printStackTrace();
+			} catch (final Throwable t) {
+				t.printStackTrace();
+				throw new RuntimeException(t);
+			}
+		}//</SecureBPMN>
+		/* old activiti implementation:
    return taskService.createTaskQuery()
      .taskCandidateUser(ExplorerApp.get().getLoggedInUser().getId())
      .taskId(task.getId())
      .count() == 1; 
+     */
+		return false;
   }
   
   protected void addEmptySpace(ComponentContainer container) {
