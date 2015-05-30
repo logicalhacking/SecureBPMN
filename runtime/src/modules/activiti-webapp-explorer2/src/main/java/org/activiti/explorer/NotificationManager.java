@@ -41,6 +41,12 @@ public class NotificationManager implements Serializable {
             Notification.TYPE_ERROR_MESSAGE);
   }
   
+  //<SecureBPMN>
+  public void showCustomNotification(String caption, String description) {
+	  mainWindow.showNotification(caption, "<br/>" + description, Notification.TYPE_ERROR_MESSAGE);
+  }
+  //</SecureBPMN>
+  
   public void showErrorNotification(String captionKey, Exception exception) {
     mainWindow.showNotification(i18nManager.getMessage(captionKey), 
             "<br/>" + exception.getMessage(), 
