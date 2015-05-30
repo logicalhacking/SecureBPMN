@@ -15,6 +15,7 @@ package org.activiti.explorer.ui.task;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.ServiceLoader;
 
 import org.activiti.engine.ProcessEngines;
 import org.activiti.engine.TaskService;
@@ -29,6 +30,7 @@ import org.activiti.explorer.ui.custom.SelectUsersPopupWindow;
 import org.activiti.explorer.ui.event.SubmitEvent;
 import org.activiti.explorer.ui.event.SubmitEventListener;
 import org.activiti.explorer.ui.mainlayout.ExplorerLayout;
+import org.activiti.explorer.ui.task.data.QueuedListQuery.SecurityCallback;
 import org.activiti.explorer.ui.task.listener.ChangeOwnershipListener;
 import org.activiti.explorer.ui.task.listener.ReassignAssigneeListener;
 import org.activiti.explorer.ui.task.listener.RemoveInvolvedPersonListener;
@@ -175,11 +177,48 @@ public class TaskInvolvedPeopleComponent extends CustomComponent {
    return new UserDetailsComponent(
             task.getAssignee(),
             i18nManager.getMessage(roleMessage),
-            i18nManager.getMessage(Messages.TASK_ASSIGNEE_REASSIGN),
+            /*<SecureBPMN>i18nManager.getMessage(Messages.TASK_ASSIGNEE_REASSIGN)*/getDelegationMessage(),
             new ReassignAssigneeListener(task, taskDetailPanel));
   }
   
-  protected void initInvolvedPeople() {
+//<SecureBPMN> 
+  public static String lastDelegationType = "";
+  public static String returnDelegationType = "";
+  
+  private String getDelegationMessage() {
+	  
+	  String delegationType = null;
+	  String taskId = task.getId();
+	  String userId = ExplorerApp.get().getLoggedInUser().getId();
+	  
+	  if(task.getAssignee() == null) {
+		  return "No Assignee";
+	  }
+	  
+	  final ServiceLoader<SecurityCallback> serviceLoader = ServiceLoader
+				.load(SecurityCallback.class);
+		for (SecurityCallback callback : serviceLoader) {
+			try {
+				delegationType = callback.delegationTypeCheck(taskId, userId);
+				if (delegationType.equals("Simple Delegation") || delegationType.equals("Transfer Delegation")) {
+					lastDelegationType = delegationType;
+					return delegationType;
+				} else if (delegationType.equals("Return Delegation?") && task.getAssignee().equals(ExplorerApp.get().getLoggedInUser().getId())) {
+					returnDelegationType = delegationType;
+					return returnDelegationType;
+				} 		
+			} catch (final RuntimeException e) {
+				e.printStackTrace();
+			} catch (final Throwable t) {
+				t.printStackTrace();
+				throw new RuntimeException(t);
+			}
+		}
+	return "No Delegation";
+}
+//</SecureBPMN>
+  
+protected void initInvolvedPeople() {
     List<IdentityLink> identityLinks = taskService.getIdentityLinksForTask(task.getId());
     for (final IdentityLink identityLink : identityLinks) { 
       if (identityLink.getUserId() != null) { // only user identity links, ignoring the group ids
