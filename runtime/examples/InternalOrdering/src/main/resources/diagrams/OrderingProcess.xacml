@@ -1,0 +1,340 @@
+<PolicySet xmlns="urn:oasis:names:tc:xacml:3.0:schema:os" PolicySetId="testPolicySet" PolicyCombiningAlgId="urn:oasis:names:tc:xacml:1.0:policy-combining-algorithm:first-applicable">
+<Target>
+<AnyOf>
+<AllOf>
+</AllOf>
+</AnyOf>
+</Target>
+<Policy xmlns="urn:oasis:names:tc:xacml:3.0:schema:os" PolicyId="policy_for_usertask1" RuleCombiningAlgId="urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:first-applicable"
+>
+<Target>
+<AnyOf>
+<AllOf>
+</AllOf>
+</AnyOf>
+</Target>
+<Rule RuleId="rule_for_usertask1" Effect="Permit">
+<Description>Place Order</Description>
+<Target>
+<AnyOf>
+<AllOf>
+<Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+<AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">Full Access</AttributeValue>
+<AttributeDesignator Category="urn:oasis:names:tc:xacml:3.0:attribute-category:action" AttributeId="urn:oasis:names:tc:xacml:1.0:action:action-id" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+</Match>
+<Match MatchId="urn:oasis:names:tc:xacml:1.0:function:anyURI-equal">
+<AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">usertask1</AttributeValue>
+<AttributeDesignator Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource" AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id" DataType="http://www.w3.org/2001/XMLSchema#anyURI" MustBePresent="true"/>
+</Match>
+<Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+<AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">clerk</AttributeValue>
+<AttributeDesignator Category="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject" AttributeId="urn:custom:subject:role" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+</Match>
+</AllOf>
+</AnyOf>
+</Target>
+<Condition>
+<Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:not">
+<Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:any-of-any">
+<Function FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-equal"/>
+<Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-bag">
+<AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">usertask4</AttributeValue>
+<AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">usertask7</AttributeValue>
+<AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">usertask2</AttributeValue>
+</Apply>
+<AttributeDesignator Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource" AttributeId="urn:custom:resource:cc-tasks" DataType="http://www.w3.org/2001/XMLSchema#string"/>
+</Apply>
+</Apply>
+</Condition>
+</Rule>
+</Policy>
+<Policy xmlns="urn:oasis:names:tc:xacml:3.0:schema:os" PolicyId="policy_for_usertask2" RuleCombiningAlgId="urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:first-applicable"
+>
+<Target>
+<AnyOf>
+<AllOf>
+</AllOf>
+</AnyOf>
+</Target>
+<Rule RuleId="rule_for_usertask2" Effect="Permit">
+<Description>Process Common Order</Description>
+<Target>
+<AnyOf>
+<AllOf>
+<Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+<AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">Full Access</AttributeValue>
+<AttributeDesignator Category="urn:oasis:names:tc:xacml:3.0:attribute-category:action" AttributeId="urn:oasis:names:tc:xacml:1.0:action:action-id" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+</Match>
+<Match MatchId="urn:oasis:names:tc:xacml:1.0:function:anyURI-equal">
+<AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">usertask2</AttributeValue>
+<AttributeDesignator Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource" AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id" DataType="http://www.w3.org/2001/XMLSchema#anyURI" MustBePresent="true"/>
+</Match>
+<Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+<AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">supervisor</AttributeValue>
+<AttributeDesignator Category="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject" AttributeId="urn:custom:subject:role" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+</Match>
+</AllOf>
+</AnyOf>
+</Target>
+<Condition>
+<Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:not">
+<Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:any-of-any">
+<Function FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-equal"/>
+<Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-bag">
+<AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">usertask4</AttributeValue>
+<AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">usertask7</AttributeValue>
+<AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">usertask1</AttributeValue>
+</Apply>
+<AttributeDesignator Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource" AttributeId="urn:custom:resource:cc-tasks" DataType="http://www.w3.org/2001/XMLSchema#string"/>
+</Apply>
+</Apply>
+</Condition>
+</Rule>
+</Policy>
+<Policy xmlns="urn:oasis:names:tc:xacml:3.0:schema:os" PolicyId="policy_for_usertask3" RuleCombiningAlgId="urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:first-applicable"
+>
+<Target>
+<AnyOf>
+<AllOf>
+</AllOf>
+</AnyOf>
+</Target>
+<Rule RuleId="rule_for_usertask3" Effect="Permit">
+<Description>Receive Order</Description>
+<Target>
+<AnyOf>
+<AllOf>
+<Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+<AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">Full Access</AttributeValue>
+<AttributeDesignator Category="urn:oasis:names:tc:xacml:3.0:attribute-category:action" AttributeId="urn:oasis:names:tc:xacml:1.0:action:action-id" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+</Match>
+<Match MatchId="urn:oasis:names:tc:xacml:1.0:function:anyURI-equal">
+<AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">usertask3</AttributeValue>
+<AttributeDesignator Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource" AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id" DataType="http://www.w3.org/2001/XMLSchema#anyURI" MustBePresent="true"/>
+</Match>
+<Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+<AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">clerk</AttributeValue>
+<AttributeDesignator Category="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject" AttributeId="urn:custom:subject:role" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+</Match>
+</AllOf>
+</AnyOf>
+</Target>
+</Rule>
+</Policy>
+<Policy xmlns="urn:oasis:names:tc:xacml:3.0:schema:os" PolicyId="policy_for_usertask4" RuleCombiningAlgId="urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:first-applicable"
+>
+<Target>
+<AnyOf>
+<AllOf>
+</AllOf>
+</AnyOf>
+</Target>
+<Rule RuleId="rule_for_usertask4" Effect="Permit">
+<Description>Process Uncommon Order</Description>
+<Target>
+<AnyOf>
+<AllOf>
+<Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+<AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">Full Access</AttributeValue>
+<AttributeDesignator Category="urn:oasis:names:tc:xacml:3.0:attribute-category:action" AttributeId="urn:oasis:names:tc:xacml:1.0:action:action-id" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+</Match>
+<Match MatchId="urn:oasis:names:tc:xacml:1.0:function:anyURI-equal">
+<AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">usertask4</AttributeValue>
+<AttributeDesignator Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource" AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id" DataType="http://www.w3.org/2001/XMLSchema#anyURI" MustBePresent="true"/>
+</Match>
+<Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+<AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">supervisor</AttributeValue>
+<AttributeDesignator Category="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject" AttributeId="urn:custom:subject:role" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+</Match>
+</AllOf>
+</AnyOf>
+</Target>
+<Condition>
+<Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:not">
+<Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:any-of-any">
+<Function FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-equal"/>
+<Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-bag">
+<AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">usertask7</AttributeValue>
+<AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">usertask1</AttributeValue>
+<AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">usertask2</AttributeValue>
+</Apply>
+<AttributeDesignator Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource" AttributeId="urn:custom:resource:cc-tasks" DataType="http://www.w3.org/2001/XMLSchema#string"/>
+</Apply>
+</Apply>
+</Condition>
+</Rule>
+</Policy>
+<Policy xmlns="urn:oasis:names:tc:xacml:3.0:schema:os" PolicyId="policy_for_usertask5" RuleCombiningAlgId="urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:first-applicable"
+>
+<Target>
+<AnyOf>
+<AllOf>
+</AllOf>
+</AnyOf>
+</Target>
+<Rule RuleId="rule_for_usertask5" Effect="Permit">
+<Description>Approve Order</Description>
+<Target>
+<AnyOf>
+<AllOf>
+<Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+<AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">Full Access</AttributeValue>
+<AttributeDesignator Category="urn:oasis:names:tc:xacml:3.0:attribute-category:action" AttributeId="urn:oasis:names:tc:xacml:1.0:action:action-id" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+</Match>
+<Match MatchId="urn:oasis:names:tc:xacml:1.0:function:anyURI-equal">
+<AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">usertask5</AttributeValue>
+<AttributeDesignator Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource" AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id" DataType="http://www.w3.org/2001/XMLSchema#anyURI" MustBePresent="true"/>
+</Match>
+<Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+<AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">manager</AttributeValue>
+<AttributeDesignator Category="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject" AttributeId="urn:custom:subject:role" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+</Match>
+</AllOf>
+</AnyOf>
+</Target>
+</Rule>
+</Policy>
+<Policy xmlns="urn:oasis:names:tc:xacml:3.0:schema:os" PolicyId="policy_for_usertask6" RuleCombiningAlgId="urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:first-applicable"
+>
+<Target>
+<AnyOf>
+<AllOf>
+</AllOf>
+</AnyOf>
+</Target>
+<Rule RuleId="rule_for_usertask6" Effect="Permit">
+<Description>Approve Order</Description>
+<Target>
+<AnyOf>
+<AllOf>
+<Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+<AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">Full Access</AttributeValue>
+<AttributeDesignator Category="urn:oasis:names:tc:xacml:3.0:attribute-category:action" AttributeId="urn:oasis:names:tc:xacml:1.0:action:action-id" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+</Match>
+<Match MatchId="urn:oasis:names:tc:xacml:1.0:function:anyURI-equal">
+<AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">usertask6</AttributeValue>
+<AttributeDesignator Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource" AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id" DataType="http://www.w3.org/2001/XMLSchema#anyURI" MustBePresent="true"/>
+</Match>
+<Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+<AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">manager</AttributeValue>
+<AttributeDesignator Category="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject" AttributeId="urn:custom:subject:role" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+</Match>
+</AllOf>
+</AnyOf>
+</Target>
+<Condition>
+<Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:not">
+<Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:any-of-any">
+<Function FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-equal"/>
+<Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-bag">
+<AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">usertask8</AttributeValue>
+</Apply>
+<AttributeDesignator Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource" AttributeId="urn:custom:resource:cc-tasks" DataType="http://www.w3.org/2001/XMLSchema#string"/>
+</Apply>
+</Apply>
+</Condition>
+</Rule>
+</Policy>
+<Policy xmlns="urn:oasis:names:tc:xacml:3.0:schema:os" PolicyId="policy_for_usertask7" RuleCombiningAlgId="urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:first-applicable"
+>
+<Target>
+<AnyOf>
+<AllOf>
+</AllOf>
+</AnyOf>
+</Target>
+<Rule RuleId="rule_for_usertask7" Effect="Permit">
+<Description>Process Premium Order</Description>
+<Target>
+<AnyOf>
+<AllOf>
+<Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+<AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">Full Access</AttributeValue>
+<AttributeDesignator Category="urn:oasis:names:tc:xacml:3.0:attribute-category:action" AttributeId="urn:oasis:names:tc:xacml:1.0:action:action-id" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+</Match>
+<Match MatchId="urn:oasis:names:tc:xacml:1.0:function:anyURI-equal">
+<AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">usertask7</AttributeValue>
+<AttributeDesignator Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource" AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id" DataType="http://www.w3.org/2001/XMLSchema#anyURI" MustBePresent="true"/>
+</Match>
+<Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+<AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">supervisor</AttributeValue>
+<AttributeDesignator Category="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject" AttributeId="urn:custom:subject:role" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+</Match>
+</AllOf>
+</AnyOf>
+</Target>
+<Condition>
+<Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:not">
+<Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:any-of-any">
+<Function FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-equal"/>
+<Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-bag">
+<AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">usertask4</AttributeValue>
+<AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">usertask1</AttributeValue>
+<AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">usertask2</AttributeValue>
+</Apply>
+<AttributeDesignator Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource" AttributeId="urn:custom:resource:cc-tasks" DataType="http://www.w3.org/2001/XMLSchema#string"/>
+</Apply>
+</Apply>
+</Condition>
+</Rule>
+</Policy>
+<Policy xmlns="urn:oasis:names:tc:xacml:3.0:schema:os" PolicyId="policy_for_usertask8" RuleCombiningAlgId="urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:first-applicable"
+>
+<Target>
+<AnyOf>
+<AllOf>
+</AllOf>
+</AnyOf>
+</Target>
+<Rule RuleId="rule_for_usertask8" Effect="Permit">
+<Description>Approve Order</Description>
+<Target>
+<AnyOf>
+<AllOf>
+<Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+<AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">Full Access</AttributeValue>
+<AttributeDesignator Category="urn:oasis:names:tc:xacml:3.0:attribute-category:action" AttributeId="urn:oasis:names:tc:xacml:1.0:action:action-id" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+</Match>
+<Match MatchId="urn:oasis:names:tc:xacml:1.0:function:anyURI-equal">
+<AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">usertask8</AttributeValue>
+<AttributeDesignator Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource" AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id" DataType="http://www.w3.org/2001/XMLSchema#anyURI" MustBePresent="true"/>
+</Match>
+<Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+<AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">manager</AttributeValue>
+<AttributeDesignator Category="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject" AttributeId="urn:custom:subject:role" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+</Match>
+</AllOf>
+</AnyOf>
+</Target>
+<Condition>
+<Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:not">
+<Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:any-of-any">
+<Function FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-equal"/>
+<Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-bag">
+<AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">usertask6</AttributeValue>
+</Apply>
+<AttributeDesignator Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource" AttributeId="urn:custom:resource:cc-tasks" DataType="http://www.w3.org/2001/XMLSchema#string"/>
+</Apply>
+</Apply>
+</Condition>
+</Rule>
+</Policy>
+<Policy xmlns="urn:oasis:names:tc:xacml:3.0:schema:os" PolicyId="denyPolicy" RuleCombiningAlgId="urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:first-applicable"
+>
+<Target>
+<AnyOf>
+<AllOf>
+</AllOf>
+</AnyOf>
+</Target>
+<Rule RuleId="denyRule" Effect="Deny">
+<Description>deny if no other Rule applies</Description>
+<Target>
+<AnyOf>
+<AllOf>
+</AllOf>
+</AnyOf>
+</Target>
+</Rule>
+</Policy>
+</PolicySet>

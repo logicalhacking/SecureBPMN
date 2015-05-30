@@ -1,0 +1,115 @@
+section signature:
+
+	user_to_role : user * role -> fact
+	poto : userORrole * taskName -> fact
+	task_to_data : taskName * set * set -> fact
+	aknows : entity * data -> fact
+	mc_pair : data * data -> data
+	contains : set * data -> fact
+	task : taskName * nat -> taskInstance
+	canExecute : user * role * humanTaskName -> fact
+	granted : user * role * taskInstance -> fact
+	executed : user * taskInstance -> fact
+	ready : taskInstance -> fact
+	done : taskInstance -> fact
+	entity > organization
+	entity > user
+	data > object
+	data > set
+	userORrole > user
+	userORrole > role
+	taskName > automatedTaskName
+	taskName > humanTaskName
+
+section types:
+
+	start_event_startevent1,exclusivegateway1_to_usertask2,exclusivegateway1_to_usertask4,exclusivegateway1_to_usertask7,parallelgateway1_to_usertask6,parallelgateway1_to_usertask8,parallelgateway2_to_usertask3: fact
+	HT,usertask1,usertask2,usertask3,usertask4,usertask5,usertask6,usertask7,usertask8,usertask9: humanTaskName
+	IN,OUT,in_usertask1,out_usertask1,in_servicetask1,out_servicetask1,in_usertask2,out_usertask2,in_usertask3,out_usertask3,in_usertask4,out_usertask4,in_usertask5,out_usertask5,in_usertask6,out_usertask6,in_usertask7,out_usertask7,in_usertask8,out_usertask8,in_usertask9,out_usertask9: set
+	manager,supervisor,clerk,R: role
+	N,N0,N1,N2,N3,N4,N5,N6,N7,N8,N9,N10,N11,N12,N13,N14,N15,N16,N17,N18,N19,N20,N21,N22,N23,N24,N25,N26,N27,N28,N29,N30,N31,N32,N33,N34,N35,N36,N37,N38,N39,N40,N41,N42,N43,N44,N45,N46,N47,N48,N49,N50,N51,N52,N53,N54,N55,N56,N57,N58,N59,N60,N61,N62,N63,N64,N65,N66,N67,N68,N69,N70,N71,N72,N73,N74,N75,N76,N77,N78,N79,N80,N81,N82,N83,N84,N85,N86,N87,N88,N89,N90,N91,N92,N93,N94,N95,N96,N97,N98,N99,N100,N101,N102,N103,N104,N105,N106,N107,N108,N109: nat
+	AT,servicetask1: automatedTaskName
+	user1_manager,user2_manager,user1_supervisor,user2_supervisor,user1_clerk,user2_clerk,A,U0,U1,U2: user
+
+section inits:
+
+	initial_state init_1 :=
+
+		user_to_role(user1_manager,manager).
+		user_to_role(user2_manager,manager).
+		user_to_role(user1_supervisor,supervisor).
+		user_to_role(user2_supervisor,supervisor).
+		user_to_role(user1_clerk,clerk).
+		user_to_role(user2_clerk,clerk).
+		start_event_startevent1.
+		task_to_data(usertask1,in_usertask1,out_usertask1).
+		task_to_data(servicetask1,in_servicetask1,out_servicetask1).
+		task_to_data(usertask2,in_usertask2,out_usertask2).
+		task_to_data(usertask3,in_usertask3,out_usertask3).
+		task_to_data(usertask4,in_usertask4,out_usertask4).
+		task_to_data(usertask5,in_usertask5,out_usertask5).
+		task_to_data(usertask6,in_usertask6,out_usertask6).
+		task_to_data(usertask7,in_usertask7,out_usertask7).
+		task_to_data(usertask8,in_usertask8,out_usertask8).
+		task_to_data(usertask9,in_usertask9,out_usertask9)
+
+section hornClauses:
+
+	hc rbac_ac (A,R,HT) := canExecute(A,R,HT) :- user_to_role(A,R), poto(R,HT)
+	hc direct_ac (A,R,HT) := canExecute(A,R,HT) :- user_to_role(A,R), poto(A,HT)
+	hc poto_usertask1:= poto(clerk,usertask1)
+	hc poto_usertask2:= poto(supervisor,usertask2)
+	hc poto_usertask3:= poto(clerk,usertask3)
+	hc poto_usertask4:= poto(supervisor,usertask4)
+	hc poto_usertask5:= poto(manager,usertask5)
+	hc poto_usertask6:= poto(manager,usertask6)
+	hc poto_usertask7:= poto(supervisor,usertask7)
+	hc poto_usertask8:= poto(manager,usertask8)
+	hc poto_usertask9:= poto(clerk,usertask9)
+
+section rules:
+
+	step authorizeTaskExecution(A,R,HT,N) := canExecute(A,R,HT). ready(task(HT,N)) => granted(A,R,task(HT,N))
+	step h_taskExecution(A,R,HT,N,IN,OUT) := granted(A,R,task(HT,N)). task_to_data(HT,IN,OUT) => executed(A,task(HT,N)). done(task(HT,N)). task_to_data(HT,IN,OUT). aknows(A,IN). aknows(A,OUT)
+	step atask_execution(AT,N,IN,OUT) := ready(task(AT,N)). task_to_data(AT,IN,OUT) => done(task(AT,N)). task_to_data(AT,IN,OUT)
+	step w_usertask1(N0) := start_event_startevent1=[exists N0] => ready(task(usertask1,N0))
+	step exclusivegateway1_branch1(N1) := done(task(servicetask1,N1)) => exclusivegateway1_to_usertask2
+	step exclusivegateway1_branch2(N1) := done(task(servicetask1,N1)) => exclusivegateway1_to_usertask4
+	step exclusivegateway1_branch3(N1) := done(task(servicetask1,N1)) => exclusivegateway1_to_usertask7
+	step w_servicetask1(N3,N2) := done(task(usertask1,N3))=[exists N2] => ready(task(servicetask1,N2))
+	step w_usertask2(N4) := exclusivegateway1_to_usertask2=[exists N4] => ready(task(usertask2,N4))
+	step w_usertask3(N6,N5) := done(task(usertask2,N6))=[exists N5] => ready(task(usertask3,N5))
+	step w_usertask4(N7) := exclusivegateway1_to_usertask4=[exists N7] => ready(task(usertask4,N7))
+	step w_usertask5(N9,N8) := done(task(usertask4,N9))=[exists N8] => ready(task(usertask5,N8))
+	step w_usertask6(N10) := parallelgateway1_to_usertask6=[exists N10] => ready(task(usertask6,N10))
+	step w_usertask7(N11) := exclusivegateway1_to_usertask7=[exists N11] => ready(task(usertask7,N11))
+	step w_parallelgateway1(N12) := done(task(usertask7,N12)) => parallelgateway1_to_usertask6. parallelgateway1_to_usertask8
+	step w_usertask8(N13) := parallelgateway1_to_usertask8=[exists N13] => ready(task(usertask8,N13))
+	step w_parallelgateway2(N14,N15) := done(task(usertask6,N14)). done(task(usertask8,N15)) => parallelgateway2_to_usertask3
+	step w_usertask9(N17,N16) := done(task(usertask3,N17))=[exists N16] => ready(task(usertask9,N16))
+
+section goals:
+
+	attack_state sod_securitySod2_1(U0,N18,N19,N20,N21):=  executed(U0,task(usertask4,N18)).  executed(U0,task(usertask7,N19)).  executed(U0,task(usertask1,N20)).  executed(U0,task(usertask2,N21))
+	attack_state sod_securitySod2_2(U0,U1,N22,N23,N24,N25):=  executed(U0,task(usertask4,N22)).  executed(U0,task(usertask1,N23)).  executed(U0,task(usertask2,N24)).  executed(U1,task(usertask7,N25))
+	attack_state sod_securitySod2_3(U0,U1,N26,N27,N28,N29):=  executed(U0,task(usertask7,N26)).  executed(U0,task(usertask1,N27)).  executed(U0,task(usertask2,N28)).  executed(U1,task(usertask4,N29))
+	attack_state sod_securitySod2_4(U0,U1,N30,N31,N32,N33):=  executed(U0,task(usertask4,N30)).  executed(U0,task(usertask7,N31)).  executed(U0,task(usertask1,N32)).  executed(U1,task(usertask2,N33))
+	attack_state sod_securitySod2_5(U0,U1,N34,N35,N36,N37):=  executed(U0,task(usertask4,N34)).  executed(U0,task(usertask7,N35)).  executed(U0,task(usertask2,N36)).  executed(U1,task(usertask1,N37))
+	attack_state sod_securitySod2_6(U0,U1,N38,N39,N40,N41):=  executed(U0,task(usertask1,N38)).  executed(U0,task(usertask2,N39)).  executed(U1,task(usertask4,N40)).  executed(U1,task(usertask7,N41))
+	attack_state sod_securitySod2_7(U0,U1,N42,N43,N44,N45):=  executed(U0,task(usertask4,N42)).  executed(U0,task(usertask1,N43)).  executed(U1,task(usertask7,N44)).  executed(U1,task(usertask2,N45))
+	attack_state sod_securitySod2_8(U0,U1,N46,N47,N48,N49):=  executed(U0,task(usertask7,N46)).  executed(U0,task(usertask1,N47)).  executed(U1,task(usertask4,N48)).  executed(U1,task(usertask2,N49))
+	attack_state sod_securitySod2_9(U0,U1,N50,N51,N52,N53):=  executed(U0,task(usertask4,N50)).  executed(U0,task(usertask2,N51)).  executed(U1,task(usertask7,N52)).  executed(U1,task(usertask1,N53))
+	attack_state sod_securitySod2_10(U0,U1,N54,N55,N56,N57):=  executed(U0,task(usertask7,N54)).  executed(U0,task(usertask2,N55)).  executed(U1,task(usertask4,N56)).  executed(U1,task(usertask1,N57))
+	attack_state sod_securitySod2_11(U0,U1,N58,N59,N60,N61):=  executed(U0,task(usertask4,N58)).  executed(U0,task(usertask7,N59)).  executed(U1,task(usertask1,N60)).  executed(U1,task(usertask2,N61))
+	attack_state sod_securitySod2_12(U0,U1,U2,N62,N63,N64,N65):=  executed(U0,task(usertask1,N62)).  executed(U0,task(usertask2,N63)).  executed(U1,task(usertask4,N64)).  executed(U2,task(usertask7,N65))
+	attack_state sod_securitySod2_13(U0,U1,U2,N66,N67,N68,N69):=  executed(U0,task(usertask1,N66)).  executed(U0,task(usertask2,N67)).  executed(U1,task(usertask7,N68)).  executed(U2,task(usertask4,N69))
+	attack_state sod_securitySod2_14(U0,U1,U2,N70,N71,N72,N73):=  executed(U0,task(usertask4,N70)).  executed(U0,task(usertask1,N71)).  executed(U1,task(usertask2,N72)).  executed(U2,task(usertask7,N73))
+	attack_state sod_securitySod2_15(U0,U1,U2,N74,N75,N76,N77):=  executed(U0,task(usertask7,N74)).  executed(U0,task(usertask1,N75)).  executed(U1,task(usertask2,N76)).  executed(U2,task(usertask4,N77))
+	attack_state sod_securitySod2_16(U0,U1,U2,N78,N79,N80,N81):=  executed(U0,task(usertask4,N78)).  executed(U0,task(usertask1,N79)).  executed(U1,task(usertask7,N80)).  executed(U2,task(usertask2,N81))
+	attack_state sod_securitySod2_17(U0,U1,U2,N82,N83,N84,N85):=  executed(U0,task(usertask7,N82)).  executed(U0,task(usertask1,N83)).  executed(U1,task(usertask4,N84)).  executed(U2,task(usertask2,N85))
+	attack_state sod_securitySod2_18(U0,U1,U2,N86,N87,N88,N89):=  executed(U0,task(usertask4,N86)).  executed(U0,task(usertask2,N87)).  executed(U1,task(usertask1,N88)).  executed(U2,task(usertask7,N89))
+	attack_state sod_securitySod2_19(U0,U1,U2,N90,N91,N92,N93):=  executed(U0,task(usertask7,N90)).  executed(U0,task(usertask2,N91)).  executed(U1,task(usertask1,N92)).  executed(U2,task(usertask4,N93))
+	attack_state sod_securitySod2_20(U0,U1,U2,N94,N95,N96,N97):=  executed(U0,task(usertask4,N94)).  executed(U0,task(usertask7,N95)).  executed(U1,task(usertask1,N96)).  executed(U2,task(usertask2,N97))
+	attack_state sod_securitySod2_21(U0,U1,U2,N98,N99,N100,N101):=  executed(U0,task(usertask4,N98)).  executed(U0,task(usertask2,N99)).  executed(U1,task(usertask7,N100)).  executed(U2,task(usertask1,N101))
+	attack_state sod_securitySod2_22(U0,U1,U2,N102,N103,N104,N105):=  executed(U0,task(usertask7,N102)).  executed(U0,task(usertask2,N103)).  executed(U1,task(usertask4,N104)).  executed(U2,task(usertask1,N105))
+	attack_state sod_securitySod2_23(U0,U1,U2,N106,N107,N108,N109):=  executed(U0,task(usertask4,N106)).  executed(U0,task(usertask7,N107)).  executed(U1,task(usertask2,N108)).  executed(U2,task(usertask1,N109))
