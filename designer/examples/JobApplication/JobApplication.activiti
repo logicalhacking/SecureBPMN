@@ -1,0 +1,950 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:al="http://eclipse.org/graphiti/mm/algorithms" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI" xmlns:pi="http://eclipse.org/graphiti/mm/pictograms" xmlns:securebpmn2="http://securebpmn">
+  <pi:Diagram visible="true" gridUnit="10" diagramTypeId="BPMNdiagram" name="Application.activiti" snapToGrid="true" showGuides="true" pictogramLinks="/0/@children.0/@link /0/@children.0/@children.0/@link /0/@children.1/@link /0/@children.1/@children.0/@link /0/@connections.0/@link /0/@children.2/@link /0/@children.2/@children.0/@link /0/@connections.1/@link /0/@children.3/@link /0/@children.3/@children.0/@link /0/@connections.2/@link /0/@children.4/@link /0/@children.4/@children.0/@link /0/@connections.3/@link /0/@children.5/@link /0/@children.5/@children.0/@link /0/@connections.4/@link /0/@children.6/@link /0/@children.6/@children.0/@link /0/@children.7/@link /0/@children.7/@children.0/@link /0/@connections.5/@link /0/@children.8/@link /0/@children.9/@link /0/@children.9/@children.0/@link /0/@children.10/@link /0/@children.10/@children.0/@link /0/@connections.6/@link /0/@connections.7/@link /0/@children.11/@link /0/@connections.8/@link /0/@connections.9/@link /0/@children.12/@link /0/@children.12/@children.0/@link /0/@connections.10/@link /0/@children.13/@link /0/@children.13/@children.0/@link /0/@connections.11/@link /0/@children.14/@link /0/@children.14/@children.0/@link /0/@connections.12/@link /0/@children.15/@link /0/@children.15/@children.0/@link /0/@connections.13/@link /0/@children.16/@link /0/@children.16/@children.0/@link /0/@connections.14/@link /0/@connections.15/@link /0/@connections.16/@link /0/@connections.17/@link /0/@children.17/@link /0/@connections.18/@link /0/@children.18/@link /0/@connections.19/@link /0/@children.19/@link /0/@children.19/@children.0/@link /0/@connections.20/@link /0/@connections.21/@link /0/@children.20/@link /0/@children.20/@children.0/@link /0/@connections.22/@link /0/@connections.23/@link">
+    <graphicsAlgorithm xsi:type="al:Rectangle" background="/0/@colors.1" foreground="/0/@colors.0" lineWidth="1" transparency="0.0" width="1000" height="1000"/>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="105" height="55" x="178" y="10">
+        <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="1" transparency="0.0" width="105" height="55" style="/0/@styles.1" cornerHeight="20" cornerWidth="20"/>
+      </graphicsAlgorithm>
+      <link businessObjects="usertask1"/>
+      <anchors xsi:type="pi:ChopboxAnchor" outgoingConnections="/0/@connections.0" incomingConnections="/0/@connections.18"/>
+      <anchors xsi:type="pi:BoxRelativeAnchor" visible="true" active="true" referencedGraphicsAlgorithm="/0/@children.0/@graphicsAlgorithm/@graphicsAlgorithmChildren.0" relativeWidth="1.0" relativeHeight="0.51">
+        <graphicsAlgorithm xsi:type="al:Ellipse" filled="false" lineVisible="false"/>
+      </anchors>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:MultiText" lineWidth="1" transparency="0.0" width="105" height="30" y="20" style="/0/@styles.1" font="/0/@fonts.0" horizontalAlignment="ALIGNMENT_CENTER" value="HR publishes open position"/>
+        <link businessObjects="usertask1"/>
+      </children>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="16" height="16" x="5" y="5" id="org.activiti.designer.usertask" stretchH="false" stretchV="false" proportional="false"/>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="105" height="55" x="320" y="10">
+        <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="1" transparency="0.0" width="105" height="55" style="/0/@styles.1" cornerHeight="20" cornerWidth="20"/>
+      </graphicsAlgorithm>
+      <link businessObjects="servicetask1"/>
+      <anchors xsi:type="pi:ChopboxAnchor" outgoingConnections="/0/@connections.1" incomingConnections="/0/@connections.0"/>
+      <anchors xsi:type="pi:BoxRelativeAnchor" visible="true" active="true" referencedGraphicsAlgorithm="/0/@children.1/@graphicsAlgorithm/@graphicsAlgorithmChildren.0" relativeWidth="1.0" relativeHeight="0.51">
+        <graphicsAlgorithm xsi:type="al:Ellipse" filled="false" lineVisible="false"/>
+      </anchors>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:MultiText" lineWidth="1" transparency="0.0" width="105" height="30" y="20" style="/0/@styles.1" font="/0/@fonts.0" horizontalAlignment="ALIGNMENT_CENTER" value="All applicants are collected via email"/>
+        <link businessObjects="servicetask1"/>
+      </children>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="16" height="16" x="5" y="5" id="org.activiti.designer.servicetask" stretchH="false" stretchV="false" proportional="false"/>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="105" height="71" x="460" y="2">
+        <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="1" transparency="0.0" width="105" height="71" style="/0/@styles.1" cornerHeight="20" cornerWidth="20"/>
+      </graphicsAlgorithm>
+      <link businessObjects="usertask2"/>
+      <anchors xsi:type="pi:ChopboxAnchor" outgoingConnections="/0/@connections.2" incomingConnections="/0/@connections.1 /0/@connections.15"/>
+      <anchors xsi:type="pi:BoxRelativeAnchor" visible="true" active="true" referencedGraphicsAlgorithm="/0/@children.2/@graphicsAlgorithm/@graphicsAlgorithmChildren.0" relativeWidth="1.0" relativeHeight="0.51">
+        <graphicsAlgorithm xsi:type="al:Ellipse" filled="false" lineVisible="false"/>
+      </anchors>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:MultiText" lineWidth="1" transparency="0.0" width="105" height="46" y="20" style="/0/@styles.1" font="/0/@fonts.0" horizontalAlignment="ALIGNMENT_CENTER" value="Pre-selection based on written application"/>
+        <link businessObjects="usertask2"/>
+      </children>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="16" height="16" x="5" y="5" id="org.activiti.designer.usertask" stretchH="false" stretchV="false" proportional="false"/>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="105" height="55" x="460" y="180">
+        <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="1" transparency="0.0" width="105" height="55" style="/0/@styles.1" cornerHeight="20" cornerWidth="20"/>
+      </graphicsAlgorithm>
+      <link businessObjects="servicetask2"/>
+      <anchors xsi:type="pi:ChopboxAnchor" outgoingConnections="/0/@connections.3" incomingConnections="/0/@connections.2"/>
+      <anchors xsi:type="pi:BoxRelativeAnchor" visible="true" active="true" referencedGraphicsAlgorithm="/0/@children.3/@graphicsAlgorithm/@graphicsAlgorithmChildren.0" relativeWidth="1.0" relativeHeight="0.51">
+        <graphicsAlgorithm xsi:type="al:Ellipse" filled="false" lineVisible="false"/>
+      </anchors>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:MultiText" lineWidth="1" transparency="0.0" width="105" height="30" y="20" style="/0/@styles.1" font="/0/@fonts.0" horizontalAlignment="ALIGNMENT_CENTER" value="Invitations to all selected applicants"/>
+        <link businessObjects="servicetask2"/>
+      </children>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="16" height="16" x="5" y="5" id="org.activiti.designer.servicetask" stretchH="false" stretchV="false" proportional="false"/>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="105" height="55" x="320" y="180">
+        <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="1" transparency="0.0" width="105" height="55" style="/0/@styles.1" cornerHeight="20" cornerWidth="20"/>
+      </graphicsAlgorithm>
+      <link businessObjects="usertask3"/>
+      <anchors xsi:type="pi:ChopboxAnchor" outgoingConnections="/0/@connections.4" incomingConnections="/0/@connections.3 /0/@connections.21"/>
+      <anchors xsi:type="pi:BoxRelativeAnchor" visible="true" active="true" referencedGraphicsAlgorithm="/0/@children.4/@graphicsAlgorithm/@graphicsAlgorithmChildren.0" relativeWidth="1.0" relativeHeight="0.51">
+        <graphicsAlgorithm xsi:type="al:Ellipse" filled="false" lineVisible="false"/>
+      </anchors>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:MultiText" lineWidth="1" transparency="0.0" width="105" height="30" y="20" style="/0/@styles.1" font="/0/@fonts.0" horizontalAlignment="ALIGNMENT_CENTER" value="Job interview"/>
+        <link businessObjects="usertask3"/>
+      </children>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="16" height="16" x="5" y="5" id="org.activiti.designer.usertask" stretchH="false" stretchV="false" proportional="false"/>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="105" height="55" x="179" y="180">
+        <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="1" transparency="0.0" width="105" height="55" style="/0/@styles.1" cornerHeight="20" cornerWidth="20"/>
+      </graphicsAlgorithm>
+      <link businessObjects="usertask4"/>
+      <anchors xsi:type="pi:ChopboxAnchor" outgoingConnections="/0/@connections.16" incomingConnections="/0/@connections.4 /0/@connections.20"/>
+      <anchors xsi:type="pi:BoxRelativeAnchor" visible="true" active="true" referencedGraphicsAlgorithm="/0/@children.5/@graphicsAlgorithm/@graphicsAlgorithmChildren.0" relativeWidth="1.0" relativeHeight="0.51">
+        <graphicsAlgorithm xsi:type="al:Ellipse" filled="false" lineVisible="false"/>
+      </anchors>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:MultiText" lineWidth="1" transparency="0.0" width="105" height="30" y="20" style="/0/@styles.1" font="/0/@fonts.0" horizontalAlignment="ALIGNMENT_CENTER" value="Decide about preference ordering"/>
+        <link businessObjects="usertask4"/>
+      </children>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="16" height="16" x="5" y="5" id="org.activiti.designer.usertask" stretchH="false" stretchV="false" proportional="false"/>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="105" height="55" x="179" y="280">
+        <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="1" transparency="0.0" width="105" height="55" style="/0/@styles.1" cornerHeight="20" cornerWidth="20"/>
+      </graphicsAlgorithm>
+      <link businessObjects="usertask5"/>
+      <anchors xsi:type="pi:ChopboxAnchor" outgoingConnections="/0/@connections.5" incomingConnections="/0/@connections.16"/>
+      <anchors xsi:type="pi:BoxRelativeAnchor" visible="true" active="true" referencedGraphicsAlgorithm="/0/@children.6/@graphicsAlgorithm/@graphicsAlgorithmChildren.0" relativeWidth="1.0" relativeHeight="0.51">
+        <graphicsAlgorithm xsi:type="al:Ellipse" filled="false" lineVisible="false"/>
+      </anchors>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:MultiText" lineWidth="1" transparency="0.0" width="105" height="30" y="20" style="/0/@styles.1" font="/0/@fonts.0" horizontalAlignment="ALIGNMENT_CENTER" value="Complete list"/>
+        <link businessObjects="usertask5"/>
+      </children>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="16" height="16" x="5" y="5" id="org.activiti.designer.usertask" stretchH="false" stretchV="false" proportional="false"/>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="105" height="55" x="179" y="390">
+        <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="1" transparency="0.0" width="105" height="55" style="/0/@styles.1" cornerHeight="20" cornerWidth="20"/>
+      </graphicsAlgorithm>
+      <link businessObjects="usertask6"/>
+      <anchors xsi:type="pi:ChopboxAnchor" outgoingConnections="/0/@connections.17" incomingConnections="/0/@connections.5"/>
+      <anchors xsi:type="pi:BoxRelativeAnchor" visible="true" active="true" referencedGraphicsAlgorithm="/0/@children.7/@graphicsAlgorithm/@graphicsAlgorithmChildren.0" relativeWidth="1.0" relativeHeight="0.51">
+        <graphicsAlgorithm xsi:type="al:Ellipse" filled="false" lineVisible="false"/>
+      </anchors>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:MultiText" lineWidth="1" transparency="0.0" width="105" height="30" y="20" style="/0/@styles.1" font="/0/@fonts.0" horizontalAlignment="ALIGNMENT_CENTER" value="Salary negotations"/>
+        <link businessObjects="usertask6"/>
+      </children>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="16" height="16" x="5" y="5" id="org.activiti.designer.usertask" stretchH="false" stretchV="false" proportional="false"/>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:Polygon" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="40" height="40" x="210" y="500">
+        <graphicsAlgorithmChildren xsi:type="al:Polygon" lineWidth="1" transparency="0.0" width="40" height="40" style="/0/@styles.0">
+          <points y="20"/>
+          <points x="20"/>
+          <points x="40" y="20"/>
+          <points x="20" y="40"/>
+          <points y="20"/>
+        </graphicsAlgorithmChildren>
+        <points y="20"/>
+        <points x="20"/>
+        <points x="40" y="20"/>
+        <points x="20" y="40"/>
+        <points y="20"/>
+      </graphicsAlgorithm>
+      <link businessObjects="parallelgateway1"/>
+      <anchors xsi:type="pi:ChopboxAnchor" outgoingConnections="/0/@connections.6 /0/@connections.7" incomingConnections="/0/@connections.17"/>
+      <anchors xsi:type="pi:BoxRelativeAnchor" visible="true" active="true" referencedGraphicsAlgorithm="/0/@children.8/@graphicsAlgorithm/@graphicsAlgorithmChildren.0" relativeWidth="0.51" relativeHeight="0.1">
+        <graphicsAlgorithm xsi:type="al:Ellipse" filled="false" lineVisible="false"/>
+      </anchors>
+      <anchors xsi:type="pi:ChopboxAnchor"/>
+      <anchors xsi:type="pi:BoxRelativeAnchor" visible="true" active="true" referencedGraphicsAlgorithm="/0/@children.8/@graphicsAlgorithm/@graphicsAlgorithmChildren.0" relativeWidth="0.51" relativeHeight="0.93">
+        <graphicsAlgorithm xsi:type="al:Ellipse" filled="false" lineVisible="false"/>
+      </anchors>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" lineWidth="5" filled="false" transparency="0.0" style="/0/@styles.0">
+          <points x="6" y="19"/>
+          <points x="34" y="19"/>
+        </graphicsAlgorithm>
+      </children>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" lineWidth="5" filled="false" transparency="0.0" style="/0/@styles.0">
+          <points x="18" y="6"/>
+          <points x="18" y="34"/>
+        </graphicsAlgorithm>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="105" height="81" x="74" y="580">
+        <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="1" transparency="0.0" width="105" height="81" style="/0/@styles.1" cornerHeight="20" cornerWidth="20"/>
+      </graphicsAlgorithm>
+      <link businessObjects="usertask7"/>
+      <anchors xsi:type="pi:ChopboxAnchor" outgoingConnections="/0/@connections.8" incomingConnections="/0/@connections.6"/>
+      <anchors xsi:type="pi:BoxRelativeAnchor" visible="true" active="true" referencedGraphicsAlgorithm="/0/@children.9/@graphicsAlgorithm/@graphicsAlgorithmChildren.0" relativeWidth="1.0" relativeHeight="0.51">
+        <graphicsAlgorithm xsi:type="al:Ellipse" filled="false" lineVisible="false"/>
+      </anchors>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:MultiText" lineWidth="1" transparency="0.0" width="105" height="56" y="20" style="/0/@styles.1" font="/0/@fonts.0" horizontalAlignment="ALIGNMENT_CENTER" value="Comapny arranges date with candidate from list"/>
+        <link businessObjects="usertask7"/>
+      </children>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="16" height="16" x="5" y="5" id="org.activiti.designer.usertask" stretchH="false" stretchV="false" proportional="false"/>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="105" height="101" x="282" y="570">
+        <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="1" transparency="0.0" width="105" height="101" style="/0/@styles.1" cornerHeight="20" cornerWidth="20"/>
+      </graphicsAlgorithm>
+      <link businessObjects="servicetask3"/>
+      <anchors xsi:type="pi:ChopboxAnchor" outgoingConnections="/0/@connections.9" incomingConnections="/0/@connections.7"/>
+      <anchors xsi:type="pi:BoxRelativeAnchor" visible="true" active="true" referencedGraphicsAlgorithm="/0/@children.10/@graphicsAlgorithm/@graphicsAlgorithmChildren.0" relativeWidth="1.0" relativeHeight="0.51">
+        <graphicsAlgorithm xsi:type="al:Ellipse" filled="false" lineVisible="false"/>
+      </anchors>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:MultiText" lineWidth="1" transparency="0.0" width="105" height="76" y="20" style="/0/@styles.1" font="/0/@fonts.0" horizontalAlignment="ALIGNMENT_CENTER" value="Company arranges date with company medical officer"/>
+        <link businessObjects="servicetask3"/>
+      </children>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="16" height="16" x="5" y="5" id="org.activiti.designer.servicetask" stretchH="false" stretchV="false" proportional="false"/>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:Polygon" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="40" height="40" x="210" y="685">
+        <graphicsAlgorithmChildren xsi:type="al:Polygon" lineWidth="1" transparency="0.0" width="40" height="40" style="/0/@styles.0">
+          <points y="20"/>
+          <points x="20"/>
+          <points x="40" y="20"/>
+          <points x="20" y="40"/>
+          <points y="20"/>
+        </graphicsAlgorithmChildren>
+        <points y="20"/>
+        <points x="20"/>
+        <points x="40" y="20"/>
+        <points x="20" y="40"/>
+        <points y="20"/>
+      </graphicsAlgorithm>
+      <link businessObjects="parallelgateway2"/>
+      <anchors xsi:type="pi:ChopboxAnchor" outgoingConnections="/0/@connections.10" incomingConnections="/0/@connections.8 /0/@connections.9"/>
+      <anchors xsi:type="pi:BoxRelativeAnchor" visible="true" active="true" referencedGraphicsAlgorithm="/0/@children.11/@graphicsAlgorithm/@graphicsAlgorithmChildren.0" relativeWidth="0.51" relativeHeight="0.1">
+        <graphicsAlgorithm xsi:type="al:Ellipse" filled="false" lineVisible="false"/>
+      </anchors>
+      <anchors xsi:type="pi:ChopboxAnchor"/>
+      <anchors xsi:type="pi:BoxRelativeAnchor" visible="true" active="true" referencedGraphicsAlgorithm="/0/@children.11/@graphicsAlgorithm/@graphicsAlgorithmChildren.0" relativeWidth="0.51" relativeHeight="0.93">
+        <graphicsAlgorithm xsi:type="al:Ellipse" filled="false" lineVisible="false"/>
+      </anchors>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" lineWidth="5" filled="false" transparency="0.0" style="/0/@styles.0">
+          <points x="6" y="19"/>
+          <points x="34" y="19"/>
+        </graphicsAlgorithm>
+      </children>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" lineWidth="5" filled="false" transparency="0.0" style="/0/@styles.0">
+          <points x="18" y="6"/>
+          <points x="18" y="34"/>
+        </graphicsAlgorithm>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="105" height="121" x="178" y="790">
+        <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="1" transparency="0.0" width="105" height="121" style="/0/@styles.1" cornerHeight="20" cornerWidth="20"/>
+      </graphicsAlgorithm>
+      <link businessObjects="servicetask4"/>
+      <anchors xsi:type="pi:ChopboxAnchor" outgoingConnections="/0/@connections.11" incomingConnections="/0/@connections.10"/>
+      <anchors xsi:type="pi:BoxRelativeAnchor" visible="true" active="true" referencedGraphicsAlgorithm="/0/@children.12/@graphicsAlgorithm/@graphicsAlgorithmChildren.0" relativeWidth="1.0" relativeHeight="0.51">
+        <graphicsAlgorithm xsi:type="al:Ellipse" filled="false" lineVisible="false"/>
+      </anchors>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:MultiText" lineWidth="1" transparency="0.0" width="105" height="96" y="20" style="/0/@styles.1" font="/0/@fonts.0" horizontalAlignment="ALIGNMENT_CENTER" value="Company medical officer is informed about necessary information about the candidate"/>
+        <link businessObjects="servicetask4"/>
+      </children>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="16" height="16" x="5" y="5" id="org.activiti.designer.servicetask" stretchH="false" stretchV="false" proportional="false"/>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="105" height="55" x="320" y="823">
+        <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="1" transparency="0.0" width="105" height="55" style="/0/@styles.1" cornerHeight="20" cornerWidth="20"/>
+      </graphicsAlgorithm>
+      <link businessObjects="usertask8"/>
+      <anchors xsi:type="pi:ChopboxAnchor" outgoingConnections="/0/@connections.12" incomingConnections="/0/@connections.11 /0/@connections.22"/>
+      <anchors xsi:type="pi:BoxRelativeAnchor" visible="true" active="true" referencedGraphicsAlgorithm="/0/@children.13/@graphicsAlgorithm/@graphicsAlgorithmChildren.0" relativeWidth="1.0" relativeHeight="0.51">
+        <graphicsAlgorithm xsi:type="al:Ellipse" filled="false" lineVisible="false"/>
+      </anchors>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:MultiText" lineWidth="1" transparency="0.0" width="105" height="30" y="20" style="/0/@styles.1" font="/0/@fonts.0" horizontalAlignment="ALIGNMENT_CENTER" value="Examination"/>
+        <link businessObjects="usertask8"/>
+      </children>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="16" height="16" x="5" y="5" id="org.activiti.designer.usertask" stretchH="false" stretchV="false" proportional="false"/>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="105" height="55" x="460" y="823">
+        <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="1" transparency="0.0" width="105" height="55" style="/0/@styles.1" cornerHeight="20" cornerWidth="20"/>
+      </graphicsAlgorithm>
+      <link businessObjects="usertask9"/>
+      <anchors xsi:type="pi:ChopboxAnchor" outgoingConnections="/0/@connections.13" incomingConnections="/0/@connections.12 /0/@connections.14 /0/@connections.23"/>
+      <anchors xsi:type="pi:BoxRelativeAnchor" visible="true" active="true" referencedGraphicsAlgorithm="/0/@children.14/@graphicsAlgorithm/@graphicsAlgorithmChildren.0" relativeWidth="1.0" relativeHeight="0.51">
+        <graphicsAlgorithm xsi:type="al:Ellipse" filled="false" lineVisible="false"/>
+      </anchors>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:MultiText" lineWidth="1" transparency="0.0" width="105" height="30" y="20" style="/0/@styles.1" font="/0/@fonts.0" horizontalAlignment="ALIGNMENT_CENTER" value="Writing medical report"/>
+        <link businessObjects="usertask9"/>
+      </children>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="16" height="16" x="5" y="5" id="org.activiti.designer.usertask" stretchH="false" stretchV="false" proportional="false"/>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="105" height="81" x="460" y="950">
+        <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="1" transparency="0.0" width="105" height="81" style="/0/@styles.1" cornerHeight="20" cornerWidth="20"/>
+      </graphicsAlgorithm>
+      <link businessObjects="servicetask5"/>
+      <anchors xsi:type="pi:ChopboxAnchor" outgoingConnections="/0/@connections.19" incomingConnections="/0/@connections.13"/>
+      <anchors xsi:type="pi:BoxRelativeAnchor" visible="true" active="true" referencedGraphicsAlgorithm="/0/@children.15/@graphicsAlgorithm/@graphicsAlgorithmChildren.0" relativeWidth="1.0" relativeHeight="0.51">
+        <graphicsAlgorithm xsi:type="al:Ellipse" filled="false" lineVisible="false"/>
+      </anchors>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:MultiText" lineWidth="1" transparency="0.0" width="105" height="56" y="20" style="/0/@styles.1" font="/0/@fonts.0" horizontalAlignment="ALIGNMENT_CENTER" value="Inform HR if candidates suitable or not"/>
+        <link businessObjects="servicetask5"/>
+      </children>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="16" height="16" x="5" y="5" id="org.activiti.designer.servicetask" stretchH="false" stretchV="false" proportional="false"/>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="60" height="60" x="608" y="520">
+        <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="1" transparency="0.0" width="60" height="60" style="/0/@styles.3" cornerHeight="20" cornerWidth="20"/>
+      </graphicsAlgorithm>
+      <link businessObjects="securitySod1"/>
+      <anchors xsi:type="pi:ChopboxAnchor" outgoingConnections="/0/@connections.14 /0/@connections.15"/>
+      <anchors xsi:type="pi:BoxRelativeAnchor" visible="true" active="true" referencedGraphicsAlgorithm="/0/@children.16/@graphicsAlgorithm/@graphicsAlgorithmChildren.0" relativeWidth="1.0" relativeHeight="0.51">
+        <graphicsAlgorithm xsi:type="al:Ellipse" filled="false" lineVisible="false"/>
+      </anchors>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:MultiText" lineWidth="1" transparency="0.0" width="60" height="30" y="20" style="/0/@styles.1" font="/0/@fonts.0" horizontalAlignment="ALIGNMENT_CENTER" value="SoD"/>
+        <link businessObjects="securitySod1"/>
+      </children>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="50" height="16" x="5" y="5" id="org.activiti.designer.security.sod" stretchH="false" stretchV="false" proportional="false"/>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:Ellipse" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="35" height="35" x="100" y="20">
+        <graphicsAlgorithmChildren xsi:type="al:Ellipse" lineWidth="1" transparency="0.0" width="35" height="35" style="/0/@styles.0"/>
+      </graphicsAlgorithm>
+      <link businessObjects="startevent2"/>
+      <anchors xsi:type="pi:ChopboxAnchor" outgoingConnections="/0/@connections.18"/>
+      <anchors xsi:type="pi:BoxRelativeAnchor" visible="true" active="true" referencedGraphicsAlgorithm="/0/@children.17/@graphicsAlgorithm/@graphicsAlgorithmChildren.0" relativeWidth="1.0" relativeHeight="0.51">
+        <graphicsAlgorithm xsi:type="al:Ellipse" filled="false" lineVisible="false"/>
+      </anchors>
+    </children>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:Ellipse" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="35" height="35" x="620" y="973">
+        <graphicsAlgorithmChildren xsi:type="al:Ellipse" lineWidth="3" transparency="0.0" width="35" height="35" style="/0/@styles.0"/>
+      </graphicsAlgorithm>
+      <link businessObjects="endevent1"/>
+      <anchors xsi:type="pi:ChopboxAnchor" incomingConnections="/0/@connections.19"/>
+    </children>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="60" height="60" x="270" y="97">
+        <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="1" transparency="0.0" width="60" height="60" style="/0/@styles.3" cornerHeight="20" cornerWidth="20"/>
+      </graphicsAlgorithm>
+      <link businessObjects="securitySod2"/>
+      <anchors xsi:type="pi:ChopboxAnchor" outgoingConnections="/0/@connections.20 /0/@connections.21"/>
+      <anchors xsi:type="pi:BoxRelativeAnchor" visible="true" active="true" referencedGraphicsAlgorithm="/0/@children.19/@graphicsAlgorithm/@graphicsAlgorithmChildren.0" relativeWidth="1.0" relativeHeight="0.51">
+        <graphicsAlgorithm xsi:type="al:Ellipse" filled="false" lineVisible="false"/>
+      </anchors>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:MultiText" lineWidth="1" transparency="0.0" width="60" height="30" y="20" style="/0/@styles.1" font="/0/@fonts.1" horizontalAlignment="ALIGNMENT_CENTER" value="SoD"/>
+        <link businessObjects="securitySod2"/>
+      </children>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="50" height="16" x="5" y="5" id="org.activiti.designer.security.sod" stretchH="false" stretchV="false" proportional="false"/>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="60" height="60" x="410" y="720">
+        <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="1" transparency="0.0" width="60" height="60" style="/0/@styles.3" cornerHeight="20" cornerWidth="20"/>
+      </graphicsAlgorithm>
+      <link businessObjects="securityBod1"/>
+      <anchors xsi:type="pi:ChopboxAnchor" outgoingConnections="/0/@connections.22 /0/@connections.23"/>
+      <anchors xsi:type="pi:BoxRelativeAnchor" visible="true" active="true" referencedGraphicsAlgorithm="/0/@children.20/@graphicsAlgorithm/@graphicsAlgorithmChildren.0" relativeWidth="1.0" relativeHeight="0.51">
+        <graphicsAlgorithm xsi:type="al:Ellipse" filled="false" lineVisible="false"/>
+      </anchors>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:MultiText" lineWidth="1" transparency="0.0" width="60" height="30" y="20" style="/0/@styles.1" font="/0/@fonts.2" horizontalAlignment="ALIGNMENT_CENTER" value="BoD"/>
+        <link businessObjects="securityBod1"/>
+      </children>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="16" height="16" x="5" y="5" id="org.activiti.designer.security.bod" stretchH="false" stretchV="false" proportional="false"/>
+      </children>
+    </children>
+    <styles foreground="/0/@colors.2" lineWidth="20" id="EVENT">
+      <renderingStyle>
+        <adaptedGradientColoredAreas definedStyleId="bpmnEventStyle" gradientType="0">
+          <adaptedGradientColoredAreas styleAdaption="0">
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="0">
+                <color red="250" green="251" blue="252"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="0">
+                <color red="250" green="251" blue="252"/>
+              </end>
+            </gradientColor>
+          </adaptedGradientColoredAreas>
+          <adaptedGradientColoredAreas styleAdaption="0">
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="0">
+                <color red="229" green="229" blue="194"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="0">
+                <color red="229" green="229" blue="194"/>
+              </end>
+            </gradientColor>
+          </adaptedGradientColoredAreas>
+          <adaptedGradientColoredAreas styleAdaption="0">
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="0">
+                <color red="229" green="229" blue="194"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="0">
+                <color red="229" green="229" blue="194"/>
+              </end>
+            </gradientColor>
+          </adaptedGradientColoredAreas>
+        </adaptedGradientColoredAreas>
+      </renderingStyle>
+    </styles>
+    <styles foreground="/0/@colors.2" lineWidth="20" id="TASK">
+      <renderingStyle>
+        <adaptedGradientColoredAreas definedStyleId="bpmnTaskStyle" gradientType="0">
+          <adaptedGradientColoredAreas styleAdaption="0">
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="0">
+                <color red="250" green="251" blue="252"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="0">
+                <color red="255" green="255" blue="204"/>
+              </end>
+            </gradientColor>
+          </adaptedGradientColoredAreas>
+          <adaptedGradientColoredAreas styleAdaption="0">
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="0">
+                <color red="229" green="229" blue="194"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="0">
+                <color red="229" green="229" blue="194"/>
+              </end>
+            </gradientColor>
+          </adaptedGradientColoredAreas>
+          <adaptedGradientColoredAreas styleAdaption="0">
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="0">
+                <color red="229" green="229" blue="194"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="0">
+                <color red="229" green="229" blue="194"/>
+              </end>
+            </gradientColor>
+          </adaptedGradientColoredAreas>
+        </adaptedGradientColoredAreas>
+      </renderingStyle>
+    </styles>
+    <styles background="/0/@colors.2" foreground="/0/@colors.2" lineWidth="1" id="BPMN-POLYGON-ARROW"/>
+    <styles foreground="/0/@colors.3" lineWidth="20" id="SECURITYNODE">
+      <renderingStyle>
+        <adaptedGradientColoredAreas definedStyleId="defaultSecurityNodeTaskStyle" gradientType="0">
+          <adaptedGradientColoredAreas styleAdaption="0">
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="0">
+                <color red="250" green="251" blue="252"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="0">
+                <color red="140" green="198" blue="255"/>
+              </end>
+            </gradientColor>
+          </adaptedGradientColoredAreas>
+          <adaptedGradientColoredAreas styleAdaption="0">
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="0">
+                <color red="229" green="229" blue="194"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="0">
+                <color red="229" green="229" blue="194"/>
+              </end>
+            </gradientColor>
+          </adaptedGradientColoredAreas>
+          <adaptedGradientColoredAreas styleAdaption="0">
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="0">
+                <color red="229" green="229" blue="194"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="0">
+                <color red="229" green="229" blue="194"/>
+              </end>
+            </gradientColor>
+          </adaptedGradientColoredAreas>
+        </adaptedGradientColoredAreas>
+      </renderingStyle>
+    </styles>
+    <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="/0/@children.0/@anchors.0" end="/0/@children.1/@anchors.0">
+      <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.2" lineWidth="1" filled="false" transparency="0.0"/>
+      <link businessObjects="flow2"/>
+      <connectionDecorators visible="true" active="true" locationRelative="true" location="0.5">
+        <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" transparency="0.0" x="10" style="/0/@styles.1" font="/0/@fonts.0" value=""/>
+      </connectionDecorators>
+      <connectionDecorators visible="true" locationRelative="true" location="1.0">
+        <graphicsAlgorithm xsi:type="al:Polygon" lineWidth="1" transparency="0.0" style="/0/@styles.2">
+          <points x="-10" y="-5" before="3" after="3"/>
+          <points/>
+          <points x="-10" y="5" before="3" after="3"/>
+          <points x="-8" before="3" after="3"/>
+        </graphicsAlgorithm>
+      </connectionDecorators>
+    </connections>
+    <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="/0/@children.1/@anchors.0" end="/0/@children.2/@anchors.0">
+      <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.2" lineWidth="1" filled="false" transparency="0.0"/>
+      <link businessObjects="flow3"/>
+      <connectionDecorators visible="true" active="true" locationRelative="true" location="0.5">
+        <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" transparency="0.0" x="10" style="/0/@styles.1" font="/0/@fonts.0" value=""/>
+      </connectionDecorators>
+      <connectionDecorators visible="true" locationRelative="true" location="1.0">
+        <graphicsAlgorithm xsi:type="al:Polygon" lineWidth="1" transparency="0.0" style="/0/@styles.2">
+          <points x="-10" y="-5" before="3" after="3"/>
+          <points/>
+          <points x="-10" y="5" before="3" after="3"/>
+          <points x="-8" before="3" after="3"/>
+        </graphicsAlgorithm>
+      </connectionDecorators>
+    </connections>
+    <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="/0/@children.2/@anchors.0" end="/0/@children.3/@anchors.0">
+      <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.2" lineWidth="1" filled="false" transparency="0.0"/>
+      <link businessObjects="flow4"/>
+      <connectionDecorators visible="true" active="true" locationRelative="true" location="0.5">
+        <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" transparency="0.0" x="10" style="/0/@styles.1" font="/0/@fonts.0" value=""/>
+      </connectionDecorators>
+      <connectionDecorators visible="true" locationRelative="true" location="1.0">
+        <graphicsAlgorithm xsi:type="al:Polygon" lineWidth="1" transparency="0.0" style="/0/@styles.2">
+          <points x="-10" y="-5" before="3" after="3"/>
+          <points/>
+          <points x="-10" y="5" before="3" after="3"/>
+          <points x="-8" before="3" after="3"/>
+        </graphicsAlgorithm>
+      </connectionDecorators>
+    </connections>
+    <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="/0/@children.3/@anchors.0" end="/0/@children.4/@anchors.0">
+      <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.2" lineWidth="1" filled="false" transparency="0.0"/>
+      <link businessObjects="flow5"/>
+      <connectionDecorators visible="true" active="true" locationRelative="true" location="0.5">
+        <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" transparency="0.0" x="10" style="/0/@styles.1" font="/0/@fonts.0" value=""/>
+      </connectionDecorators>
+      <connectionDecorators visible="true" locationRelative="true" location="1.0">
+        <graphicsAlgorithm xsi:type="al:Polygon" lineWidth="1" transparency="0.0" style="/0/@styles.2">
+          <points x="-10" y="-5" before="3" after="3"/>
+          <points/>
+          <points x="-10" y="5" before="3" after="3"/>
+          <points x="-8" before="3" after="3"/>
+        </graphicsAlgorithm>
+      </connectionDecorators>
+    </connections>
+    <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="/0/@children.4/@anchors.0" end="/0/@children.5/@anchors.0">
+      <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.2" lineWidth="1" filled="false" transparency="0.0"/>
+      <link businessObjects="flow6"/>
+      <connectionDecorators visible="true" active="true" locationRelative="true" location="0.5">
+        <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" transparency="0.0" x="10" style="/0/@styles.1" font="/0/@fonts.0" value=""/>
+      </connectionDecorators>
+      <connectionDecorators visible="true" locationRelative="true" location="1.0">
+        <graphicsAlgorithm xsi:type="al:Polygon" lineWidth="1" transparency="0.0" style="/0/@styles.2">
+          <points x="-10" y="-5" before="3" after="3"/>
+          <points/>
+          <points x="-10" y="5" before="3" after="3"/>
+          <points x="-8" before="3" after="3"/>
+        </graphicsAlgorithm>
+      </connectionDecorators>
+    </connections>
+    <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="/0/@children.6/@anchors.0" end="/0/@children.7/@anchors.0">
+      <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.2" lineWidth="1" filled="false" transparency="0.0"/>
+      <link businessObjects="flow9"/>
+      <connectionDecorators visible="true" active="true" locationRelative="true" location="0.5">
+        <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" transparency="0.0" x="10" style="/0/@styles.1" font="/0/@fonts.0" value=""/>
+      </connectionDecorators>
+      <connectionDecorators visible="true" locationRelative="true" location="1.0">
+        <graphicsAlgorithm xsi:type="al:Polygon" lineWidth="1" transparency="0.0" style="/0/@styles.2">
+          <points x="-10" y="-5" before="3" after="3"/>
+          <points/>
+          <points x="-10" y="5" before="3" after="3"/>
+          <points x="-8" before="3" after="3"/>
+        </graphicsAlgorithm>
+      </connectionDecorators>
+    </connections>
+    <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="/0/@children.8/@anchors.0" end="/0/@children.9/@anchors.0">
+      <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.2" lineWidth="1" filled="false" transparency="0.0"/>
+      <link businessObjects="flow13"/>
+      <connectionDecorators visible="true" active="true" locationRelative="true" location="0.5">
+        <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" transparency="0.0" x="10" style="/0/@styles.1" font="/0/@fonts.0" value=""/>
+      </connectionDecorators>
+      <connectionDecorators visible="true" locationRelative="true" location="1.0">
+        <graphicsAlgorithm xsi:type="al:Polygon" lineWidth="1" transparency="0.0" style="/0/@styles.2">
+          <points x="-10" y="-5" before="3" after="3"/>
+          <points/>
+          <points x="-10" y="5" before="3" after="3"/>
+          <points x="-8" before="3" after="3"/>
+        </graphicsAlgorithm>
+      </connectionDecorators>
+      <bendpoints x="126" y="520"/>
+    </connections>
+    <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="/0/@children.8/@anchors.0" end="/0/@children.10/@anchors.0">
+      <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.2" lineWidth="1" filled="false" transparency="0.0"/>
+      <link businessObjects="flow14"/>
+      <connectionDecorators visible="true" active="true" locationRelative="true" location="0.5">
+        <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" transparency="0.0" x="10" style="/0/@styles.1" font="/0/@fonts.0" value=""/>
+      </connectionDecorators>
+      <connectionDecorators visible="true" locationRelative="true" location="1.0">
+        <graphicsAlgorithm xsi:type="al:Polygon" lineWidth="1" transparency="0.0" style="/0/@styles.2">
+          <points x="-10" y="-5" before="3" after="3"/>
+          <points/>
+          <points x="-10" y="5" before="3" after="3"/>
+          <points x="-8" before="3" after="3"/>
+        </graphicsAlgorithm>
+      </connectionDecorators>
+      <bendpoints x="335" y="520"/>
+    </connections>
+    <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="/0/@children.9/@anchors.0" end="/0/@children.11/@anchors.0">
+      <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.2" lineWidth="1" filled="false" transparency="0.0"/>
+      <link businessObjects="flow15"/>
+      <connectionDecorators visible="true" active="true" locationRelative="true" location="0.5">
+        <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" transparency="0.0" x="10" style="/0/@styles.1" font="/0/@fonts.0" value=""/>
+      </connectionDecorators>
+      <connectionDecorators visible="true" locationRelative="true" location="1.0">
+        <graphicsAlgorithm xsi:type="al:Polygon" lineWidth="1" transparency="0.0" style="/0/@styles.2">
+          <points x="-10" y="-5" before="3" after="3"/>
+          <points/>
+          <points x="-10" y="5" before="3" after="3"/>
+          <points x="-8" before="3" after="3"/>
+        </graphicsAlgorithm>
+      </connectionDecorators>
+      <bendpoints x="126" y="705"/>
+    </connections>
+    <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="/0/@children.10/@anchors.0" end="/0/@children.11/@anchors.0">
+      <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.2" lineWidth="1" filled="false" transparency="0.0"/>
+      <link businessObjects="flow16"/>
+      <connectionDecorators visible="true" active="true" locationRelative="true" location="0.5">
+        <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" transparency="0.0" x="10" style="/0/@styles.1" font="/0/@fonts.0" value=""/>
+      </connectionDecorators>
+      <connectionDecorators visible="true" locationRelative="true" location="1.0">
+        <graphicsAlgorithm xsi:type="al:Polygon" lineWidth="1" transparency="0.0" style="/0/@styles.2">
+          <points x="-10" y="-5" before="3" after="3"/>
+          <points/>
+          <points x="-10" y="5" before="3" after="3"/>
+          <points x="-8" before="3" after="3"/>
+        </graphicsAlgorithm>
+      </connectionDecorators>
+      <bendpoints x="335" y="705"/>
+    </connections>
+    <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="/0/@children.11/@anchors.0" end="/0/@children.12/@anchors.0">
+      <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.2" lineWidth="1" filled="false" transparency="0.0"/>
+      <link businessObjects="flow17"/>
+      <connectionDecorators visible="true" active="true" locationRelative="true" location="0.5">
+        <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" transparency="0.0" x="10" style="/0/@styles.1" font="/0/@fonts.0" value=""/>
+      </connectionDecorators>
+      <connectionDecorators visible="true" locationRelative="true" location="1.0">
+        <graphicsAlgorithm xsi:type="al:Polygon" lineWidth="1" transparency="0.0" style="/0/@styles.2">
+          <points x="-10" y="-5" before="3" after="3"/>
+          <points/>
+          <points x="-10" y="5" before="3" after="3"/>
+          <points x="-8" before="3" after="3"/>
+        </graphicsAlgorithm>
+      </connectionDecorators>
+    </connections>
+    <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="/0/@children.12/@anchors.0" end="/0/@children.13/@anchors.0">
+      <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.2" lineWidth="1" filled="false" transparency="0.0"/>
+      <link businessObjects="flow18"/>
+      <connectionDecorators visible="true" active="true" locationRelative="true" location="0.5">
+        <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" transparency="0.0" x="10" style="/0/@styles.1" font="/0/@fonts.0" value=""/>
+      </connectionDecorators>
+      <connectionDecorators visible="true" locationRelative="true" location="1.0">
+        <graphicsAlgorithm xsi:type="al:Polygon" lineWidth="1" transparency="0.0" style="/0/@styles.2">
+          <points x="-10" y="-5" before="3" after="3"/>
+          <points/>
+          <points x="-10" y="5" before="3" after="3"/>
+          <points x="-8" before="3" after="3"/>
+        </graphicsAlgorithm>
+      </connectionDecorators>
+    </connections>
+    <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="/0/@children.13/@anchors.0" end="/0/@children.14/@anchors.0">
+      <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.2" lineWidth="1" filled="false" transparency="0.0"/>
+      <link businessObjects="flow19"/>
+      <connectionDecorators visible="true" active="true" locationRelative="true" location="0.5">
+        <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" transparency="0.0" x="10" style="/0/@styles.1" font="/0/@fonts.0" value=""/>
+      </connectionDecorators>
+      <connectionDecorators visible="true" locationRelative="true" location="1.0">
+        <graphicsAlgorithm xsi:type="al:Polygon" lineWidth="1" transparency="0.0" style="/0/@styles.2">
+          <points x="-10" y="-5" before="3" after="3"/>
+          <points/>
+          <points x="-10" y="5" before="3" after="3"/>
+          <points x="-8" before="3" after="3"/>
+        </graphicsAlgorithm>
+      </connectionDecorators>
+    </connections>
+    <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="/0/@children.14/@anchors.0" end="/0/@children.15/@anchors.0">
+      <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.2" lineWidth="1" filled="false" transparency="0.0"/>
+      <link businessObjects="flow20"/>
+      <connectionDecorators visible="true" active="true" locationRelative="true" location="0.5">
+        <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" transparency="0.0" x="10" style="/0/@styles.1" font="/0/@fonts.0" value=""/>
+      </connectionDecorators>
+      <connectionDecorators visible="true" locationRelative="true" location="1.0">
+        <graphicsAlgorithm xsi:type="al:Polygon" lineWidth="1" transparency="0.0" style="/0/@styles.2">
+          <points x="-10" y="-5" before="3" after="3"/>
+          <points/>
+          <points x="-10" y="5" before="3" after="3"/>
+          <points x="-8" before="3" after="3"/>
+        </graphicsAlgorithm>
+      </connectionDecorators>
+    </connections>
+    <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="/0/@children.16/@anchors.0" end="/0/@children.14/@anchors.0">
+      <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.3" lineWidth="1" filled="false" transparency="0.0"/>
+      <link businessObjects="sf1"/>
+      <connectionDecorators visible="true" active="true" locationRelative="true" location="0.5">
+        <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" transparency="0.0" x="10" style="/0/@styles.1" font="/0/@fonts.0" value=""/>
+      </connectionDecorators>
+      <connectionDecorators visible="true" locationRelative="true" location="1.0">
+        <graphicsAlgorithm xsi:type="al:Polygon" foreground="/0/@colors.3" lineWidth="1" transparency="0.0" style="/0/@styles.2">
+          <points x="-10" y="-5" before="3" after="3"/>
+          <points/>
+          <points x="-10" y="5" before="3" after="3"/>
+          <points x="-8" before="3" after="3"/>
+        </graphicsAlgorithm>
+      </connectionDecorators>
+      <bendpoints x="638" y="850"/>
+    </connections>
+    <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="/0/@children.16/@anchors.0" end="/0/@children.2/@anchors.0">
+      <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.3" lineWidth="1" filled="false" transparency="0.0"/>
+      <link businessObjects="sf2"/>
+      <connectionDecorators visible="true" active="true" locationRelative="true" location="0.5">
+        <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" transparency="0.0" x="10" style="/0/@styles.1" font="/0/@fonts.0" value=""/>
+      </connectionDecorators>
+      <connectionDecorators visible="true" locationRelative="true" location="1.0">
+        <graphicsAlgorithm xsi:type="al:Polygon" foreground="/0/@colors.3" lineWidth="1" transparency="0.0" style="/0/@styles.2">
+          <points x="-10" y="-5" before="3" after="3"/>
+          <points/>
+          <points x="-10" y="5" before="3" after="3"/>
+          <points x="-8" before="3" after="3"/>
+        </graphicsAlgorithm>
+      </connectionDecorators>
+      <bendpoints x="638" y="37"/>
+    </connections>
+    <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="/0/@children.5/@anchors.0" end="/0/@children.6/@anchors.0">
+      <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.2" lineWidth="1" filled="false" transparency="0.0"/>
+      <link businessObjects="flow22"/>
+      <connectionDecorators visible="true" active="true" locationRelative="true" location="0.5">
+        <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" transparency="0.0" x="10" style="/0/@styles.1" font="/0/@fonts.0" value=""/>
+      </connectionDecorators>
+      <connectionDecorators visible="true" locationRelative="true" location="1.0">
+        <graphicsAlgorithm xsi:type="al:Polygon" lineWidth="1" transparency="0.0" style="/0/@styles.2">
+          <points x="-10" y="-5" before="3" after="3"/>
+          <points/>
+          <points x="-10" y="5" before="3" after="3"/>
+          <points x="-8" before="3" after="3"/>
+        </graphicsAlgorithm>
+      </connectionDecorators>
+    </connections>
+    <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="/0/@children.7/@anchors.0" end="/0/@children.8/@anchors.0">
+      <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.2" lineWidth="1" filled="false" transparency="0.0"/>
+      <link businessObjects="flow23"/>
+      <connectionDecorators visible="true" active="true" locationRelative="true" location="0.5">
+        <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" transparency="0.0" x="10" style="/0/@styles.1" font="/0/@fonts.0" value=""/>
+      </connectionDecorators>
+      <connectionDecorators visible="true" locationRelative="true" location="1.0">
+        <graphicsAlgorithm xsi:type="al:Polygon" lineWidth="1" transparency="0.0" style="/0/@styles.2">
+          <points x="-10" y="-5" before="3" after="3"/>
+          <points/>
+          <points x="-10" y="5" before="3" after="3"/>
+          <points x="-8" before="3" after="3"/>
+        </graphicsAlgorithm>
+      </connectionDecorators>
+    </connections>
+    <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="/0/@children.17/@anchors.0" end="/0/@children.0/@anchors.0">
+      <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.2" lineWidth="1" filled="false" transparency="0.0"/>
+      <link businessObjects="flow24"/>
+      <connectionDecorators visible="true" active="true" locationRelative="true" location="0.5">
+        <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" transparency="0.0" x="10" style="/0/@styles.1" font="/0/@fonts.0" value=""/>
+      </connectionDecorators>
+      <connectionDecorators visible="true" locationRelative="true" location="1.0">
+        <graphicsAlgorithm xsi:type="al:Polygon" lineWidth="1" transparency="0.0" style="/0/@styles.2">
+          <points x="-10" y="-5" before="3" after="3"/>
+          <points/>
+          <points x="-10" y="5" before="3" after="3"/>
+          <points x="-8" before="3" after="3"/>
+        </graphicsAlgorithm>
+      </connectionDecorators>
+    </connections>
+    <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="/0/@children.15/@anchors.0" end="/0/@children.18/@anchors.0">
+      <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.2" lineWidth="1" filled="false" transparency="0.0"/>
+      <link businessObjects="flow25"/>
+      <connectionDecorators visible="true" active="true" locationRelative="true" location="0.5">
+        <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" transparency="0.0" x="10" style="/0/@styles.1" font="/0/@fonts.1" value=""/>
+      </connectionDecorators>
+      <connectionDecorators visible="true" locationRelative="true" location="1.0">
+        <graphicsAlgorithm xsi:type="al:Polygon" lineWidth="1" transparency="0.0" style="/0/@styles.2">
+          <points x="-10" y="-5" before="3" after="3"/>
+          <points/>
+          <points x="-10" y="5" before="3" after="3"/>
+          <points x="-8" before="3" after="3"/>
+        </graphicsAlgorithm>
+      </connectionDecorators>
+    </connections>
+    <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="/0/@children.19/@anchors.0" end="/0/@children.5/@anchors.0">
+      <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.3" lineWidth="1" filled="false" transparency="0.0"/>
+      <link businessObjects="sf3"/>
+      <connectionDecorators visible="true" active="true" locationRelative="true" location="0.5">
+        <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" transparency="0.0" x="10" style="/0/@styles.1" font="/0/@fonts.2" value=""/>
+      </connectionDecorators>
+      <connectionDecorators visible="true" locationRelative="true" location="1.0">
+        <graphicsAlgorithm xsi:type="al:Polygon" foreground="/0/@colors.3" lineWidth="1" transparency="0.0" style="/0/@styles.2">
+          <points x="-10" y="-5" before="3" after="3"/>
+          <points/>
+          <points x="-10" y="5" before="3" after="3"/>
+          <points x="-8" before="3" after="3"/>
+        </graphicsAlgorithm>
+      </connectionDecorators>
+      <bendpoints x="231" y="126"/>
+    </connections>
+    <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="/0/@children.19/@anchors.0" end="/0/@children.4/@anchors.0">
+      <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.3" lineWidth="1" filled="false" transparency="0.0"/>
+      <link businessObjects="sf4"/>
+      <connectionDecorators visible="true" active="true" locationRelative="true" location="0.5">
+        <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" transparency="0.0" x="10" style="/0/@styles.1" font="/0/@fonts.2" value=""/>
+      </connectionDecorators>
+      <connectionDecorators visible="true" locationRelative="true" location="1.0">
+        <graphicsAlgorithm xsi:type="al:Polygon" foreground="/0/@colors.3" lineWidth="1" transparency="0.0" style="/0/@styles.2">
+          <points x="-10" y="-5" before="3" after="3"/>
+          <points/>
+          <points x="-10" y="5" before="3" after="3"/>
+          <points x="-8" before="3" after="3"/>
+        </graphicsAlgorithm>
+      </connectionDecorators>
+      <bendpoints x="372" y="129"/>
+    </connections>
+    <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="/0/@children.20/@anchors.0" end="/0/@children.13/@anchors.0">
+      <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.3" lineWidth="1" filled="false" transparency="0.0"/>
+      <link businessObjects="sf5"/>
+      <connectionDecorators visible="true" active="true" locationRelative="true" location="0.5">
+        <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" transparency="0.0" x="10" style="/0/@styles.1" font="/0/@fonts.3" value=""/>
+      </connectionDecorators>
+      <connectionDecorators visible="true" locationRelative="true" location="1.0">
+        <graphicsAlgorithm xsi:type="al:Polygon" foreground="/0/@colors.3" lineWidth="1" transparency="0.0" style="/0/@styles.2">
+          <points x="-10" y="-5" before="3" after="3"/>
+          <points/>
+          <points x="-10" y="5" before="3" after="3"/>
+          <points x="-8" before="3" after="3"/>
+        </graphicsAlgorithm>
+      </connectionDecorators>
+      <bendpoints x="372" y="750"/>
+    </connections>
+    <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="/0/@children.20/@anchors.0" end="/0/@children.14/@anchors.0">
+      <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.3" lineWidth="1" filled="false" transparency="0.0"/>
+      <link businessObjects="sf6"/>
+      <connectionDecorators visible="true" active="true" locationRelative="true" location="0.5">
+        <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" transparency="0.0" x="10" style="/0/@styles.1" font="/0/@fonts.3" value=""/>
+      </connectionDecorators>
+      <connectionDecorators visible="true" locationRelative="true" location="1.0">
+        <graphicsAlgorithm xsi:type="al:Polygon" foreground="/0/@colors.3" lineWidth="1" transparency="0.0" style="/0/@styles.2">
+          <points x="-10" y="-5" before="3" after="3"/>
+          <points/>
+          <points x="-10" y="5" before="3" after="3"/>
+          <points x="-8" before="3" after="3"/>
+        </graphicsAlgorithm>
+      </connectionDecorators>
+      <bendpoints x="512" y="749"/>
+    </connections>
+    <colors red="227" green="238" blue="249"/>
+    <colors red="255" green="255" blue="255"/>
+    <colors/>
+    <colors red="127" green="127" blue="255"/>
+    <colors blue="255"/>
+    <colors blue="230"/>
+    <colors red="255"/>
+    <colors red="230"/>
+    <colors green="255"/>
+    <colors green="230"/>
+    <colors green="255" blue="255"/>
+    <colors green="230" blue="230"/>
+    <fonts name="Arial" size="11"/>
+    <fonts name="Arial" size="11"/>
+    <fonts name="Arial" size="11"/>
+    <fonts name="Arial" size="8"/>
+  </pi:Diagram>
+  <bpmn2:Process id="JobApplication" name="JobApplication">
+    <documentation id="documentation_process" text="Place documentation for the 'JobApplication' process here."/>
+  </bpmn2:Process>
+  <bpmn2:UserTask id="usertask1" name="HR publishes open position" incoming="flow24" outgoing="flow2" activityActions="39d6ccc3-e040-476a-8af3-fa13d28d90b0"/>
+  <bpmn2:ServiceTask id="servicetask1" name="All applicants are collected via email" incoming="flow2" outgoing="flow3"/>
+  <bpmn2:SequenceFlow id="flow2" name="" sourceRef="usertask1" targetRef="servicetask1"/>
+  <bpmn2:UserTask id="usertask2" name="Pre-selection based on written application" incoming="flow3" outgoing="flow4" incomingSecurityFlow="sf2" activityActions="a805f517-4192-4d8d-b433-3872b74f9f54"/>
+  <bpmn2:SequenceFlow id="flow3" name="" sourceRef="servicetask1" targetRef="usertask2"/>
+  <bpmn2:ServiceTask id="servicetask2" name="Invitations to all selected applicants" incoming="flow4" outgoing="flow5"/>
+  <bpmn2:SequenceFlow id="flow4" name="" sourceRef="usertask2" targetRef="servicetask2"/>
+  <bpmn2:UserTask id="usertask3" name="Job interview" incoming="flow5" outgoing="flow6" incomingSecurityFlow="sf4" activityActions="aa61860c-76f6-47b5-99d6-5b9b5f9ac4ba"/>
+  <bpmn2:SequenceFlow id="flow5" name="" sourceRef="servicetask2" targetRef="usertask3"/>
+  <bpmn2:UserTask id="usertask4" name="Decide about preference ordering" incoming="flow6" outgoing="flow22" incomingSecurityFlow="sf3" activityActions="8784028d-50d4-4289-b933-6e8b48a65bd0"/>
+  <bpmn2:SequenceFlow id="flow6" name="" sourceRef="usertask3" targetRef="usertask4"/>
+  <bpmn2:UserTask id="usertask5" name="Complete list" incoming="flow22" outgoing="flow9" activityActions="9fb32099-3fdd-4294-8858-9b74f3cc97bd"/>
+  <bpmn2:UserTask id="usertask6" name="Salary negotations" incoming="flow9" outgoing="flow23" activityActions="34c864aa-e6c4-4ad0-aa07-c2e6d33b8829"/>
+  <bpmn2:SequenceFlow id="flow9" name="" sourceRef="usertask5" targetRef="usertask6"/>
+  <bpmn2:ParallelGateway id="parallelgateway1" name="Parallel Gateway" incoming="flow23" outgoing="flow13 flow14"/>
+  <bpmn2:UserTask id="usertask7" name="Comapny arranges date with candidate from list" incoming="flow13" outgoing="flow15" activityActions="a2255b16-9840-4845-b304-edc8c46fb5bc"/>
+  <bpmn2:ServiceTask id="servicetask3" name="Company arranges date with company medical officer" incoming="flow14" outgoing="flow16"/>
+  <bpmn2:SequenceFlow id="flow13" name="" sourceRef="parallelgateway1" targetRef="usertask7"/>
+  <bpmn2:SequenceFlow id="flow14" name="" sourceRef="parallelgateway1" targetRef="servicetask3"/>
+  <bpmn2:ParallelGateway id="parallelgateway2" name="Parallel Gateway" incoming="flow15 flow16" outgoing="flow17"/>
+  <bpmn2:SequenceFlow id="flow15" name="" sourceRef="usertask7" targetRef="parallelgateway2"/>
+  <bpmn2:SequenceFlow id="flow16" name="" sourceRef="servicetask3" targetRef="parallelgateway2"/>
+  <bpmn2:ServiceTask id="servicetask4" name="Company medical officer is informed about necessary information about the candidate" incoming="flow17" outgoing="flow18"/>
+  <bpmn2:SequenceFlow id="flow17" name="" sourceRef="parallelgateway2" targetRef="servicetask4"/>
+  <bpmn2:UserTask id="usertask8" name="Examination" incoming="flow18" outgoing="flow19" incomingSecurityFlow="sf5" activityActions="aec26922-7e06-4443-a8d2-92a8ef8b1b87"/>
+  <bpmn2:SequenceFlow id="flow18" name="" sourceRef="servicetask4" targetRef="usertask8"/>
+  <bpmn2:UserTask id="usertask9" name="Writing medical report" incoming="flow19" outgoing="flow20" incomingSecurityFlow="sf1 sf6" activityActions="242d0e42-6bea-4305-bb4b-27ace1300fa1"/>
+  <bpmn2:SequenceFlow id="flow19" name="" sourceRef="usertask8" targetRef="usertask9"/>
+  <bpmn2:ServiceTask id="servicetask5" name="Inform HR if candidates suitable or not" incoming="flow20" outgoing="flow25"/>
+  <bpmn2:SequenceFlow id="flow20" name="" sourceRef="usertask9" targetRef="servicetask5"/>
+  <securebpmn2:AtomicActivityAction id="39d6ccc3-e040-476a-8af3-fa13d28d90b0" actionName="Full Access" permissions="fddb63fa-b6f9-46c9-ad01-6cb500361671" activity="usertask1"/>
+  <securebpmn2:Permission id="fddb63fa-b6f9-46c9-ad01-6cb500361671" roles="ee645945-1af0-477a-a46f-2f15b62fdebe" actions="39d6ccc3-e040-476a-8af3-fa13d28d90b0" pName="Perm-usertask1-Full Access"/>
+  <securebpmn2:Role id="ee645945-1af0-477a-a46f-2f15b62fdebe" name="Clerk" permissions="fddb63fa-b6f9-46c9-ad01-6cb500361671 88e47f28-1c78-4039-b281-57b8ff698520 ba939877-0e7f-4f14-ae24-c0b6c01e25aa 67d28374-a82a-47df-82fd-baf8d65cdc47"/>
+  <securebpmn2:AtomicActivityAction id="a805f517-4192-4d8d-b433-3872b74f9f54" actionName="Full Access" permissions="88e47f28-1c78-4039-b281-57b8ff698520" activity="usertask2"/>
+  <securebpmn2:Permission id="88e47f28-1c78-4039-b281-57b8ff698520" roles="ee645945-1af0-477a-a46f-2f15b62fdebe" actions="a805f517-4192-4d8d-b433-3872b74f9f54" authorizationConstraints="securitySod1" pName="Perm-usertask2-Full Access"/>
+  <securebpmn2:AtomicActivityAction id="9fb32099-3fdd-4294-8858-9b74f3cc97bd" actionName="Full Access" permissions="ba939877-0e7f-4f14-ae24-c0b6c01e25aa" activity="usertask5"/>
+  <securebpmn2:Permission id="ba939877-0e7f-4f14-ae24-c0b6c01e25aa" roles="ee645945-1af0-477a-a46f-2f15b62fdebe" actions="9fb32099-3fdd-4294-8858-9b74f3cc97bd" pName="Perm-usertask5-Full Access"/>
+  <securebpmn2:AtomicActivityAction id="a2255b16-9840-4845-b304-edc8c46fb5bc" actionName="Full Access" permissions="67d28374-a82a-47df-82fd-baf8d65cdc47" activity="usertask7"/>
+  <securebpmn2:Permission id="67d28374-a82a-47df-82fd-baf8d65cdc47" roles="ee645945-1af0-477a-a46f-2f15b62fdebe" actions="a2255b16-9840-4845-b304-edc8c46fb5bc" pName="Perm-usertask7-Full Access"/>
+  <securebpmn2:SeparationOfDuty id="securitySod1" name="SoD" outgoingSecurityFlow="sf1 sf2" permissions="a31cfb6f-a1bd-404e-a610-baa3a2bdfbd6 88e47f28-1c78-4039-b281-57b8ff698520" minimumUsers="2" maxUserActionsPermitted="1"/>
+  <securebpmn2:SecurityFlow id="sf1" name="" sourceRefNode="securitySod1" targetRefNode="usertask9"/>
+  <securebpmn2:SecurityFlow id="sf2" name="" sourceRefNode="securitySod1" targetRefNode="usertask2"/>
+  <bpmn2:SequenceFlow id="flow22" name="" sourceRef="usertask4" targetRef="usertask5"/>
+  <bpmn2:SequenceFlow id="flow23" name="" sourceRef="usertask6" targetRef="parallelgateway1"/>
+  <bpmn2:StartEvent id="startevent2" name="Start" outgoing="flow24"/>
+  <bpmn2:SequenceFlow id="flow24" name="" sourceRef="startevent2" targetRef="usertask1"/>
+  <bpmn2:EndEvent id="endevent1" name="End" incoming="flow25"/>
+  <bpmn2:SequenceFlow id="flow25" name="" sourceRef="servicetask5" targetRef="endevent1"/>
+  <securebpmn2:SeparationOfDuty id="securitySod2" name="SoD" outgoingSecurityFlow="sf3 sf4" permissions="3ce9c470-173c-4af2-ac0c-8f833926526a 29fcaa7f-304a-4da8-bfe6-315f78023711" minimumUsers="2" maxUserActionsPermitted="1"/>
+  <securebpmn2:SecurityFlow id="sf3" name="" sourceRefNode="securitySod2" targetRefNode="usertask4"/>
+  <securebpmn2:SecurityFlow id="sf4" name="" sourceRefNode="securitySod2" targetRefNode="usertask3"/>
+  <securebpmn2:Role id="7cdd1cfb-1e5c-45f3-b15e-1a634c2f9c17" name="Supervisor" permissions="731b38ce-29f2-45d7-aa77-0d24563b46aa a31cfb6f-a1bd-404e-a610-baa3a2bdfbd6"/>
+  <securebpmn2:AtomicActivityAction id="34c864aa-e6c4-4ad0-aa07-c2e6d33b8829" actionName="Full Access" permissions="24614f48-84c2-45ca-8595-da35f6aa29ee" activity="usertask6"/>
+  <securebpmn2:Permission id="24614f48-84c2-45ca-8595-da35f6aa29ee" roles="338c817e-950c-433f-988f-fe395d9c84af" actions="34c864aa-e6c4-4ad0-aa07-c2e6d33b8829" pName="Perm-usertask6-Full Access"/>
+  <securebpmn2:Role id="338c817e-950c-433f-988f-fe395d9c84af" name="Manager" permissions="24614f48-84c2-45ca-8595-da35f6aa29ee 3ce9c470-173c-4af2-ac0c-8f833926526a 29fcaa7f-304a-4da8-bfe6-315f78023711"/>
+  <securebpmn2:AtomicActivityAction id="8784028d-50d4-4289-b933-6e8b48a65bd0" actionName="Full Access" permissions="3ce9c470-173c-4af2-ac0c-8f833926526a" activity="usertask4"/>
+  <securebpmn2:Permission id="3ce9c470-173c-4af2-ac0c-8f833926526a" roles="338c817e-950c-433f-988f-fe395d9c84af" actions="8784028d-50d4-4289-b933-6e8b48a65bd0" authorizationConstraints="securitySod2" pName="Perm-usertask4-Full Access"/>
+  <securebpmn2:AtomicActivityAction id="aa61860c-76f6-47b5-99d6-5b9b5f9ac4ba" actionName="Full Access" permissions="29fcaa7f-304a-4da8-bfe6-315f78023711" activity="usertask3"/>
+  <securebpmn2:Permission id="29fcaa7f-304a-4da8-bfe6-315f78023711" roles="338c817e-950c-433f-988f-fe395d9c84af" actions="aa61860c-76f6-47b5-99d6-5b9b5f9ac4ba" authorizationConstraints="securitySod2" pName="Perm-usertask3-Full Access"/>
+  <securebpmn2:AtomicActivityAction id="aec26922-7e06-4443-a8d2-92a8ef8b1b87" actionName="Full Access" permissions="731b38ce-29f2-45d7-aa77-0d24563b46aa" activity="usertask8"/>
+  <securebpmn2:Permission id="731b38ce-29f2-45d7-aa77-0d24563b46aa" roles="7cdd1cfb-1e5c-45f3-b15e-1a634c2f9c17" actions="aec26922-7e06-4443-a8d2-92a8ef8b1b87" authorizationConstraints="securityBod1" pName="Perm-usertask8-Full Access"/>
+  <securebpmn2:AtomicActivityAction id="242d0e42-6bea-4305-bb4b-27ace1300fa1" actionName="Full Access" permissions="a31cfb6f-a1bd-404e-a610-baa3a2bdfbd6" activity="usertask9"/>
+  <securebpmn2:Permission id="a31cfb6f-a1bd-404e-a610-baa3a2bdfbd6" roles="7cdd1cfb-1e5c-45f3-b15e-1a634c2f9c17" actions="242d0e42-6bea-4305-bb4b-27ace1300fa1" authorizationConstraints="securitySod1 securityBod1" pName="Perm-usertask9-Full Access"/>
+  <securebpmn2:BindingOfDuty id="securityBod1" name="BoD" outgoingSecurityFlow="sf5 sf6" permissions="731b38ce-29f2-45d7-aa77-0d24563b46aa a31cfb6f-a1bd-404e-a610-baa3a2bdfbd6"/>
+  <securebpmn2:SecurityFlow id="sf5" name="" sourceRefNode="securityBod1" targetRefNode="usertask8"/>
+  <securebpmn2:SecurityFlow id="sf6" name="" sourceRefNode="securityBod1" targetRefNode="usertask9"/>
+</xmi:XMI>
