@@ -1,0 +1,162 @@
+To cite the SecureBPMN lanuage in publications, please use 
+  
+  Achim D. Brucker. Integrating Security Aspects into Business Process
+  Models.  In it - Information Technology, 55 (6), pages 239-246,
+  2013.
+  doi:10.1524/itit.2013.2004
+  
+A BibTeX entry for LaTeX users is
+
+@Article{	  brucker:securebpmn:2013,
+  abstract	= {Modern enterprise systems are often process-driven and,
+		  thus, rely heavily on process-aware information systems. In
+		  such systems, high-level process-models play an important
+		  role both for communicating business requirements between
+		  domain experts and system experts as well as basis for the
+		  system implementation. Since several years, enterprise
+		  system need to fulfil an increasing number of the security
+		  and compliance requirements. Thus, there is an increasing
+		  demand for integrating high-level security and compliance
+		  requirements into process models, \ie, a common language
+		  for domain experts, system experts, and security
+		  experts.\\\\We present a security modelling language,
+		  called SecureBPMN, that can easily be integrated into
+		  business process modelling languages. In this paper, we
+		  exemplary integrate SecureBPMN into BPMN and, thus, present
+		  a common language for describing business process models
+		  together with their security and compliance requirements.},
+  abstract_de	= {Moderne Unternehmensanwendungen m{\"u}ssen die Unternehmen
+		  dabei unterst{\"u}tzen, ihre Gesch{\"a}ftsprozesse
+		  effizient auszuf{\"u}hren. In solchen Anwendungen spielen
+		  abstrakte Gesch{\"a}ftsprozessmodelle eine zentrale Rolle.
+		  Die Gesch{\"a}ftsprozessmodelle werden f{\"u}r die
+		  Kommunikation zwischen Gesch{\"a}fts- und IT-Experten
+		  genutzt und dienen dar{\"u}ber hinaus als Basis f{\"u}r die
+		  Implementierung der Unternehmensanwendungen. Seit einigen
+		  Jahren m{\"u}ssen Unternehmensanwendungen einer steigenden
+		  Anzahl von Sicherheits- und Compliance-Anforderungen
+		  gen{\"u}gen. Hieraus ergibt sich ein gesteigerte
+		  Bed{\"u}rfnis nach der Integration von Sicherheits- und
+		  Compliance-Anforderungen in die
+		  Gesch{\"a}ftsprozessmodelle.\\\\In diesem Artikel stellen
+		  wir die Modellierungssprache SecureBPMN vor, welche es
+		  erlaubt, Sicherheitsanforderungen im Kontext von
+		  Gesch{\"a}ftsprozessmodelle zu spezifizieren.},
+  author	= {Achim D. Brucker},
+  doi		= {10.1524/itit.2013.2004},
+  issn		= {2196-7032},
+  journal	= {it - Information Technology},
+  keywords	= {Management of Computing and Information Systems,
+		  SecureBPMN, BPMN, Break-Glass, Break-the-Glass},
+  language	= {USenglish},
+  month		= {dec},
+  note		= {Special Issue on ``Security in Business Processes.''},
+  number	= {6},
+  pages		= {239--246},
+  pdf		= {http://www.brucker.ch/bibliography/download/2013/brucker-securebpmn-2013.pdf},
+  publisher	= {Oldenbourg Wissenschaftsverlag},
+  title		= {Integrating Security Aspects into Business Process
+		  Models},
+  title_de	= {Integration von Sicherheitsaspekten in
+		  Gesch{\"a}ftsprozessmodelle},
+  url		= {http://www.brucker.ch/bibliography/abstract/brucker-securebpmn-2013},
+  volume	= {55},
+  year		= {2013}
+}
+
+To cite the formal analysis of SecureBPMN models, please use 
+
+  Achim D. Brucker, Luca Compagna, and Pierre Guilleminot. Compliance
+  Validation of Secure Service Compositions. In Secure and Trustworthy
+  Service Composition: The Aniketos Approach. Lecture Notes in
+  Computer Science: State of the Art Surveys (8900), pages 136-149,
+  Springer-Verlag, 2014.
+  doi:10.1145/2295136.2295160
+
+A BibTeX entry for LaTeX users is
+
+@InCollection{	  brucker.ea:aniketos-compliance:2014,
+  abstract	= {The Aniketos Secure Composition Framework supports the
+		  specification of secure and trustworthy composition plans
+		  in term of BPMN\@. The diversity of security and trust
+		  properties that is supported by the Aniketos framework
+		  allows, on the one hand, for expressing a large number of
+		  security and compliance requirements. On the other hand,
+		  the resulting expressiveness results in the risk that
+		  high-level compliance requirements (\eg, separation of
+		  duty) are not implemented by low-level security means (\eg,
+		  role-based access control configurations).\\\\In this
+		  chapter, we present the Composition Security Validation
+		  Module (CSVM). The CSVM provides a service for checking the
+		  compliance of secure and trustworthy composition plans to
+		  the service designer. As proof-of-concept we created a
+		  prototype in which the CSVM module is deployed on the SAP
+		  NetWeaver Cloud and two CSVM Connectors are built
+		  supporting two well-known BPMN tools: SAP NetWeaver BPM and
+		  Activiti Designer.},
+  address	= {Heidelberg},
+  author	= {Achim D. Brucker and Luca Compagna and Pierre
+		  Guilleminot},
+  booktitle	= {Secure and Trustworthy Service Composition: The Aniketos
+		  Approach},
+  doi		= {10.1007/978-3-319-13518-2_10},
+  editor	= {Achim D. Brucker and Fabiano Dalpiaz and Paolo Giorgini
+		  and Per H{\aa}kon Meland and Erkuden {Rios}},
+  isbn		= {978-3-319-13517-5},
+  keywords	= {Validation, Security, BPMN, SecureBPMN, Compliance},
+  number	= {8900},
+  pages		= {136--149},
+  pdf		= {http://www.brucker.ch/bibliography/download/2014/brucker.ea-aniketos-compliance-2014.pdf},
+  publisher	= {Springer-Verlag},
+  series	= {Lecture Notes in Computer Science: State of the Art
+		  Surveys},
+  title		= {Compliance Validation of Secure Service Compositions},
+  url		= {http://www.brucker.ch/bibliography/abstract/brucker.ea-aniketos-compliance-2014},
+  year		= {2014}
+}
+
+To cite the SecureBPMN tool-chain, please use 
+
+  Achim D. Brucker, Isabelle Hang, Gero Lückemeyer, and Raj
+  Ruparel. SecureBPMN: Modeling and Enforcing Access Control
+  Requirements in Business Processes. In ACM symposium on access
+  control models and technologies (SACMAT). , pages 123-126, ACM
+  Press, 2012.
+  doi:10.1145/2295136.2295160
+
+A BibTeX entry for LaTeX users is
+
+@InProceedings{	  brucker.ea:securebpmn:2012,
+  abstract	= {Modern enterprise systems have to comply to regulations
+		  such as Basel III resulting in complex security
+		  requirements. These requirements need to be modeled at
+		  design-time and enforced at runtime. Moreover, modern
+		  enterprise systems are often business-process driven, i.
+		  e., the system behavior is described as high-level business
+		  processes that are executed by a business process execution
+		  engine.\\\\Consequently, there is a need for an integrated
+		  and tool-supported methodology that allows for specifying
+		  and enforcing compliance and security requirements for
+		  business process-driven enterprise systems.\\\\In this
+		  paper, we present a tool chain supporting both the
+		  design-time modeling as well as the run-time enforcement of
+		  security requirements for business process-driven systems.},
+  address	= {New York, NY, USA},
+  author	= {Achim D. Brucker and Isabelle Hang and Gero L{\"u}ckemeyer
+		  and Raj Ruparel},
+  booktitle	= {ACM symposium on access control models and technologies
+		  (SACMAT)},
+  copyright	= {ACM},
+  doi		= {10.1145/2295136.2295160},
+  isbn		= {978-1-4503-1295-0},
+  language	= {USenglish},
+  location	= {Newark, USA},
+  mycopyrighturl= {http://dl.acm.org/authorize?6705782},
+  pages		= {123--126},
+  pdf		= {http://www.brucker.ch/bibliography/download/2012/brucker.ea-securebpmn-2012.pdf},
+  publisher	= {ACM Press},
+  title		= {{SecureBPMN}: Modeling and Enforcing Access Control
+		  Requirements in Business Processes},
+  url		= {http://www.brucker.ch/bibliography/abstract/brucker.ea-securebpmn-2012},
+  year		= {2012}
+}
