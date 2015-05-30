@@ -46,6 +46,36 @@ workspace using `File -> Import -> Existing Projects into Workspace`.
 Select the project `org.activiti.designer.eclipse` and select `Run as
 -> Eclipse application` in the context menu (right click).
 
+### SecureBPMN Runtime
+#### Prerequisites
+Java 6 must be installed and executable:
+```
+export JAVA_HOME=<install directory of java 6>
+export PATH=$JAVA_HOME/bin:$PATH
+```
+Moreover, the xalan libraries must be installed:
+```
+cd runtime/src/userguide 
+ant install.xalan.libs
+```
+### Building the SecureBPMN Runtime
+```
+cd runtime/src/distro
+ant clean distro 
+```
+If ``ant `clean distro``` is not able to download tomcat, please 
+download `apache-tomcat-6.0.32.zip` and copy it into 
+`runtime/src/distro/target`.
+
+### Executing the SecureBPMN Runtime
+```
+cd runtime/src/distro/target/activiti-5.8/setup/
+ant demo.start 
+```
+And open `http://localhost:8080/activiti-explorer` in a web browser. 
+Note that `and demo.stop` will stop the demo and `ant demo.clean` will 
+reset the demo setup.
+
 ## Team 
 Main developer: [Achim D. Brucker](http://www.brucker.ch/)
 
@@ -57,4 +87,24 @@ Main developer: [Achim D. Brucker](http://www.brucker.ch/)
 
 ## Publications
 Related publications are listed on the [SecureBPMN 
-website](https://www.brucker.ch/projects/securebpmn/index.en.html).
+website](https://www.brucker.ch/projects/securebpmn/index.en.html). 
+The core publications are:
+* Achim D. Brucker. [Integrating Security Aspects into Business Process
+  Models](http://www.brucker.ch/bibliography/download/2013/brucker-securebpmn-2013.pdf).  
+  In it - Information Technology, 55 (6), pages 239-246, 2013.
+  doi:[10.1524/itit.2013.2004](http://dx.doi.org/10.1524/itit.2013.2004)
+  http://www.brucker.ch/bibliography/abstract/brucker-securebpmn-2013
+* Achim D. Brucker, Luca Compagna, and Pierre Guilleminot. [Compliance
+  Validation of Secure Service Compositions](http://www.brucker.ch/bibliography/download/2014/brucker.ea-aniketos-compliance-2014.pdf). 
+  In Secure and Trustworthy Service Composition: The Aniketos Approach. 
+  Lecture Notes in Computer Science: State of the Art Surveys (8900), 
+  pages 136-149, Springer-Verlag, 2014.
+  doi:[10.1145/2295136.2295160](http://dx.doi.org/10.1145/2295136.2295160)
+  http://www.brucker.ch/bibliography/abstract/brucker.ea-aniketos-compliance-2014
+* Achim D. Brucker, Isabelle Hang, Gero Lückemeyer, and Raj
+  Ruparel. [SecureBPMN: Modeling and Enforcing Access Control
+  Requirements in Business Processes](http://www.brucker.ch/bibliography/download/2012/brucker.ea-securebpmn-2012.pdf). 
+  In ACM symposium on access control models and technologies (SACMAT), 
+  pages 123-126, ACM Press, 2012.
+  doi:[10.1145/2295136.2295160](http://dx.doi.org/10.1145/2295136.2295160)
+  http://www.brucker.ch/bibliography/abstract/brucker.ea-securebpmn-2012
