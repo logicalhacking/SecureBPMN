@@ -121,6 +121,11 @@
       <version>[3,)</version>
       <scope>runtime</scope>
     </dependency>
+    <dependency>
+      <groupId>org.activiti</groupId>
+      <version>5.8</version>
+      <artifactId>activiti-engine</artifactId>
+    </dependency>
   </dependencies>
 </project>
 <!-- dependency> <groupId>org.hibernate</groupId> <artifactId>hibernate</artifactId> 

@@ -1,0 +1,86 @@
+<PolicySet xmlns="urn:oasis:names:tc:xacml:3.0:schema:os" PolicySetId="testPolicySet" PolicyCombiningAlgId="urn:oasis:names:tc:xacml:1.0:policy-combining-algorithm:first-applicable">
+<Target>
+<AnyOf>
+<AllOf>
+</AllOf>
+</AnyOf>
+</Target>
+<Policy xmlns="urn:oasis:names:tc:xacml:3.0:schema:os" PolicyId="policy_for_usertask1" RuleCombiningAlgId="urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:first-applicable"
+>
+<Target>
+<AnyOf>
+<AllOf>
+</AllOf>
+</AnyOf>
+</Target>
+<Rule RuleId="rule_for_usertask1" Effect="Permit">
+<Description>Action One</Description>
+<Target>
+<AnyOf>
+<AllOf>
+<Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+<AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">Full Access</AttributeValue>
+<AttributeDesignator Category="urn:oasis:names:tc:xacml:3.0:attribute-category:action" AttributeId="urn:oasis:names:tc:xacml:1.0:action:action-id" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+</Match>
+<Match MatchId="urn:oasis:names:tc:xacml:1.0:function:anyURI-equal">
+<AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">usertask1</AttributeValue>
+<AttributeDesignator Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource" AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id" DataType="http://www.w3.org/2001/XMLSchema#anyURI" MustBePresent="true"/>
+</Match>
+<Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+<AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">accountancy</AttributeValue>
+<AttributeDesignator Category="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject" AttributeId="urn:custom:subject:role" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+</Match>
+</AllOf>
+</AnyOf>
+</Target>
+</Rule>
+</Policy>
+<Policy xmlns="urn:oasis:names:tc:xacml:3.0:schema:os" PolicyId="policy_for_usertask2" RuleCombiningAlgId="urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:first-applicable"
+>
+<Target>
+<AnyOf>
+<AllOf>
+</AllOf>
+</AnyOf>
+</Target>
+<Rule RuleId="rule_for_usertask2" Effect="Permit">
+<Description>Action Two</Description>
+<Target>
+<AnyOf>
+<AllOf>
+<Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+<AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">Full Access</AttributeValue>
+<AttributeDesignator Category="urn:oasis:names:tc:xacml:3.0:attribute-category:action" AttributeId="urn:oasis:names:tc:xacml:1.0:action:action-id" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+</Match>
+<Match MatchId="urn:oasis:names:tc:xacml:1.0:function:anyURI-equal">
+<AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">usertask2</AttributeValue>
+<AttributeDesignator Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource" AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id" DataType="http://www.w3.org/2001/XMLSchema#anyURI" MustBePresent="true"/>
+</Match>
+<Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+<AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">accountancy</AttributeValue>
+<AttributeDesignator Category="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject" AttributeId="urn:custom:subject:role" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+</Match>
+</AllOf>
+</AnyOf>
+</Target>
+</Rule>
+</Policy>
+<Policy xmlns="urn:oasis:names:tc:xacml:3.0:schema:os" PolicyId="denyPolicy" RuleCombiningAlgId="urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:first-applicable"
+>
+<Target>
+<AnyOf>
+<AllOf>
+</AllOf>
+</AnyOf>
+</Target>
+<Rule RuleId="denyRule" Effect="Deny">
+<Description>deny if no other Rule applies</Description>
+<Target>
+<AnyOf>
+<AllOf>
+</AllOf>
+</AnyOf>
+</Target>
+</Rule>
+</Policy>
+</PolicySet>
