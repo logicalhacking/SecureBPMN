@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <!-- AttributeDBIdentifier ATTRIBUTE_ID 
+       contains meta information about managed attribute types -->
+  <class name="eu.aniketos.securebpmn.xacml.pdpstate.db.AttributeDBIdentifier" table="ATTRIBUTE_ID">
+    <id name="id" column="ATTRIBUTE_ID_ID">
+      <generator class="native"/>
+    </id>
+    <property name="category" column="CATEGORY"/>
+    <property name="attributeType" column="TYPE" not-null="true"/>
+    <property name="attributeId" column="ATTRIBUTE_ID" not-null="true"/>
+    <property name="issuer" column="ISSUER"/>
+  </class>
+  <!-- ContextAttribute CONTEXT_ATTRIBUTE
+       n:m mapping between AttributeDBIdentifier and AttributeType as explicit class,
+       to be able to reference it from ContextAttribute Assignment -->
+  <class name="eu.aniketos.securebpmn.xacml.pdpstate.db.ContextAttribute" table="CONTEXT_ATTRIBUTE">
+    <id name="id" column="CONTEXT_ATTRIBUTE_ID">
+      <generator class="native"/>
+    </id>
+    <many-to-one name="attrId" column="ATTR_ID" lazy="false" not-null="true"/>
+    <many-to-one name="attrType" column="ATTRTYPE_ID" lazy="false" not-null="true"/>
+  </class>
+  <!-- AttributeType  ATTRIBUTE_TYPE 
+       contains meta information about managed attribute assignments -->
+  <class name="eu.aniketos.securebpmn.xacml.pdpstate.db.AttributeType" table="ATTRIBUTE_TYPE">
+    <id name="id" column="ATTRIBUTE_TYPE_ID">
+      <generator class="native"/>
+    </id>
+    <many-to-one name="attrType" column="ATTR_ID" not-null="true"/>
+    <bag name="ctxTypes" lazy="false" cascade="all">
+      <key column="ATTRTYPE_ID"/>
+      <one-to-many class="eu.aniketos.securebpmn.xacml.pdpstate.db.ContextAttribute"/>
+      <!--   -->
+    </bag>
+  </class>
+  <!-- ContextAttributeAssignment  CTXATTR_ASSIGNMENT -->
+  <class name="eu.aniketos.securebpmn.xacml.pdpstate.db.ContextAttributeAssignment" table="CTXATTR_ASSIGNMENT">
+    <id name="id" column="CTXATTR_ASSIGNMENT_ID">
+      <generator class="native"/>
+    </id>
+    <property name="value" column="VALUE"/>
+    <many-to-one name="ctxAttribute" lazy="false" column="CTXATTR_ID" class="eu.aniketos.securebpmn.xacml.pdpstate.db.ContextAttribute"/>
+    <many-to-one name="attrAssignment" lazy="false" column="ASSIGNMENT_ID" class="eu.aniketos.securebpmn.xacml.pdpstate.db.AttributeAssignment"/>
+  </class>
+  <!--  -->
+  <class name="eu.aniketos.securebpmn.xacml.pdpstate.db.AttributeAssignment" table="ATTR_ASSIGNMENT">
+    <id name="id" column="ATTR_ASSIGNMENT_ID">
+      <generator class="native"/>
+    </id>
+    <property name="value" column="VALUE" not-null="true"/>
+    <property name="validFrom" column="VALID_FROM" not-null="true"/>
+    <property name="validTo" column="VALID_TO" not-null="true"/>
+    <many-to-one name="attrType" column="ATTR_TYPE" class="eu.aniketos.securebpmn.xacml.pdpstate.db.AttributeType"/>
+    <bag name="ctxAttrAssignments" lazy="false" cascade="all">
+      <key column="ASSIGNMENT_ID"/>
+      <one-to-many class="eu.aniketos.securebpmn.xacml.pdpstate.db.ContextAttributeAssignment"/>
+    </bag>
+  </class>
+  <query name="getAttribute0"><![CDATA[SELECT a.value FROM eu.aniketos.securebpmn.xacml.pdpstate.db.AttributeAssignment AS a
+				 WHERE a.attrType = :attrType 
+				 AND a.validTo >= :validAt AND a.validFrom <= :validAt ]]></query>
+  <query name="getAttribute1"><![CDATA[SELECT a.value FROM eu.aniketos.securebpmn.xacml.pdpstate.db.AttributeAssignment AS a 
+				 INNER JOIN a.ctxAttrAssignments as c 
+				 WHERE a.attrType = :attrType 
+				 AND a.validTo >= :validAt AND a.validFrom <= :validAt 
+				 AND c.ctxAttribute = :ctxAttrTypeNull 
+				 AND c.value = :ctxAttrNull ]]></query>
+  <query name="getAttribute2"><![CDATA[SELECT a.value FROM eu.aniketos.securebpmn.xacml.pdpstate.db.AttributeAssignment AS a 
+				 INNER JOIN a.ctxAttrAssignments as cnull 
+				 INNER JOIN a.ctxAttrAssignments as cone
+				 WHERE a.attrType = :attrType 
+				 AND a.validTo >= :validAt AND a.validFrom <= :validAt 
+				 AND cnull.ctxAttribute = :ctxAttrTypeNull 
+				 AND cnull.value = :ctxAttrNull 
+				 AND cone.ctxAttribute = :ctxAttrTypeOne
+				 AND cone.value = :ctxAttrOne]]></query>
+  <query name="getAssignmentIds0"><![CDATA[SELECT a.id FROM eu.aniketos.securebpmn.xacml.pdpstate.db.AttributeAssignment AS a 
+				 WHERE a.attrType = :attrType 
+				 AND  ( ( a.validFrom >= :validFrom OR a.validTo >= :validTo ) AND 
+						 ( a.validFrom <= :validFrom OR a.validTo <= :validTo ) ) 
+				 AND a.value = :value]]></query>
+  <query name="getAssignmentIds1"><![CDATA[SELECT a.id FROM eu.aniketos.securebpmn.xacml.pdpstate.db.AttributeAssignment AS a 
+				 INNER JOIN a.ctxAttrAssignments as c 
+				 WHERE a.attrType = :attrType 
+				 AND  ( ( a.validFrom >= :validFrom OR a.validTo >= :validTo ) AND 
+						 ( a.validFrom <= :validFrom OR a.validTo <= :validTo ) ) 
+				 AND a.value = :value 
+				 AND c.ctxAttribute = :ctxAttrTypeNull 
+				 AND c.value = :ctxAttrNull]]></query>
+  <query name="getAssignmentIds2"><![CDATA[SELECT a.id FROM eu.aniketos.securebpmn.xacml.pdpstate.db.AttributeAssignment AS a 
+    			 INNER JOIN a.ctxAttrAssignments as cnull 
+				 INNER JOIN a.ctxAttrAssignments as cone
+				 WHERE a.attrType = :attrType 
+				 AND  ( ( a.validFrom >= :validFrom OR a.validTo >= :validTo ) AND 
+						 ( a.validFrom <= :validFrom OR a.validTo <= :validTo ) ) 
+				 AND a.value = :value 
+				 AND cnull.ctxAttribute = :ctxAttrTypeNull 
+				 AND cnull.value = :ctxAttrNull 
+				 AND cone.ctxAttribute = :ctxAttrTypeOne
+				 AND cone.value = :ctxAttrOne]]></query>
+</hibernate-mapping>

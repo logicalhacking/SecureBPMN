@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PolicySet xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="http://codemonkey.at/xacml-2.0-policy-schema-extended.xsd" 
+        xmlns="urn:oasis:names:tc:xacml:2.0:policy:schema:os"
+	PolicySetId="nhs:becker:relationship"
+	PolicyCombiningAlgId="urn:oasis:names:tc:xacml:1.0:policy-combining-algorithm:first-applicable">
+	
+	<Target>
+		<Resources>
+			<Resource>
+				<ResourceMatch MatchId="urn:custom:string-starts-with">
+					<ResourceAttributeDesignator AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id" 
+							DataType="http://www.w3.org/2001/XMLSchema#string"/>
+					<AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">nhs:becker:relationship</AttributeValue>
+				</ResourceMatch>
+			</Resource>
+		</Resources>
+	</Target>
+	
+	
+	<Policy PolicyId="nhs:becker:relationship:clinician" RuleCombiningAlgId="urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:first-applicable">
+		<Target>
+			<Subjects>
+				<Subject>
+					<SubjectMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+						<SubjectAttributeDesignator AttributeId="urn:custom:subject:role"
+								DataType="http://www.w3.org/2001/XMLSchema#string"/>
+						<AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">clinician</AttributeValue>
+					</SubjectMatch>
+				</Subject>
+			</Subjects>
+		</Target>
+	
+
+		
+		 
+		<Rule Effect="Permit" RuleId="nhs:becker:relationship:clinician:010">
+			<Target>
+				<Actions>
+					<Action>
+						<ActionMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+							<ActionAttributeDesignator AttributeId="urn:oasis:names:tc:xacml:1.0:action:action-id" 
+									DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+							<AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">request-consent-to-treatment</AttributeValue>
+						</ActionMatch>
+					</Action>
+					<Action>
+						<ActionMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+							<ActionAttributeDesignator AttributeId="urn:oasis:names:tc:xacml:1.0:action:action-id" 
+									DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+							<AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">request-consent-to-group-treatment</AttributeValue>
+						</ActionMatch>
+						</ActionMatch>
+					</Action>
+				</Actions>
+			</Target>
+			<Condition>
+				<Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:or">
+					<!-- clinical is requesting hisself -->
+					
+					
+				<Apply FunctionId="string-equal">
+					<SubjectAttributeDesignator AttributeId="subject-Id" DataType="string" MustBePresent="true"/>
+					<ResourceAttributeDesignator AttributeId="requesting-clinical" DataType="string" MustBePresent="true"/>
+				</Apply>
+				<!-- someone who is permitted to do so, is requeisting for the clinical -->
+				<!-- TODO -->
+				<Apply FunctionId="bag-contains-string">
+					<SubjectAttributeDesignator AttributeId="subject-Id" DataType="string" MustBePresent="true"/>
+					<ResourceAttributeDesignator AttributeId="treating-clinicals" DataType="string" MustBePresent="true"/>
+				</Apply>
+				</Apply>
+			</Condition>
+		</Rule>
+		
+		
+
+
+		
+		<Rule>
+			<Target>
+				<Actions>
+					<Action>
+						<ActionMatch MatchId="string-equal">
+							<ActionAttributeDesignator AttributeId="action-id" DataType="string" MustBePresent="true"/>
+							<AttributeValue DataType="string">cancel-consent-to-treatment</AttributeValue>
+						</ActionMatch>
+					</Action>
+				</Actions>
+			</Target>
+			<Condition FunctionId="or">
+				<!-- clinical is requesting hisself -->
+				<Apply FunctionId="string-equal">
+					<SubjectAttributeDesignator AttributeId="subject-Id" DataType="string" MustBePresent="true"/>
+					<ResourceAttributeDesignator AttributeId="requesting-clinical" DataType="string" MustBePresent="true"/>
+				</Apply>
+				<!-- someone who is permitted to do so, is requeisting for the clinical -->
+				<!-- TODO -->
+			</Condition>
+		</Rule>
+		
+		
+		<Rule Effect="Deny" RuleId="nhs_becker_relationship_clinican_final"/>
+	</Policy>
+	
+	
+	
+	<Policy PolicyId="nhs_becker_relationship_patient" RuleCombiningAlgId="firstAppl">
+		<Target>
+			<Subjects>
+				<Subject>
+					<SubjectMatch MatchId="string-equal">
+						<SubjectAttributeDesignator AttributeId="role" DataType="string"/>
+						<AttributeValue DataType="string">patient</AttributeValue>
+					</SubjectMatch>
+				</Subject>
+			</Subjects>
+		</Target>
+	
+		
+		<Rule Effect="Permit" RuleId="nhs_becker_relationship_requ_clinican_01">
+			<Target>
+				<Actions>
+					<Action>
+						<ActionMatch MatchId="string-equal">
+							<ActionAttributeDesignator AttributeId="action-id" DataType="string" MustBePresent="true"/>
+							<AttributeValue DataType="string">consent-to-treatment</AttributeValue>
+						</ActionMatch>
+					</Action>
+					<Action>
+						<ActionMatch MatchId="string-equal">
+							<ActionAttributeDesignator AttributeId="action-id" DataType="string" MustBePresent="true"/>
+							<AttributeValue DataType="string">cancel-consent-to-treatment</AttributeValue>
+						</ActionMatch>
+					</Action>
+				</Actions>
+			</Target>
+			<Condition FunctionId="or">
+				<!-- clinical is requesting hisself -->
+				<Apply FunctionId="string-equal">
+					<SubjectAttributeDesignator AttributeId="subject-Id" DataType="string" MustBePresent="true"/>
+					<ResourceAttributeDesignator AttributeId="requested-patient" DataType="string" MustBePresent="true"/>
+				</Apply>
+				<!-- someone who is permitted to do so, is requeisting for the clinical -->
+				<!-- TODO -->
+			</Condition>
+		</Rule>
+		
+		<Rule Effect="Deny" RuleId="nhs_becker_relationship_patient_final"/>
+	</Policy>
+	
+	<Policy PolicyId="nhs_becker_relationship_agent" RuleCombiningAlgId="firstAppl">
+		<Target>
+			<Subjects>
+				<Subject>
+					<SubjectMatch MatchId="string-equal">
+						<SubjectAttributeDesignator AttributeId="role" DataType="string"/>
+						<AttributeValue DataType="string">agent</AttributeValue>
+					</SubjectMatch>
+				</Subject>
+			</Subjects>
+		</Target>
+		
+		
+		<Rule>
+			<Target>
+				<Actions>
+					<Action>
+						<ActionMatch MatchId="string-equal">
+							<ActionAttributeDesignator AttributeId="action-id" DataType="string" MustBePresent="true"/>
+							<AttributeValue DataType="string">consent-to-treatment</AttributeValue>
+						</ActionMatch>
+					</Action>
+					<Action>
+						<ActionMatch MatchId="string-equal">
+							<ActionAttributeDesignator AttributeId="action-id" DataType="string" MustBePresent="true"/>
+							<AttributeValue DataType="string">cancel-consent-to-treatment</AttributeValue>
+						</ActionMatch>
+					</Action>
+				</Actions>
+			</Target>
+			<Condition FunctionId="or">
+				<Apply FunctionId="bag-contains-string">
+					<SubjectAttributeDesignator AttributeId="requested-patient" DataType="string" MustBePresent="true"/>
+					<ResourceAttributeDesignator AttributeId="agent-for-patients" DataType="string"/>
+				</Apply>
+			</Condition>
+		</Rule>
+		
+
+	
+	
+		<Rule Effect="Deny" RuleId="nhs_becker_relationship_agent_final"/>
+	</Policy>
+	
+	<Policy PolicyId="nhs_becker_relationship_final" RuleCombiningAlgId="firstAppl">
+		<Rule Effect="Deny" RuleId="nhs_becker_relationship_final_final"/>
+	</Policy>
+	
+</PolicySet>

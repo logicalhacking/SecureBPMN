@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://sunxacml.sourceforge.net/schema/config-0.3"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        defaultPDP="pdp" defaultAttributeFactory="attr"
+        defaultCombiningAlgFactory="comb" defaultFunctionFactory="func">
+  <pdp name="pdp">
+    <attributeFinderModule class="com.sun.xacml.finder.impl.CurrentEnvModule"/>
+    <attributeFinderModule class="eu.aniketos.securebpmn.xacml.pdpState.xacml.PDPStateModule"/>
+
+    <policyFinderModule class="eu.aniketos.securebpmn.xacml.xacml.finder.FilePolicyModule">
+      <list>
+        <string>conf:useLines:true</string>
+        <string>folder:healthcare</string>
+      </list>
+    </policyFinderModule>
+  </pdp>
+  <attributeFactory name="attr" useStandardDatatypes="true">
+    <datatype identifier="urn:type:evaluationId" class="eu.aniketos.securebpmn.xacml.xacml.attr.proxy.EvaluationIdAttributeProxy"/>
+  </attributeFactory>
+
+  <combiningAlgFactory name="comb" useStandardAlgorithms="true"/>
+
+  <functionFactory name="func" useStandardFunctions="true">
+    <target>
+      <functionCluster class="eu.aniketos.securebpmn.xacml.xacml.cond.CustomFunctionCluster"/>
+    </target>
+  </functionFactory>
+
+  <logServer>eu.aniketos.securebpmn.xacml.log.LogServer</logServer> 
+</config>
+
+

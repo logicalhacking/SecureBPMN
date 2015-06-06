@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>eu.aniketos.securebpmn.xacml</groupId>
+  <artifactId>eu.aniketos.securebpmn.xacml.parent</artifactId>
+  <version>1.0</version>
+  <packaging>pom</packaging>
+  <name>SecureBPMN XACML - Parent project</name>
+  <properties>
+    <tycho-version>0.12.0</tycho-version>
+  </properties>
+  <modules>
+    <module>../com.sun.xacml</module>
+    <module>../com.sun.xacml.support</module>
+    <module>../eu.aniketos.securebpmn.xacml.api</module>
+    <module>../eu.aniketos.securebpmn.xacml.support</module>
+    <module>../eu.aniketos.securebpmn.xacml.pdpstate</module>
+    <module>../eu.aniketos.securebpmn.xacml.pdp</module>
+  </modules>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.eclipse.tycho</groupId>
+        <artifactId>tycho-maven-plugin</artifactId>
+        <version>${tycho-version}</version>
+        <extensions>true</extensions>
+      </plugin>
+      <plugin>
+        <groupId>org.eclipse.tycho</groupId>
+        <artifactId>target-platform-configuration</artifactId>
+        <version>${tycho-version}</version>
+        <configuration>
+          <resolver>p2</resolver>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>[4.8,)</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>log4j</groupId>
+      <artifactId>log4j</artifactId>
+      <version>[1.2,)</version>
+    </dependency>
+    <dependency>
+      <groupId>xalan</groupId>
+      <artifactId>xalan</artifactId>
+      <version>2.7.1</version>
+    </dependency>
+  </dependencies>
+</project>

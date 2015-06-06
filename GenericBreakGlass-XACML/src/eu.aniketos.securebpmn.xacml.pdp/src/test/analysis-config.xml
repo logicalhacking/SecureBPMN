@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://sunxacml.sourceforge.net/schema/config-0.3"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        defaultPDP="pdp" defaultAttributeFactory="attr"
+        defaultCombiningAlgFactory="comb" defaultFunctionFactory="func">
+  <pdp name="pdp">
+
+
+    <!-- attributeFinderModule class="com.sun.xacml.finder.impl.CurrentEnvModule"/ -->
+	<!-- TODO remove: must be evaluated by recorded context -->
+    <attributeFinderModule class="eu.aniketos.securebpmn.xacml.xacml.finder.impl.RoleFinderModule"/>
+
+    <attributeFinderModule class="eu.aniketos.securebpmn.xacml.pdp.runtimeEvaluation.EvaluationFinderModule"/>
+
+
+    <!-- attributeFinderModule class="com.sun.xacml.finder.impl.SelectorModule"/ -->
+
+    <!-- attributeFinderModule class="com.sun.xacml.finder.impl.CurrentEnvModule"/ -->
+    <!-- attributeFinderModule class="com.sun.xacml.finder.impl.EmergencyLevelModule"/ -->
+
+    <policyFinderModule class="com.sun.xacml.support.finder.FilePolicyModule">
+      <list>
+        <string>conf:useLines:true</string>
+        <string>file:policy2.xacml</string>
+      </list>
+    </policyFinderModule>
+  </pdp>
+  <attributeFactory name="attr" useStandardDatatypes="true">
+    <datatype identifier="urn:type:evaluationId" class="eu.aniketos.securebpmn.xacml.xacml.attr.proxy.EvaluationIdAttributeProxy"/>
+  </attributeFactory>
+
+  <combiningAlgFactory name="comb" useStandardAlgorithms="false">
+    <algorithm class="eu.aniketos.securebpmn.xacml.xacml.combine.AnalysisFirstApplicableRuleAlg"/>
+    <algorithm class="eu.aniketos.securebpmn.xacml.xacml.combine.AnalysisFirstApplicablePolicyAlg"/>
+    <algorithm class="eu.aniketos.securebpmn.xacml.xacml.combine.AnalysisDenyOverridesRuleAlg"/>
+    <algorithm class="eu.aniketos.securebpmn.xacml.xacml.combine.AnalysisDenyOverridesPolicyAlg"/>
+    <algorithm class="eu.aniketos.securebpmn.xacml.xacml.combine.AnalysisOrderedDenyOverridesRuleAlg"/>
+    <algorithm class="eu.aniketos.securebpmn.xacml.xacml.combine.AnalysisOrderedDenyOverridesPolicyAlg"/>
+    <algorithm class="eu.aniketos.securebpmn.xacml.xacml.combine.AnalysisPermitOverridesRuleAlg"/>
+    <algorithm class="eu.aniketos.securebpmn.xacml.xacml.combine.AnalysisPermitOverridesPolicyAlg"/>
+    <algorithm class="eu.aniketos.securebpmn.xacml.xacml.combine.AnalysisOrderedPermitOverridesRuleAlg"/>
+    <algorithm class="eu.aniketos.securebpmn.xacml.xacml.combine.AnalysisOrderedPermitOverridesPolicyAlg"/>
+    <algorithm class="eu.aniketos.securebpmn.xacml.xacml.combine.AnalysisOnlyOneApplicablePolicyAlg"/>
+  </combiningAlgFactory>
+
+  <functionFactory name="func" useStandardFunctions="true"/>
+</config>
+
+

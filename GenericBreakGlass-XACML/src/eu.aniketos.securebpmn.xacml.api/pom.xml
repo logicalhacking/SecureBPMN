@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>eu.aniketos.securebpmn.xacml</groupId>
+    <artifactId>eu.aniketos.securebpmn.xacml.parent</artifactId>
+    <version>1.0</version>
+    <relativePath>../eu.aniketos.securebpmn.xacml.parent/pom.xml</relativePath>
+  </parent>
+  <artifactId>eu.aniketos.securebpmn.xacml.api</artifactId>
+  <version>0.1</version>
+  <packaging>jar</packaging>
+  <name>SecureBPMN XACML - Core API</name>
+  <url>http://maven.apache.org</url>
+  <properties>
+    <cxf-version>2.5.1</cxf-version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+  <build>
+    <finalName>${artifactId}</finalName>
+    <plugins>
+      <!-- Java 1.5 -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.5</source>
+          <target>1.5</target>
+        </configuration>
+      </plugin>
+      <!-- Java2WS -->
+      <plugin>
+        <groupId>org.apache.cxf</groupId>
+        <artifactId>cxf-java2ws-plugin</artifactId>
+        <!-- version>${cxf-version}</version -->
+        <version>${cxf-version}</version>
+        <dependencies>
+          <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-frontend-jaxws</artifactId>
+            <!-- version>${cxf-version}</version -->
+            <version>${cxf-version}</version>
+          </dependency>
+          <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-frontend-simple</artifactId>
+            <!-- version>${cxf-version}</version -->
+            <version>${cxf-version}</version>
+          </dependency>
+        </dependencies>
+        <executions>
+          <execution>
+            <id>process-classes</id>
+            <phase>process-classes</phase>
+            <configuration>
+              <className>eu.aniketos.securebpmn.xacml.api.autho.IPDP</className>
+              <genWsdl>true</genWsdl>
+              <verbose>true</verbose>
+            </configuration>
+            <goals>
+              <goal>java2ws</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>[4.8,)</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+</project>
