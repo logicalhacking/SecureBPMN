@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PolicySet xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="http://codemonkey.at/xacml-2.0-policy-schema-extended.xsd" 
+        xmlns="urn:oasis:names:tc:xacml:2.0:policy:schema:os"
+	PolicySetId="nhs:becker:health-record"
+	PolicyCombiningAlgId="urn:oasis:names:tc:xacml:1.0:policy-combining-algorithm:first-applicable">
+
+	
+	<Target>
+		<Resources>
+			<Resource>
+				<ResourceMatch MatchId="urn:custom:uri-starts-with">
+					<ResourceAttributeDesignator AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+							DataType="http://www.w3.org/2001/XMLSchema#anyURI" MustBePresent="true"/>
+					<AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">urn:nhs:becker:health-record</AttributeValue>
+				</ResourceMatch>
+			</Resource>
+		</Resources>
+	</Target>
+	
+	
+	<!-- Clinicians -->
+	<Policy PolicyId="nhs:becker:health-record:clinician" 
+			RuleCombiningAlgId="urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:first-applicable">
+		<Description>Policy for role Clinicians</Description>
+		<Target>
+			<Subjects>
+				<Subject>
+					<SubjectMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+						<SubjectAttributeDesignator AttributeId="urn:custom:subject:role"
+								DataType="http://www.w3.org/2001/XMLSchema#string"/>
+						<AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">clinician</AttributeValue>
+					</SubjectMatch>
+				</Subject>
+			</Subjects>
+		</Target>
+	
+		<Rule Effect="Permit" RuleId="nhs:becker:health-record:clinician:010">
+			<Description>allow read, if subject is owner and patient gave one-off-consent (S5.3.3)</Description>
+			<Target>
+				<Actions>
+					<Action>
+						<ActionMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+							<ActionAttributeDesignator AttributeId="urn:oasis:names:tc:xacml:1.0:action:action-id"
+									DataType="http://www.w3.org/2001/XMLSchema#string"/>
+							<AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">read</AttributeValue>
+						</ActionMatch>
+					</Action>
+				</Actions>
+			</Target>
+			<Condition>
+				<Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:and">
+					<Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+						<Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-one-and-only">
+							<SubjectAttributeDesignator AttributeId="urn:oasis:names:tc:xacml:1.0:subject:subject-id"
+									DataType="http://www.w3.org/2001/XMLSchema#string"/>
+						</Apply>
+						<Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-one-and-only">
+							<ResourceAttributeDesignator AttributeId="urn:custom:resouce:author"
+									DataType="http://www.w3.org/2001/XMLSchema#string"/>
+						</Apply>
+					</Apply>
+					<Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:boolean-one-and-only">
+						<ResourceAttributeDesignator AttributeId="urn:custom:resouce:patient:one-off-consent" 
+								DataType="http://www.w3.org/2001/XMLSchema#boolean"/>
+					</Apply>
+				</Apply>
+			</Condition>
+		</Rule>
+		
+		<Rule Effect="Deny" RuleId="nhs:becker:health-record:clinician:020:deny-non-treating">
+			<Description>deny non treating clinicians</Description>
+			<Condition>
+				<!-- if neither first nor second condistion mathes, deny request -->
+				<Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:not">
+					<Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:or">
+						<!-- check if subject is treating clinician -->						
+						<Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:any-of-any">
+							<Function FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-equal"/>
+							<SubjectAttributeDesignator AttributeId="urn:oasis:names:tc:xacml:1.0:subject:subject-id" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+							<ResourceAttributeDesignator AttributeId="urn:custom:resouce:patient:treating-clinician" DataType="http://www.w3.org/2001/XMLSchema#string"/>
+						</Apply>
+						<!-- check if clinician is assigned to an active workgoup where the patiant hase given his consent -->
+						<Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:any-of-any">
+							<Function FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-equal"/>
+							<SubjectAttributeDesignator AttributeId="urn:custom:subject:active-workgroup" DataType="http://www.w3.org/2001/XMLSchema#string"/>
+							<ResourceAttributeDesignator AttributeId="urn:custom:resouce:patient:treating-workgroup" DataType="http://www.w3.org/2001/XMLSchema#string"/>
+						</Apply>
+					</Apply>				
+				</Apply>			
+			</Condition>
+		</Rule>
+
+		<Rule Effect="Permit" RuleId="nhs:becker:health-record:clinician:030">
+			<Description>
+				add a new item S5.1.1
+				get a list of all records (only IDs) S5.2.3
+			</Description>
+			<Target>
+				<Actions>
+					<Action>
+						<!-- add a new item S5.1.1 -->
+						<ActionMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+							<ActionAttributeDesignator AttributeId="urn:oasis:names:tc:xacml:1.0:action:action-id" 
+									DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="True"/>
+							<AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">add</AttributeValue>
+						</ActionMatch>
+						<!-- get a list of all records (only IDs) S5.2.3 -->
+						<ActionMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+							<ActionAttributeDesignator AttributeId="urn:oasis:names:tc:xacml:1.0:action:action-id" 
+									DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="True"/>
+							<AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">get-record-item-list</AttributeValue>
+						</ActionMatch>
+					</Action>
+				</Actions>
+			</Target>
+		</Rule>
+		
+		
+		
+		<Rule Effect="Permit" RuleId="nhs:becker:health-record:clinician:040">
+			<Description>
+				allow read if subjects match, not sealed by patient (and treating clinician) (S5.3.4)
+				or, if sealed, allow access only if 
+			</Description>
+			<Target>
+				<Actions>
+					<Action>
+						<ActionMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+							<ActionAttributeDesignator AttributeId="urn:oasis:names:tc:xacml:1.0:action:action-id" 
+									DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+							<AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">read</AttributeValue>
+						</ActionMatch>
+					</Action>
+				</Actions>
+			</Target>
+			<Condition>
+				<Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:and">
+					<!-- subject must have permission to read given subject(s) -->
+					<Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:any-of-any">
+						<Function FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-equal"/>
+						<SubjectAttributeDesignator AttributeId="urn:custom:subject:permitted-healthrecord-subjects" 
+								DataType="http://www.w3.org/2001/XMLSchema#string"/>
+						<ResourceAttributeDesignator AttributeId="urn:custom:resouce:subjects" 
+								DataType="http://www.w3.org/2001/XMLSchema#string"/>
+					</Apply>
+					<Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:or">
+						<!-- item must not be sealed of by patient -->
+						<Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:not">
+							<Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:any-of-any">
+								<Function FunctionId="urn:oasis:names:tc:xacml:1.0:function:integer-equal"/>
+								<ResourceAttributeDesignator AttributeId="urn:custom:resouce:item-id" 
+										DataType="http://www.w3.org/2001/XMLSchema#integer" MustBePresent="true"/>
+										<ResourceAttributeDesignator AttributeId="urn:custom:resouce:patient:sealed-items" 
+										DataType="http://www.w3.org/2001/XMLSchema#integer"/>
+							</Apply>
+						</Apply>
+						<!-- or, if sealed, patient may have given  authenticated-express-consent -->
+						<Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:any-of-any">
+							<Function FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-equal"/>
+							<SubjectAttributeDesignator AttributeId="urn:oasis:names:tc:xacml:1.0:subject:subject-id" 
+									DataType="http://www.w3.org/2001/XMLSchema#string"/>
+							<ResourceAttributeDesignator AttributeId="urn:custom:resouce:patient:authenticated-express-consent" 
+									DataType="http://www.w3.org/2001/XMLSchema#string"/>
+						</Apply>
+					</Apply>
+				</Apply>
+			</Condition>
+		</Rule>
+	</Policy>
+	
+	<Policy PolicyId="nhs:becker:health-record:patient" 
+			RuleCombiningAlgId="urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:first-applicable">
+		<Description>Policy for role Patient</Description>
+		<Target>
+			<Subjects>
+				<Subject>
+					<SubjectMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+						<SubjectAttributeDesignator AttributeId="urn:custom:subject:role" DataType="http://www.w3.org/2001/XMLSchema#string"/>
+						<AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">patient</AttributeValue>
+					</SubjectMatch>
+				</Subject>
+			</Subjects>
+		</Target>
+		
+		
+		<Rule Effect="Permit" RuleId="nhs:becker:health-record:patient:010">
+			<Description>Allow patients to add comments to their own health record</Description>
+			<Target>
+				<Resources>
+					<Resource>
+						<ResourceMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+							<ResourceAttributeDesignator AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id" 
+									DataType="http://www.w3.org/2001/XMLSchema#string"/>
+							<AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">nhs:becker:health-record:comment</AttributeValue>
+						</ResourceMatch>
+					</Resource>
+				</Resources>
+				<Actions>
+					<Action>
+						<ActionMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+							<ActionAttributeDesignator AttributeId="urn:oasis:names:tc:xacml:1.0:action:action-id" DataType="http://www.w3.org/2001/XMLSchema#string"/>
+							<AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">add</AttributeValue>
+						</ActionMatch>
+					</Action>
+				</Actions>
+			</Target>
+			<Condition>
+				<Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+					<Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-one-and-only">
+						<SubjectAttributeDesignator AttributeId="urn:oasis:names:tc:xacml:1.0:subject:subject-id" 
+								DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+					</Apply>
+					<Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-one-and-only">
+						<ResourceAttributeDesignator AttributeId="urn:custom:resouce:patient:patient-id" 
+								DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+					</Apply>
+				</Apply>
+			</Condition>
+		</Rule>
+	</Policy>
+	
+	<Policy PolicyId="nhs:becker:health-record:final" 
+			RuleCombiningAlgId="urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:first-applicable">
+			<Description>final deny policy/rule</Description>
+		<Rule Effect="Deny" RuleId="nhs:becker:health-record:final:final"/>		
+	</Policy>	
+</PolicySet>

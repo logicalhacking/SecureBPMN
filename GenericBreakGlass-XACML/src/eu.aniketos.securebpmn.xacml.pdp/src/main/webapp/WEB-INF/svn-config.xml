@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+  <svn_url></svn_url>
+  <username></username>
+  <password></password>
+  <version>-1</version>
+  <updateJars>false</updateJars>
+</config>

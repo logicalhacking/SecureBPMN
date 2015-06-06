@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>eu.aniketos.securebpmn.xacml</groupId>
+    <artifactId>eu.aniketos.securebpmn.xacml.parent</artifactId>
+    <version>1.0</version>
+    <relativePath>../eu.aniketos.securebpmn.xacml.parent/pom.xml</relativePath>
+  </parent>
+  <artifactId>eu.aniketos.securebpmn.xacml.pdp</artifactId>
+  <packaging>war</packaging>
+  <version>0.1</version>
+  <name>SecureBPMN XACML - PDP</name>
+  <url>http://maven.apache.org</url>
+  <properties>
+    <cxf-version>2.5.1</cxf-version>
+  </properties>
+  <build>
+    <finalName>${artifactId}</finalName>
+    <plugins>
+      <!-- Java 1.5 -->
+      <plugin>
+        <version>2.3.2</version>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.5</source>
+          <target>1.5</target>
+        </configuration>
+      </plugin>
+      <plugin>
+        <!-- NOTE: We don't need a groupId specification because the group is 
+					org.apache.maven.plugins ...which is assumed by default. -->
+        <artifactId>maven-assembly-plugin</artifactId>
+        <version>2.3</version>
+        <configuration>
+          <descriptorRefs>
+            <descriptorRef>jar-with-dependencies</descriptorRef>
+          </descriptorRefs>
+        </configuration>
+      </plugin>
+      <!-- removed, as attributes are captured with RecordAttributeFinder -->
+      <!-- plugin> <groupId>org.codehaus.mojo</groupId> <artifactId>aspectj-maven-plugin</artifactId> 
+				<version>1.3</version> <configuration> <ajdtVersion>1.5</ajdtVersion> </configuration> 
+				<executions> <execution> <goals> <goal>compile</goal> </goals> <configuration> 
+				<verbose>true</verbose> <privateScope>true</privateScope> <complianceLevel>1.5</complianceLevel> 
+				<weaveDependencies> <weaveDependency> <groupId>com.sun.xacml</groupId> <artifactId>sun-xacml</artifactId> 
+				</weaveDependency> </weaveDependencies> <includes> <include>**/AttributeFinderModuleObserver.aj</include> 
+				</includes> </configuration> </execution> </executions> </plugin> <plugin> 
+				<artifactId>maven-war-plugin</artifactId> <version>2.1-alpha-2</version> 
+				<configuration> <! - - remove sun xacml jar, as weaved classes from aspectJ 
+				are added into classes folder - - > <packagingExcludes>WEB-INF/lib/sun-xacml-0.1.jar,WEB-INF/classes/builddef.lst</packagingExcludes> 
+				</configuration> </plugin -->
+    </plugins>
+  </build>
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>[4.8,)</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>eu.aniketos.securebpmn.xacml</groupId>
+      <artifactId>com.sun.xacml</artifactId>
+      <version>0.1</version>
+    </dependency>
+    <dependency>
+      <groupId>eu.aniketos.securebpmn.xacml</groupId>
+      <artifactId>com.sun.xacml.support</artifactId>
+      <version>0.1</version>
+    </dependency>
+    <dependency>
+      <groupId>eu.aniketos.securebpmn.xacml</groupId>
+      <artifactId>eu.aniketos.securebpmn.xacml.api</artifactId>
+      <version>0.1</version>
+    </dependency>
+    <dependency>
+      <groupId>eu.aniketos.securebpmn.xacml</groupId>
+      <artifactId>eu.aniketos.securebpmn.xacml.support</artifactId>
+      <version>1.0</version>
+    </dependency>
+    <dependency>
+      <groupId>eu.aniketos.securebpmn.xacml</groupId>
+      <artifactId>eu.aniketos.securebpmn.xacml.pdpstate</artifactId>
+      <version>0.1</version>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>log4j</groupId>
+      <artifactId>log4j</artifactId>
+      <version>[1.2,)</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.cxf</groupId>
+      <artifactId>cxf-rt-transports-http</artifactId>
+      <version>${cxf-version}</version>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.cxf</groupId>
+      <artifactId>cxf-rt-frontend-jaxws</artifactId>
+      <version>${cxf-version}</version>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.tmatesoft.svnkit</groupId>
+      <artifactId>svnkit</artifactId>
+      <version>1.3.5</version>
+    </dependency>
+    <!-- seems to be required by hibernate... -->
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-simple</artifactId>
+      <version>1.5.8</version>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>javassist</groupId>
+      <artifactId>javassist</artifactId>
+      <version>[3,)</version>
+      <scope>runtime</scope>
+    </dependency>
+  </dependencies>
+</project>
+<!-- dependency> <groupId>org.hibernate</groupId> <artifactId>hibernate</artifactId> 
+	<version>3.1.3</version> </dependency -->
+<!-- dependency> <groupId>org.aspectj</groupId> <artifactId>aspectjrt</artifactId> 
+	<version>1.6.7</version -->
+<!-- version>[1,)</version -->
+<!-- tested with plugin 1.3 and aspectjrt 1.6.7 -->
+<!-- /dependency -->

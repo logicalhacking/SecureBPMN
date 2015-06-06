@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PolicySet xmlns="urn:oasis:names:tc:xacml:2.0:policy:schema:os"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	PolicySetId="AndOrTest:main"
+	PolicyCombiningAlgId="urn:oasis:names:tc:xacml:1.0:policy-combining-algorithm:permit-overrides">
+
+  <Description>
+    Simple policy to test the behaviour of the modified logical functions 
+	defined in eu.aniketos.securebpmn.xacml.xacml.cond.AnalysisLogicalFunction
+  </Description>
+
+  <Target>
+    <Resources>
+      <Resource> 
+        <ResourceMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:anyURI-equal">
+          <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">AndOrTest</AttributeValue>
+          <ResourceAttributeDesignator DataType="http://www.w3.org/2001/XMLSchema#anyURI"
+                                       AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"/>
+        </ResourceMatch>
+      </Resource>
+    </Resources>
+  </Target>
+
+  <Policy PolicyId="AndOrTest_1"
+        RuleCombiningAlgId="urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:first-applicable">
+    <Target/>
+
+    <Rule RuleId="AndOrTest_1_1" Effect="Deny">
+      <Target/>
+      <Condition> 
+        <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:or">
+          <Apply  FunctionId="urn:oasis:names:tc:xacml:1.0:function:boolean-one-and-only">
+            <SubjectAttributeDesignator  DataType="http://www.w3.org/2001/XMLSchema#boolean"
+                                   AttributeId="urn:nothere1"/>
+          </Apply> 
+          <Apply  FunctionId="urn:oasis:names:tc:xacml:1.0:function:boolean-one-and-only">
+            <SubjectAttributeDesignator  DataType="http://www.w3.org/2001/XMLSchema#boolean"
+                                   AttributeId="urn:test:true"/>
+          </Apply> 
+          <Apply  FunctionId="urn:oasis:names:tc:xacml:1.0:function:boolean-one-and-only">
+            <SubjectAttributeDesignator  DataType="http://www.w3.org/2001/XMLSchema#boolean"
+                                   AttributeId="urn:test:false"/>
+          </Apply> 
+        </Apply>
+      </Condition> 
+    </Rule>
+
+  </Policy>
+
+  <!-- final Policy -->
+  <Policy PolicyId="AndOrTest_FinalPolicy"
+        RuleCombiningAlgId="urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:first-applicable">
+    <Target/>
+    <Rule RuleId="AndOrTest_FinalRule" Effect="Deny"/>
+  </Policy>
+</PolicySet>

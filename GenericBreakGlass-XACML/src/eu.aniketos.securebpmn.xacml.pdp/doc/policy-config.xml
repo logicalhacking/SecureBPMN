@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This is an example policy-config.xml file which shows the most common options 
+and extensions provided by this implementation
+-->
+<config xmlns="http://sunxacml.sourceforge.net/schema/config-0.3"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        defaultPDP="pdp" defaultAttributeFactory="attr"
+        defaultCombiningAlgFactory="comb" defaultFunctionFactory="func">
+
+  <pdp name="pdp">
+    <!--  
+    attributeFinderModules are responsible for retreiving attributes into the
+		current evaluation context. multiple elements allowed,
+
+    possible values:
+    com.sun.xacml.finder.impl.SelectorModule: is able to retreive attributes
+		from the current request; should be enabled by default
+
+	com.sun.xacml.finder.impl.CurrentEnvModule: is able to retreive current 
+		date, time, and datetime values; should be enabled by default
+
+	Custom Modules: have to extend the AttributeFinderModule class. This is 
+		the way how external information should be retreived from the PIP 
+		(Policy Information Point) 
+    -->
+    <attributeFinderModule class="com.sun.xacml.finder.impl.SelectorModule"/>
+    <attributeFinderModule class="com.sun.xacml.finder.impl.CurrentEnvModule"/>
+
+	<!-- 
+	policyFinderModules are responsbile for locating and loading the policies
+		(using the com.sun.xacml.support.finder.PolicyReader for parsing).
+	    A policyFinderModule may have arguments, which are passed as <list> of
+		<string> to the constructor. TODO: multiple arguments?
+
+	Two types provided by this implementation are
+	com.sun.xacml.support.finder.FilePolicyModule: the string inputs can be 
+		either configuration parameters (prefix: conf) or files to load 
+		(prefix: file), TODO directories to load (prefix: dir)
+
+		Possible configuration parameters are:
+			conf:useLines:<true|false> should (during loading) the line numbers
+				be indexed. Requires some more time and resources for loading,
+				but enables more readable error messages; 
+				TODO: required feature for analysis pdp, TODO overwritten?
+	-->
+    <policyFinderModule class="com.sun.xacml.support.finder.FilePolicyModule">
+      <list>
+        <string>file:policy1.xacml</string>
+        <string>conf:useLines:true</string>
+      </list>
+    </policyFinderModule>
+
+	<!--
+	eu.aniketos.securebpmn.xacml.xacml.finder.SVNPolicyFinderModule loads the policies from
+		from a directory from an SVN repository; the SVNPolicyFinderModule 
+		expects four configuration parameters, wheres those parameters can be
+		overwritten when TODO TODO this configuration may be overwritten by an pdp-wide svn configuration, e.g. if pdp.config/use_svn=true
+		1) type="svn_url": the URL to the svn repository
+		2) type="username": the username for the svn repository TODO empty?
+		3) type="password": the password for the svn repository
+		4) type="version": the required version (integer / svn repository 
+			version number, -1 for the last version)
+		5) TODO configuration parameters (conf:useLines:<true|false>)
+	-->
+    <policyFinderModule class="eu.aniketos.securebpmn.xacml.xacml.finder.SVNPolicyFinderModule">
+      <list>
+        <string>conf:svn_url:https://demo-server/demo-repository</string>
+        <string>conf:username:pdp</string>
+        <string>conf:password:secret</string>
+        <string>conf:version:-1</string>
+      </list>
+    </policyFinderModule>
+<!-- TODO old: remove 
+        <string type="svn_url">https://demo-server/demo-repository</string>
+        <string type="username">pdp</string>
+        <string type="password">secret</string>
+        <string type="version">-1</string>
+-->
+  </pdp>
+  <!-- 
+  attribtueFactory: responsible for loading datatypes. By default, standard
+	datatype should be loaded (useStandardDatatypes="true"), additional 
+	datatypes are added with <datatype> elements. For new datatypes, two classes
+	have to be implemented:
+	1) a proxy class, implementing the com.sun.xacml.attr.AttributeProxy 
+		interface (see com.sun.xacml.attr.proxy as examples)
+	2) a "value" class, extending the com.sun.xacml.attr.AttributeValue class.
+		This class has to contain the logic for the new datatype
+		(see com.sun.xacml.attr as examples)
+  -->
+  <attributeFactory name="attr" useStandardDatatypes="true">
+    <datatype identifier="urn:type:evaluationId"
+		 class="eu.aniketos.securebpmn.xacml.xacml.attr.proxy.EvaluationIdAttributeProxy"/>
+  </attributeFactory>
+
+  <!-- 
+  combiningAlgFactory: responsible for loading all (policy and rule) combining 
+	algorithms. Additional algorithms are added with <algorithm> elements, 
+	the class attribute has to contain a class name, extending the
+	com.sun.xacml.combine.CombiningAlgorithm class
+  -->
+  <combiningAlgFactory name="comb" useStandardAlgorithms="true"/>
+
+  <!-- 
+  When running the policy anamiation analysis, instead of the default combining
+  algorithms special ones are used.
+  -->
+  <combiningAlgFactory name="comb" useStandardAlgorithms="false">
+    <algorithm class="eu.aniketos.securebpmn.xacml.xacml.combine.AnalysisFirstApplicableRuleAlg"/>
+    <algorithm class="eu.aniketos.securebpmn.xacml.xacml.combine.AnalysisFirstApplicablePolicyAlg"/>
+    <algorithm class="eu.aniketos.securebpmn.xacml.xacml.combine.AnalysisDenyOverridesRuleAlg"/>
+    <algorithm class="eu.aniketos.securebpmn.xacml.xacml.combine.AnalysisDenyOverridesPolicyAlg"/>
+    <algorithm class="eu.aniketos.securebpmn.xacml.xacml.combine.AnalysisOrderedDenyOverridesRuleAlg"/>
+    <algorithm class="eu.aniketos.securebpmn.xacml.xacml.combine.AnalysisOrderedDenyOverridesPolicyAlg"/>
+    <algorithm class="eu.aniketos.securebpmn.xacml.xacml.combine.AnalysisPermitOverridesRuleAlg"/>
+    <algorithm class="eu.aniketos.securebpmn.xacml.xacml.combine.AnalysisPermitOverridesPolicyAlg"/>
+    <algorithm class="eu.aniketos.securebpmn.xacml.xacml.combine.AnalysisOrderedPermitOverridesRuleAlg"/>
+    <algorithm class="eu.aniketos.securebpmn.xacml.xacml.combine.AnalysisOrderedPermitOverridesPolicyAlg"/>
+    <algorithm class="eu.aniketos.securebpmn.xacml.xacml.combine.AnalysisOnlyOneApplicablePolicyAlg"/>
+  </combiningAlgFactory>
+
+
+
+  <!-- 
+  functionFactory: responsible for loading functions. TODO additional
+  -->
+  <functionFactory name="func" useStandardFunctions="true"/>
+
+  <!--
+  Optional configuration: logServer: a class which implements the
+	eu.aniketos.securebpmn.xacml.log.ILogStore interface.
+  -->
+  <logServer>eu.aniketos.securebpmn.xacml.log.LogServer</logServer>
+
+  <!--
+  Defines if at parsing the lines should be loaded. 
+  Note: 
+  -) Slows down loading of policies
+  -) May be overwritten by FinderModule configuration (if available)
+  -->
+  <useLines>true</useLines>
+
+
+</config>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

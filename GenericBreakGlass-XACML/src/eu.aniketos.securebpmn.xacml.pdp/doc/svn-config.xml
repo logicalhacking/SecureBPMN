@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This is an example config file for svn-config.xml, i.e., the file which
+defines the svn repository to use
+-->
+<config>
+  <svn_url></svn_url>
+  <username></username>
+  <password></password>
+  <version>-1</version>
+  <updateJars>false</updateJars>
+</config>
