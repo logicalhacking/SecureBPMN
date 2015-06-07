@@ -1,2 +1,6 @@
 runtime/src/modules/*/target/
 runtime/src/*/target/
+*/*/.classpath
+*/*/.project
+*/*/*/.project
+*/*/*/.classpath
