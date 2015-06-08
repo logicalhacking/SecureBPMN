@@ -20,17 +20,24 @@ the model and the actual implementation.
   (for the formal analysis of secure business processes)  
 
 #### Preparing the Eclipse environment
-To initialize the Eclipse project structure, please do 
-```  
-cd src/com.sun.xacml
+* First, install the GenericBreakGlass-XACML into your local 
+  maven repository:
+```
+cd GenericBreakGlass-XACML/src/eu.aniketos.securebpmn.xacml.parent
+mvn clean eclipse:clean 
+mvn eclipse:eclipse 
 mvn install 
-cd ../org.activiti.designer.parent
+cd ..
+```
+* To initialize the Eclipse project structure, please do 
+```  
+cd designer/src//org.activiti.designer.parent
 mvn clean eclipse:clean 
 mvn eclipse:eclipse
+cd ..
 ```
-  
-After this, all projects can be imported into a fresh Eclipse
-workspace using `File -> Import -> Existing Projects into Workspace`.
+* After this, all projects can be imported into a fresh Eclipse
+  workspace using `File -> Import -> Existing Projects into Workspace`.
 
 #### Generate Model Classes
 1. Open the folder `model` in the project `org.activiti.designer.model`
@@ -59,6 +66,17 @@ cd runtime/src/userguide
 ant install.xalan.libs
 ```
 ### Building the SecureBPMN Runtime
+* If you did not install GenericBreakGlass-XACML into your local 
+  maven repository as part of the installation of the SecureBPMN 
+  Designer:
+```
+cd GenericBreakGlass-XACML/src/eu.aniketos.securebpmn.xacml.parent
+mvn clean eclipse:clean 
+mvn eclipse:eclipse 
+mvn install 
+cd ..
+```
+* Compile the SecureBPMN runtime:
 ```
 cd runtime/src/distro
 ant clean distro 
