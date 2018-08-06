@@ -2,10 +2,10 @@
 
 [SecureBPMN](https://www.brucker.ch/projects/securebpmn/index.en.html)
 is a domain-specific modeling language that allows to model security
-aspects (e.g., access control, separation of duty,
-confidentiality). SecurePBPMN is defined as a meta-model that can
-easily be integrated into BPMN and, thus, can be used for modeling
-secure and business processes as well as secure service compositions.
+aspects (e.g., access control, separation of duty, confidentiality). 
+SecurePBPMN is defined as a meta-model that can easily be integrated 
+into BPMN and, thus, can be used for modeling secure and business 
+processes as well as secure service compositions.
 
 ![ScreenShot of the SecureBPMN Modeling and Verification Environment] (https://www.brucker.ch/projects/securebpmn/img/activiti-bpmn-analysis.png)
 The SecureBPMN tool chain does not only support modeling of secure business 
@@ -133,7 +133,6 @@ SPDX-License-Identifier: Apache-2.0
 The master git repository for this project is hosted by the [Software
 Assurance & Security Research Team](https://logicalhacking.com) at
 <https://git.logicalhacking.com/SecureBPMN/SecureBPMN>.
-
 
 ## Publications
 
