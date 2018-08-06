@@ -122,6 +122,12 @@ Main developer: [Achim D. Brucker](http://www.brucker.ch/)
 * Helmut Petritsch
 * Raj Ruparel
 
+## License
+
+This project is under the Apache 2.0 License. 
+
+SPDX-License-Identifier: Apache-2.0
+
 ## Publications
 
 Related publications are listed on the [SecureBPMN 
